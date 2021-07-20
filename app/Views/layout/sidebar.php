@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/" class="nav-link active">
+            <a href="/" class="nav-link <?= ($title == 'Beranda') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Beranda
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/menu" class="nav-link">
+            <a href="/menu" class="nav-link <?= ($title == 'Menu') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Menu
@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/pemesanan" class="nav-link">
+            <a href="/pemesanan" class="nav-link <?= ($title == 'Pemesanan') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Pemesanan
@@ -48,7 +48,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/pembayaran" class="nav-link">
+            <a href="/pembayaran" class="nav-link <?= ($title == 'Pembayaran') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Pembayaran
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/laporan" class="nav-link">
+            <a href="/laporan" class="nav-link <?= ($title == 'Pelaporan') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Pelaporan
