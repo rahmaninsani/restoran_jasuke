@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Beranda::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/menu', 'Menu::index');
+$routes->get('/pemesanan', 'Pemesanan::index');
 
 /*
  * --------------------------------------------------------------------
