@@ -6,7 +6,7 @@
   <body class="hold-transition sidebar-mini layout-fixed">
 
     <!-- Manggil Preloader -->
-    <?= $this->include('layout/preloader'); ?>
+    <?php //$this->include('layout/preloader'); ?>
 
     <!-- Manggil Navbar -->
     <?= $this->include('layout/navbar'); ?>
