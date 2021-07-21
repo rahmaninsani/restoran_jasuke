@@ -5,7 +5,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-    <!-- Main content -->
+    <!-- Search Bar -->
     <h2 class="text-center display-4">Pembayaran</h2>
     <form action="simple-results.html">
         <div class="input-group">
@@ -22,15 +22,6 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="mt-4">Daftar Pembayaran</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Pembayaran</a></li>
-                        <li class="breadcrumb-item active">Daftar Pembayaran</li>
-                    </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
