@@ -61,7 +61,7 @@
                 <div class="col-sm-6">
                     <!-- Small Box (Stat card) -->
                     <div class="row">
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg-5 col-10">
                             <!-- small card -->
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -96,11 +96,14 @@
                         <!-- ./col -->
                     </div>
                     <!-- /.row -->
-
-
-                    <!-- /.content -->
                 </div>
-                <!-- /.content-wrapper -->
             </div>
 
-            <?= $this->endSection(); ?>
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>
+
+<?= $this->endSection(); ?>
