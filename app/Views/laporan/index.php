@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="mt-4">Pelaporan Periodik</h1>
+                        <h1 class="mt-3">Pelaporan Periodik</h1>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -18,7 +18,7 @@
 
             <!-- Main content -->
             <!-- /.card-header -->
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-sm-4">
                     <!-- select -->
                     <div class="form-group">
@@ -57,11 +57,11 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="mx-auto">
+                <div class="col-mt-5">
                     <!-- Small Box (Stat card) -->
                     <div class="row">
-                        <div class="col-lg-5 col-10">
+                        <div class="col-lg-3 col-6">
                             <!-- small card -->
                             <div class="small-box bg-info">
                                 <div class="inner">
