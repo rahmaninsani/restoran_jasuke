@@ -70,7 +70,7 @@
                                 <div class="inner">
                                     <p class="mb-1">Total Data Pembayaran</p>
                                     <h3 class="row justify-content-center">Rp. 30.000.000 ,-</h3>
-                                    <sub class="row justify-content-center mb-0" style="font-size: 20px"></sub>
+                                    <sub class="row justify-content-center mb-" style="font-size: 20px"></sub>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-money-bill-wave-alt"></i></i>
