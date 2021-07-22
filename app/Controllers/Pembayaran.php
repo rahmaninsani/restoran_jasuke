@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
-class Pembayaran extends BaseController {
+class Pembayaran extends BaseController
+{
 
   public function index()
   {
@@ -12,5 +13,4 @@ class Pembayaran extends BaseController {
 
     return view('pembayaran/index', $data);
   }
-
 }
