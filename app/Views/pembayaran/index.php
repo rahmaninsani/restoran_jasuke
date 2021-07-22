@@ -51,7 +51,7 @@
                                             <td>1</td>
                                             <td>Ujang</td>
                                             <td>1</td>
-                                            <td><a href=""><a href=""><button class="btn btn-primary">Bayar</button></a></a></td>
+                                            <td><a href="hitung_bayar.php"><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
