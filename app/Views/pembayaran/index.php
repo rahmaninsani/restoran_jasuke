@@ -51,43 +51,43 @@
                                             <td>1</td>
                                             <td>Ujang</td>
                                             <td>1</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><a href=""><button class="btn btn-primary">Bayar</button></a></a></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>Kusnandar</td>
                                             <td>2</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td>Dedi</td>
                                             <td>3</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td>Entis</td>
                                             <td>4</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>5</td>
                                             <td>Agus</td>
                                             <td>5</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>6</td>
                                             <td>Tatang</td>
                                             <td>6</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                         <tr>
                                             <td>7</td>
                                             <td>Angga</td>
                                             <td>7</td>
-                                            <td><button class="btn btn-primary">Bayar</button></td>
+                                            <td><a href=""><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
