@@ -7,10 +7,10 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container-fluid p-2 ml-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="mt-3">Pelaporan Periodik</h1>
+                        <h1 class="mt-3 mb-1 p-2">Pelaporan Periodik</h1>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -18,10 +18,10 @@
 
             <!-- Main content -->
             <!-- /.card-header -->
-            <div class="row mt-4">
-                <div class="col-sm-4">
+            <div class="row p-1 mb-0">
+                <div class="col p-3">
                     <!-- select -->
-                    <div class="form-group">
+                    <div class="form-group p-3">
                         <label>Jangka Pelaporan</label>
                         <select class="form-control">
                             <option>Harian</option>
@@ -31,8 +31,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
+                <div class="col p-3">
+                    <div class="form-group p-3">
                         <label>Dari</label>
                         <select class="form-control">
                             <option>Januari</option>
@@ -43,8 +43,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
+                <div class="col p-3">
+                    <div class="form-group p-3">
                         <label>Ke</label>
                         <select class="form-control">
                             <option>Januari</option>
@@ -57,40 +57,34 @@
                 </div>
             </div>
 
-            <div class="mx-auto">
-                <div class="col-mt-5">
+            <div class="row p-2">
+                <div class="col p-3">
                     <!-- Small Box (Stat card) -->
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
+                    <div class="row p-4">
+                        <div class="col-lg-3 col-6 p-3 d-inline-block">
                             <!-- small card -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
+                            <div class="small-box bg-info p-3">
+                                <div class="inner p-1">
                                     <p>Total Data Pembayaran</p>
                                     <h3>Rp. 30.000.000 ,-</h3>
                                     <sub style="font-size: 20px"></sub>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-money-bill-wave-alt"></i></i>
+                                    <i class="fas fa-money-bill-wave-alt p-1"></i></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fas fa-arrow-circle-right"></i>
-                                </a>
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg-3 col-6 p-3 d-inline-block">
                             <!-- small card -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
+                            <div class="small-box bg-success p-3">
+                                <div class="inner p-1">
                                     <p>Total Pesanan</p>
                                     <h3>200<sub style="font-size: 15px">Pesanan</sub></h3>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-shopping-cart p-1"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fas fa-arrow-circle-right"></i>
-                                </a>
                             </div>
                         </div>
                         <!-- ./col -->
