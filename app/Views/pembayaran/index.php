@@ -6,9 +6,9 @@
 <div class="content-wrapper">
 
     <!-- Search Bar -->
-    <h2 class="text-center display-4">Pembayaran</h2>
+    <h2 class="text-center display-4 p-3">Pembayaran</h2>
     <form action="simple-results.html">
-        <div class="input-group">
+        <div class="input-group p-4">
             <input type="search" class="form-control form-control-lg" placeholder="Ketikkan Nomor Pembayaran disini">
             <div class="input-group-append">
                 <button type="submit" class="btn btn-lg btn-default">
