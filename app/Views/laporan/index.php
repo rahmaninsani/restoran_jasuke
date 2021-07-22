@@ -18,8 +18,8 @@
 
             <!-- Main content -->
             <!-- /.card-header -->
-            <div class="row p-1 mb-0">
-                <div class="col p-3">
+            <div class="row">
+                <div class="col justify-content-center">
                     <!-- select -->
                     <div class="form-group p-3">
                         <label>Jangka Pelaporan</label>
@@ -31,7 +31,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col justify-content-center">
                     <div class="form-group p-3">
                         <label>Dari</label>
                         <select class="form-control">
@@ -43,7 +43,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col justify-content-center">
                     <div class="form-group p-3">
                         <label>Ke</label>
                         <select class="form-control">
@@ -57,33 +57,40 @@
                 </div>
             </div>
 
-            <div class="row p-2">
-                <div class="col p-3">
+            <div class="row p-2 ">
+                <div class="col p-3 ">
                     <!-- Small Box (Stat card) -->
-                    <div class="row p-4">
+                    <div class="row justify-content-center">
                         <div class="col p-3 d-inline-block">
+                            <div class="p-2">
+                                <h3>Pembayaran</h3>
+                            </div>
                             <!-- small card -->
                             <div class="small-box bg-info p-3">
-                                <div class="inner p-1">
-                                    <p>Total Data Pembayaran</p>
-                                    <h3>Rp. 30.000.000 ,-</h3>
-                                    <sub style="font-size: 20px"></sub>
+                                <div class="inner">
+                                    <p class="mb-1">Total Data Pembayaran</p>
+                                    <h3 class="row justify-content-center">Rp. 30.000.000 ,-</h3>
+                                    <sub class="row justify-content-center mb-0" style="font-size: 20px"></sub>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-money-bill-wave-alt p-1"></i></i>
+                                    <i class="fas fa-money-bill-wave-alt"></i></i>
                                 </div>
                             </div>
                         </div>
                         <!-- ./col -->
                         <div class="col p-3 d-inline-block">
+                            <div class="p-2">
+                                <h3>Pemesanan</h3>
+                            </div>
                             <!-- small card -->
                             <div class="small-box bg-success p-3">
-                                <div class="inner p-1">
-                                    <p>Total Pesanan</p>
-                                    <h3>200<sub style="font-size: 15px">Pesanan</sub></h3>
+                                <div class="inner">
+                                    <p class="mb-0">Total Pesanan</p>
+                                    <h3 class="row justify-content-center ">200</h3>
+                                    <sub class="row justify-content-center mb-1" style="font-size: 15px">Pesanan</sub>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-shopping-cart p-1"></i>
+                                    <i class="fas fa-shopping-cart"></i>
                                 </div>
                             </div>
                         </div>
@@ -92,8 +99,12 @@
                     <!-- /.row -->
                 </div>
             </div>
-
-
+            <!-- /.row -->
+            <div class="row justify-content-center">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-secondary"> Unduh</button>
+                </div>
+            </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
