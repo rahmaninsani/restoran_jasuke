@@ -37,6 +37,7 @@ $routes->get('/menu', 'Menu::index');
 $routes->get('/pemesanan', 'Pemesanan::index');
 $routes->get('/laporan', 'Laporan::index');
 $routes->get('/pembayaran', 'Pembayaran::index');
+$routes->get('/hitung_bayar', 'Hitung_bayar::index');
 
 /*
  * --------------------------------------------------------------------
