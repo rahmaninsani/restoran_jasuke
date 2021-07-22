@@ -14,8 +14,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Pemesanan</a></li>
-              <li class="breadcrumb-item active">Daftar Pemesanan</li>
+              <li class="breadcrumb-item p-1"><a href="#">Pemesanan</a></li>
+              <li class="breadcrumb-item active p-1">Daftar Pemesanan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,7 +26,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
+        <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -64,7 +64,7 @@
                       <td>MN01</td>
                       <td>BY01</td>
                       <td>2</td>
-                      <td>Rp26000</td>
+                      <td>Rp.26.000,-</td>
                       <td>Belum Selesai</td>
                       <td><button class="btn btn-primary">Ubah</button></td>
                     </tr>
@@ -73,7 +73,7 @@
                       <td>MN01</td>
                       <td>BY01</td>
                       <td>2</td>
-                      <td>Rp26000</td>
+                      <td>Rp.26.000,-</td>
                       <td>Belum Selesai</td>
                       <td><button class="btn btn-primary">Ubah</button></td>
                     </tr>
@@ -82,7 +82,7 @@
                       <td>MN01</td>
                       <td>BY01</td>
                       <td>2</td>
-                      <td>Rp26000</td>
+                      <td>Rp.26.000,-</td>
                       <td>Belum Selesai</td>
                       <td><button class="btn btn-primary">Ubah</button></td>
                     </tr>
@@ -91,7 +91,7 @@
                       <td>MN01</td>
                       <td>BY01</td>
                       <td>2</td>
-                      <td>Rp26000</td>
+                      <td>Rp.26.000,-</td>
                       <td>Belum Selesai</td>
                       <td><button class="btn btn-primary">Ubah</button></td>
                     </tr>
@@ -100,7 +100,7 @@
                       <td>MN01</td>
                       <td>BY01</td>
                       <td>2</td>
-                      <td>Rp26000</td>
+                      <td>Rp.26.000,-</td>
                       <td>Belum Selesai</td>
                       <td><button class="btn btn-primary">Ubah</button></td>
                     </tr>
