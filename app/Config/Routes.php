@@ -38,7 +38,6 @@ $routes->get('/pemesanan', 'Pemesanan::index');
 $routes->get('/laporan', 'Laporan::index');
 $routes->get('/pembayaran', 'Pembayaran::index');
 
-
 /*
  * --------------------------------------------------------------------
  * Additional Routing
