@@ -61,7 +61,7 @@
                 <div class="col p-3">
                     <!-- Small Box (Stat card) -->
                     <div class="row p-4">
-                        <div class="col-lg-3 col-6 p-3 d-inline-block">
+                        <div class="col p-3 border d-inline-block">
                             <!-- small card -->
                             <div class="small-box bg-info p-3">
                                 <div class="inner p-1">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6 p-3 d-inline-block">
+                        <div class="col p-3 border d-inline-block">
                             <!-- small card -->
                             <div class="small-box bg-success p-3">
                                 <div class="inner p-1">
