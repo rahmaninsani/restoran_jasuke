@@ -22,7 +22,6 @@
                 <div class="col justify-content-center">
                     <!-- select -->
                     <div class="form-group p-3">
-                        <label>Jangka Pelaporan</label>
                         <select class="form-control">
                             <option>Harian</option>
                             <option>Mingguan</option>
