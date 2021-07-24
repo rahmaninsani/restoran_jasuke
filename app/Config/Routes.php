@@ -38,6 +38,10 @@ $routes->get('/pemesanan', 'Pemesanan::index');
 $routes->get('/laporan', 'Laporan::index');
 $routes->get('/pembayaran', 'Pembayaran::index');
 $routes->get('/hitung_bayar', 'Hitung_bayar::index');
+$routes->get('/pencarian_meja', 'Pemesanan::pencarian_meja');
+$routes->get('/tambah_pesanan', 'Pemesanan::tambah_pesanan');
+$routes->get('/ubah_pesanan', 'Pemesanan::ubah_pesanan');
+
 
 /*
  * --------------------------------------------------------------------
