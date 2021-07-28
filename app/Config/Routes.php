@@ -7,8 +7,7 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 	require SYSTEMPATH . 'Config/Routes.php';
 }
 
@@ -33,6 +32,22 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Beranda::index');
+$routes->get('/login', 'Login::index');
+//menu
+$routes->get('/menu', 'Menu::index');
+$routes->get('/menu/create', 'Menu::create');
+$routes->get('/menu/edit/(:segment)', 'Menu::edit/$1');
+$routes->delete('/menu/(:any)', 'Menu::delete/$1');
+$routes->get('/menu/(:any)','Menu::detail/$1');
+
+$routes->get('/pemesanan', 'Pemesanan::index');
+$routes->get('/laporan', 'Laporan::index');
+$routes->get('/pembayaran', 'Pembayaran::index');
+$routes->get('/hitung_bayar', 'Hitung_bayar::index');
+$routes->get('/pencarian_meja', 'Pemesanan::pencarian_meja');
+$routes->get('/tambah_pesanan', 'Pemesanan::tambah_pesanan');
+$routes->get('/ubah_pesanan', 'Pemesanan::ubah_pesanan');
+
 
 /*
  * --------------------------------------------------------------------
@@ -47,7 +62,6 @@ $routes->get('/', 'Beranda::index');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

@@ -1,0 +1,14 @@
+.gambar{
+    width: 275px; 
+    height: 183px;
+}
+
+.table > tbody > tr > * {
+    vertical-align: middle;
+}
+.img-fluid {
+    width: 340px; 
+    height: 335px;
+}
+
+
