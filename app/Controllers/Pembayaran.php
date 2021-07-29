@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class Pembayaran extends BaseController
 {
-
   public function index()
   {
     $data = [
