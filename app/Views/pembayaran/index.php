@@ -58,14 +58,16 @@
                                         INNER JOIN 
                                             pemesanan 
                                         ON 
-                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan;");
+                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan
+                                        AND
+                                            pembayaran.tanggal = pemesanan.tanggal;");
 
-                                        foreach ($query->getResultArray() as $byr) {
+                                        foreach ($query->getResult() as $byr) {
                                         ?>
                                             <tr>
-                                                <td><?= $byr['no_pembayaran'] ?></td>
-                                                <td><?= $byr['nama_pelanggan'] ?></td>
-                                                <td><?= $byr['no_meja'] ?></td>
+                                                <td><?php echo $byr->no_pembayaran; ?></td>
+                                                <td><?php echo $byr->nama_pelanggan; ?></td>
+                                                <td><?php echo $byr->no_meja; ?></td>
                                                 <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
                                             </tr>
                                         <?php } ?>
