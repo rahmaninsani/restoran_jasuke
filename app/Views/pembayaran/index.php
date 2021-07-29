@@ -49,7 +49,16 @@
                                     <tbody>
                                         <?php
                                         $db = \Config\Database::connect();
-                                        $query   = $db->query("SELECT pembayaran.no_pembayaran, pemesanan.nama_pelanggan, pemesanan.no_meja FROM pembayaran INNER JOIN pemesanan ON pembayaran.no_pembayaran = pemesanan.no_pemesanan;");
+                                        $query   = $db->query("SELECT 
+                                            pembayaran.no_pembayaran,
+                                            pemesanan.nama_pelanggan, 
+                                            pemesanan.no_meja 
+                                        FROM 
+                                            pembayaran 
+                                        INNER JOIN 
+                                            pemesanan 
+                                        ON 
+                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan;");
 
                                         foreach ($query->getResultArray() as $byr) {
                                         ?>
