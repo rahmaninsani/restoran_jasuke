@@ -47,14 +47,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($pembayaran as $byr) : ?>
+                                        <?php
+                                        $db = \Config\Database::connect();
+                                        $query   = $db->query("SELECT pembayaran.no_pembayaran, pemesanan.nama_pelanggan, pemesanan.no_meja FROM pembayaran INNER JOIN pemesanan ON pembayaran.no_pembayaran = pemesanan.no_pemesanan;");
+
+                                        foreach ($query->getResultArray() as $byr) {
+                                        ?>
                                             <tr>
                                                 <td><?= $byr['no_pembayaran'] ?></td>
-                                                <td>Ujang</td>
-                                                <td>1</td>
+                                                <td><?= $byr['nama_pelanggan'] ?></td>
+                                                <td><?= $byr['no_meja'] ?></td>
                                                 <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
