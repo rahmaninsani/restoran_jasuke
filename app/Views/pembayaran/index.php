@@ -47,6 +47,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                         <tr>
                                             <td>1</td>
                                             <td>Ujang</td>
@@ -89,6 +90,32 @@
                                             <td>7</td>
                                             <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
+=======
+                                        <?php
+                                        $db = \Config\Database::connect();
+                                        $query   = $db->query("SELECT 
+                                            pembayaran.no_pembayaran,
+                                            pemesanan.nama_pelanggan, 
+                                            pemesanan.no_meja 
+                                        FROM 
+                                            pembayaran 
+                                        INNER JOIN 
+                                            pemesanan 
+                                        ON 
+                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan
+                                        AND
+                                            pembayaran.tanggal = pemesanan.tanggal;");
+
+                                        foreach ($query->getResult() as $byr) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $byr->no_pembayaran; ?></td>
+                                                <td><?php echo $byr->nama_pelanggan; ?></td>
+                                                <td><?php echo $byr->no_meja; ?></td>
+                                                <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
+                                            </tr>
+                                        <?php } ?>
+>>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
                                     </tbody>
                                 </table>
                             </div>

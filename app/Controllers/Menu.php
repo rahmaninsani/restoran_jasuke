@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+<<<<<<< HEAD
 use App\Models\MenuModel;
 
 class Menu extends BaseController {
@@ -212,6 +213,17 @@ public function __construct()
       session()->setFlashdata('pesan', 'Data Menu Berhasil diubah.');
 
       return redirect()->to('/menu');
+=======
+class Menu extends BaseController {
+
+  public function index()
+  {
+    $data = [
+      'title' => 'Menu',
+    ];
+
+    return view('menu/index', $data);
+>>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
   }
 
 }
