@@ -11,6 +11,11 @@ class MenuModel extends Model
     protected $useAutoIncrement = false;
     protected $allowedFields = ['kode_menu','nama','slug','harga','stok' ,'gambar' ,'deskripsi'];
 
+    public function search($keyword)
+    {
+        return $this->table('menu')->like('nama', $keyword);
+    }
+
     public function getMenu($slug = false)
     {
         if($slug == false) {

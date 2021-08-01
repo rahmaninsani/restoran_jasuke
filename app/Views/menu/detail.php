@@ -37,6 +37,7 @@
                         <p class="card-text"><medium><b>Deskripsi : </b><?= $menu['deskripsi']; ?>.</medium></p>
                     
                         <a href="/menu/edit/<?= $menu['slug']; ?>" class="btn btn-warning">Edit</a>
+                        
 
                         <form action="/menu/<?= $menu['kode_menu']; ?>" method="post" class="d-inline" >
                             <?= csrf_field(); ?>

@@ -13,9 +13,22 @@ public function __construct()
 }
   public function index()
   {
+    $currentPage = $this->request->getVar('page_menu') ? $this->request->getVar('page_menu') : 
+    1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword){
+        $menu = $this->menuModel->search($keyword);
+    }else{
+        $menu = $this->menuModel;
+    }    
+   
     $data = [
       'title' => 'Menu',
-      'menu' => $this->menuModel->getMenu()
+    //   'menu' => $this->menuModel->getMenu()
+      'menu' => $menu->paginate(3, 'menu'),
+      'pager'=> $this->menuModel->pager, 
+      'currentPage' => $currentPage
   ];
 
   return view('menu/index', $data);
@@ -104,7 +117,7 @@ public function __construct()
       ]);
 
 
-      session()->setFlashdata('pesan', 'Data berhasil ditambahakan.');
+      session()->setFlashdata('pesan', 'Data Menu Berhasil ditambahakan.');
 
       return redirect()->to('/menu');
   }
@@ -121,7 +134,7 @@ public function __construct()
       }
 
       $this->menuModel->delete($kode_menu);
-      session()->setFlashdata('pesan', 'Data berhasil dihapus');
+      session()->setFlashdata('pesan', 'Data Menu Berhasil dihapus');
       return redirect()->to('/menu');
   }
 
@@ -196,7 +209,7 @@ public function __construct()
       ]);
 
 
-      session()->setFlashdata('pesan', 'Data berhasil diubah.');
+      session()->setFlashdata('pesan', 'Data Menu Berhasil diubah.');
 
       return redirect()->to('/menu');
   }

@@ -25,6 +25,17 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-6">
+        <form action="" method="post">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Masukan keyword pencarian" aria-label="Recipient's username" aria-describedby="button-addon2" 
+            name="keyword">
+            <button class="btn btn-outline-secondary" type="submit" name="submit">Cari</button>
+          </div>
+        </form>
+        </div>
+      </div>
+      <div class="row">
         <div class="col">
         <?php if (session()->getFlashdata('pesan')) : ?>
                   <div class="alert alert-success" role="alert">
@@ -42,7 +53,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i = 1; ?>
+                      <?php $i = 1 + (3 * ($currentPage - 1)); ?>
                       <?php  foreach ($menu as $m ) : ?>
                       <tr>
                         <th scope="row"><?= $i++; ?></th>
@@ -56,6 +67,8 @@
                       <?php endforeach; ?>
                     </tbody>
                   </table>
+
+                  <?= $pager->links('menu','menu_pagination') ?>
         </div>
       </div>
     </div>
