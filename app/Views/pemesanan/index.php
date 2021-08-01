@@ -108,7 +108,11 @@
               <!-- /.card -->
             </div>
           </div>
+<<<<<<< HEAD
+          <div class="d-grid gap-2 d-md-block align='center'">
+=======
           <div class="d-grid gap-2 d-md-block mx-auto">
+>>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
             <a href="<?= site_url('/pencarian_meja') ?>"><button class="btn btn-primary" type="button">Pencarian Meja</button></a>
             <a href="<?= site_url('/tambah_pesanan') ?>"><button class="btn btn-primary" type="button">Tambah Pesanan</button></a>
           </div>

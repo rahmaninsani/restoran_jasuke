@@ -23,4 +23,9 @@
     <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/assets/plugins/summernote/summernote-bs4.min.css">
+<<<<<<< HEAD
+    <!-- css pada menu -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+=======
+>>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
   </head>

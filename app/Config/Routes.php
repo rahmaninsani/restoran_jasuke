@@ -33,7 +33,17 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Beranda::index');
 $routes->get('/login', 'Login::index');
+<<<<<<< HEAD
+//menu
 $routes->get('/menu', 'Menu::index');
+$routes->get('/menu/create', 'Menu::create');
+$routes->get('/menu/edit/(:segment)', 'Menu::edit/$1');
+$routes->delete('/menu/(:any)', 'Menu::delete/$1');
+$routes->get('/menu/(:any)','Menu::detail/$1');
+
+=======
+$routes->get('/menu', 'Menu::index');
+>>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
 $routes->get('/pemesanan', 'Pemesanan::index');
 $routes->get('/laporan', 'Laporan::index');
 $routes->get('/pembayaran', 'Pembayaran::index');
