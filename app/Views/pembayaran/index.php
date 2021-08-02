@@ -47,7 +47,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-<<<<<<< HEAD
                                         <tr>
                                             <td>1</td>
                                             <td>Ujang</td>
@@ -90,7 +89,6 @@
                                             <td>7</td>
                                             <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
                                         </tr>
-=======
                                         <?php
                                         $db = \Config\Database::connect();
                                         $query   = $db->query("SELECT 
@@ -115,7 +113,6 @@
                                                 <td><a href="<?= site_url('../hitung_bayar/index') ?>"><button class="btn btn-primary">Bayar</button></a></td>
                                             </tr>
                                         <?php } ?>
->>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
                                     </tbody>
                                 </table>
                             </div>

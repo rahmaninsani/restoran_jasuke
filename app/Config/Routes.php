@@ -41,7 +41,7 @@ $routes->get('/menu', 'Menu::index', ['filter' => 'auth']);
 $routes->get('/menu/create', 'Menu::create', ['filter' => 'auth']);
 $routes->get('/menu/edit/(:segment)', 'Menu::edit/$1', ['filter' => 'auth']);
 $routes->delete('/menu/(:any)', 'Menu::delete/$1', ['filter' => 'auth']);
-$routes->get('/menu/(:any)','Menu::detail/$1', ['filter' => 'auth']);
+$routes->get('/menu/(:any)', 'Menu::detail/$1', ['filter' => 'auth']);
 
 $routes->get('/pemesanan', 'Pemesanan::index', ['filter' => 'auth']);
 $routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
