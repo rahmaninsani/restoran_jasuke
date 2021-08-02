@@ -36,13 +36,13 @@
                         <p class="card-text"><b>Stok : </b><?= $menu['stok']; ?>.</p>
                         <p class="card-text"><medium><b>Deskripsi : </b><?= $menu['deskripsi']; ?>.</medium></p>
                     
-                        <a href="/menu/edit/<?= $menu['slug']; ?>" class="btn btn-warning">Edit</a>
+                        <a href="/menu/edit/<?= $menu['slug']; ?>" class="btn btn-warning">Ubah</a>
                         
 
                         <form action="/menu/<?= $menu['kode_menu']; ?>" method="post" class="d-inline" >
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin?');">Delete</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin?');">Hapus</button>
                         </form>
                         <br><br>
                         <a href="/menu">Kembali ke daftar menu</a>
