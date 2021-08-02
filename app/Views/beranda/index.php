@@ -95,7 +95,7 @@
         <!-- /.row -->
 
         <div class="row d-flex justify-content-around mt-4">
-          <div class="col-3">
+          <div class="col-4 d-flex justify-content-center">
             <div class="card position-relative" style="width: 18rem;">
               <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
               <div class="ribbon-wrapper ribbon-lg">
@@ -104,11 +104,11 @@
                 </div>
               </div>
               <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
+                <h5 class="font-weight-bold">Telur Dadar</h5>
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-4 d-flex justify-content-center">
             <div class="card position-relative" style="width: 18rem;">
               <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
               <div class="ribbon-wrapper ribbon-lg">
@@ -117,20 +117,7 @@
                 </div>
               </div>
               <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
-              <div class="ribbon-wrapper ribbon-lg">
-                <div class="ribbon bg-warning text-md">
-                  Promo
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
+                <h5 class="font-weight-bold">Telur Dadar</h5>
               </div>
             </div>
           </div>
