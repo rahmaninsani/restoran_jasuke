@@ -32,13 +32,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>9</h3>
+                <h3><?= $mejaKosong; ?></h3>
                 <p>Meja Kosong</p>
               </div>
               <div class="icon">
                 <i class="ion ion-android-checkbox-outline"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/meja') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -46,13 +46,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>7</h3>
+                <h3><?= $mejaTerisi; ?></h3>
                 <p>Pelanggan Dine-in</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/pemesanan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -60,13 +60,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>16</h3>
+                <h3><?= $menuTersedia; ?></h3>
                 <p>Menu Tersedia</p>
               </div>
               <div class="icon">
                 <i class="ion ion-spoon"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/menu') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -74,13 +74,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>150.000</h3>
+                <h3><?= $pemasukanHarian; ?></h3>
                 <p>Pemasukan Hari Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-cash"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/pembayaran') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
