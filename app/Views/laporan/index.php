@@ -71,7 +71,6 @@
                             <div class="small-box bg-info p-3">
                                 <div class="inner">
                                     <p class="mb-1">Total Data Pembayaran</p>
-                                    <h3 class="row justify-content-center">Rp. 30.000.000 ,-</h3>
 
                                     <?php
                                     $query = $db->query("SELECT SUM(pembayaran.total_bayar) AS total_pembayaran FROM pembayaran;");
@@ -96,7 +95,7 @@
                             <div class="small-box bg-success p-3">
                                 <div class="inner">
                                     <p class="mb-0">Total Pesanan</p>
-                                    <h3 class="row justify-content-center ">200</h3>
+
                                     <?php
                                     $query = $db->query("SELECT COUNT(no_pemesanan) AS jumlah_pesanan FROM pemesanan;");
 
