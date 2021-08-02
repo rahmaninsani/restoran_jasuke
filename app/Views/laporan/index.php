@@ -2,11 +2,8 @@
 
 <?= $this->section('content'); ?>
 
-<<<<<<< HEAD
-=======
 <?php $db = \Config\Database::connect(); ?>
 
->>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
 <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -74,9 +71,6 @@
                             <div class="small-box bg-info p-3">
                                 <div class="inner">
                                     <p class="mb-1">Total Data Pembayaran</p>
-<<<<<<< HEAD
-                                    <h3 class="row justify-content-center">Rp. 30.000.000 ,-</h3>
-=======
                                     <?php
                                     $query = $db->query("SELECT SUM(pembayaran.total_bayar) AS total_pembayaran FROM pembayaran;");
 
@@ -84,7 +78,6 @@
                                     ?>
                                         <h3 class="row justify-content-center">Rp. <?php echo $byr->total_pembayaran; ?> ,-</h3>
                                     <?php } ?>
->>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
                                     <sub class="row justify-content-center mb-" style="font-size: 20px"></sub>
                                 </div>
                                 <div class="icon">
@@ -101,9 +94,6 @@
                             <div class="small-box bg-success p-3">
                                 <div class="inner">
                                     <p class="mb-0">Total Pesanan</p>
-<<<<<<< HEAD
-                                    <h3 class="row justify-content-center ">200</h3>
-=======
                                     <?php
                                     $query = $db->query("SELECT COUNT(no_pemesanan) AS jumlah_pesanan FROM pemesanan;");
 
@@ -111,7 +101,6 @@
                                     ?>
                                         <h3 class="row justify-content-center "><?php echo $psn->jumlah_pesanan; ?></h3>
                                     <?php } ?>
->>>>>>> 74688028d8cdc6c3eb173e99de05e7cb01607b78
                                     <sub class="row justify-content-center mb-1" style="font-size: 15px">Pesanan</sub>
                                 </div>
                                 <div class="icon">
