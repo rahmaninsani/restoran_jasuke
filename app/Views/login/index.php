@@ -9,14 +9,21 @@
       <!-- /.login-logo -->
       <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>Resto</b>Jasuke</a>
+          <a href="#" class="h1"><b>Resto</b> Unikom</a>
         </div>
         <div class="card-body">
-          <p class="login-box-msg">Silakan masuk terlebih dahulu</p>
+          <?php if(session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Perhatian!</strong> <?= session()->getFlashdata('pesan'); ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <?php endif; ?>
 
-          <form action="/beranda" method="POST">
+          <form action="/login/auth" method="POST">
             <div class="input-group mb-3">
-              <input type="username" class="form-control" placeholder="Nama pengguna">
+              <input type="username" class="form-control" placeholder="Nama pengguna" name="username" required="required">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
@@ -24,7 +31,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Kata sandi">
+              <input type="password" class="form-control" placeholder="Kata sandi" name="password" required="required">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
@@ -47,12 +54,6 @@
               <!-- /.col -->
             </div>
           </form>
-          <!-- <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-          <p class="mb-0">
-            <a href="register.html" class="text-center">Register a new membership</a>
-          </p> -->
         </div>
         <!-- /.card-body -->
       </div>
