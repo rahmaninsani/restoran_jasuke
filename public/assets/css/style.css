@@ -1,14 +1,15 @@
-.gambar{
-    width: 275px; 
-    height: 183px;
+.gambar {
+  width: 275px;
 }
 
 .table > tbody > tr > * {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 .img-fluid {
-    width: 340px; 
-    height: 335px;
+  width: 340px;
+  height: 335px;
 }
 
-
+.user-logout {
+  margin-right: -18px !important;
+}
