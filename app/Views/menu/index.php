@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col">
-        <?php if (session()->getFlashdata('pesan')) : ?>
+        <?php if(session()->getFlashdata('pesan')) : ?>
                   <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan'); ?>
                   </div>
@@ -45,7 +45,8 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Kode Menu</th>
                         <th scope="col">Nama Menu</th>
                         <th scope="col">Stok</th>
                         <th scope="col">Gambar</th>
@@ -57,6 +58,7 @@
                       <?php  foreach ($menu as $m ) : ?>
                       <tr>
                         <th scope="row"><?= $i++; ?></th>
+                        <td><?= $m['kode_menu']; ?></td>
                         <td><?= $m['nama']; ?></td>
                         <td><?= $m['stok']; ?></td>
                         <td><img src="/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
