@@ -58,10 +58,7 @@
                                         INNER JOIN 
                                             pemesanan 
                                         ON 
-                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan
-                                        AND
-                                            pembayaran.tanggal = pemesanan.tanggal;");
-                                        
+                                            pembayaran.no_pembayaran = pemesanan.no_pemesanan;");
                                         foreach ($query->getResult() as $byr) {
                                         ?>
                                             <tr>
