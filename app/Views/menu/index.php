@@ -61,7 +61,7 @@
                         <td><?= $m['kode_menu']; ?></td>
                         <td><?= $m['nama']; ?></td>
                         <td><?= $m['stok']; ?></td>
-                        <td><img src="/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
+                        <td><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
                         <td>
                             <a href="/menu/<?= $m['slug']; ?>" class="btn btn-success">Detail</a>
                         </td>

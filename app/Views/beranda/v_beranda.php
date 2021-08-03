@@ -32,13 +32,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>9</h3>
+                <h3><?= $mejaKosong; ?></h3>
                 <p>Meja Kosong</p>
               </div>
               <div class="icon">
                 <i class="ion ion-android-checkbox-outline"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/meja') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -46,13 +46,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>7</h3>
+                <h3><?= $mejaTerisi; ?></h3>
                 <p>Pelanggan Dine-in</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/pemesanan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -60,13 +60,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>16</h3>
+                <h3><?= $menuTersedia; ?></h3>
                 <p>Menu Tersedia</p>
               </div>
               <div class="icon">
                 <i class="ion ion-spoon"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/menu') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -74,13 +74,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>150.000</h3>
+                <h3><?= $pemasukanHarian; ?></h3>
                 <p>Pemasukan Hari Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-cash"></i>
               </div>
-              <a href="#" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('/pembayaran') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -95,42 +95,32 @@
         <!-- /.row -->
 
         <div class="row d-flex justify-content-around mt-4">
-          <div class="col-3">
+          <div class="col-4 d-flex justify-content-center">
             <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
+              <img src="/assets/img/<?= $menuTerlaris['gambar']; ?>" class="card-img-top" alt="...">
               <div class="ribbon-wrapper ribbon-lg">
                 <div class="ribbon bg-danger text-md">
                   Terlaris
                 </div>
               </div>
               <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
+                <h5 class="font-weight-bold"><?= $menuTerlaris['kode_menu']; ?> - <?= $menuTerlaris['nama']; ?></h5>
+                <h6>Rp<?= number_format($menuTerlaris['harga'], 2, ',', '.'); ?></h6>
+                <h6><?= $menuTerlaris['jumlah_terjual']; ?> terjual</h6>
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-4 d-flex justify-content-center">
             <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
+              <img src="/assets/img/<?= $menuTerbaru['gambar']; ?>" class="card-img-top" alt="...">
               <div class="ribbon-wrapper ribbon-lg">
                 <div class="ribbon bg-success text-md">
                   Baru
                 </div>
               </div>
               <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/telur-dadar.jpg" class="card-img-top" alt="...">
-              <div class="ribbon-wrapper ribbon-lg">
-                <div class="ribbon bg-warning text-md">
-                  Promo
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <p class="font-weight-bold">Telur Dadar</p>
+                <h5 class="font-weight-bold"><?= $menuTerbaru['kode_menu']; ?> - <?= $menuTerbaru['nama']; ?></h5>
+                <h6>Rp<?= number_format($menuTerbaru['harga'], 2, ',', '.'); ?></h6>
               </div>
             </div>
           </div>
