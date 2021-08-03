@@ -100,7 +100,7 @@ public function __construct()
           //generate nama gambar 
           $namaGambar = $fileGambar->getRandomName();
           //pindahkan file ke folder img
-          $fileGambar->move('img', $namaGambar);
+          $fileGambar->move('assets/img', $namaGambar);
       }
 
 
@@ -130,7 +130,7 @@ public function __construct()
       //cek jika file gambar default
       if($menu['gambar'] != 'default.jpg'){        
           //hapus gambar
-          unlink('img/' . $menu['gambar']);
+          unlink('assets/img/' . $menu['gambar']);
       }
 
       $this->menuModel->delete($kode_menu);
@@ -192,9 +192,9 @@ public function __construct()
           //genered nama file random
           $namaGambar = $fileGambar->getRandomName();
           //pindahkan gambar
-          $fileGambar->move('img', $namaGambar);
+          $fileGambar->move('assets/img', $namaGambar);
           //hapus file lama
-          unlink('img/' . $this->request->getVar('gambarLama'));
+          unlink('assets/img/' . $this->request->getVar('gambarLama'));
       }
 
       $slug = url_title($this->request->getVar('nama'), '-', true);
@@ -213,7 +213,6 @@ public function __construct()
 
       return redirect()->to('/menu');
   }
-
 }
 
 

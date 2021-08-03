@@ -40,6 +40,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/meja" class="nav-link <?= ($title == 'Pencarian Meja') ? "active" : ""; ?>">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Pencarian Meja
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/pemesanan" class="nav-link <?= ($title == 'Pemesanan') ? "active" : ""; ?>">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
