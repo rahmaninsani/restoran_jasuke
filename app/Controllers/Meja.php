@@ -16,7 +16,7 @@ class Meja extends BaseController {
   {
     $meja = $this->mejaModel->getMeja();
     $data = [
-      'title' => 'Pencarian Meja',
+      'title' => 'Meja',
       'meja' => $meja,
     ];
 

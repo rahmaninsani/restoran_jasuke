@@ -40,10 +40,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/meja" class="nav-link <?= ($title == 'Pencarian Meja') ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-search"></i>
+            <a href="/meja" class="nav-link <?= ($title == 'Meja') ? "active" : ""; ?>">
+              <i class="nav-icon fas fa-chair"></i>
               <p>
-                Pencarian Meja
+                Meja
               </p>
             </a>
           </li>
