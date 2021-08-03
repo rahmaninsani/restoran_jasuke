@@ -12,8 +12,9 @@ class PembayaranModel extends Model
 
     public function getPemasukanHarian() 
     { 
+      $today = date("Y-m-d");
       $builder =$this->selectSum('total_bayar');
-      $query = $builder->getWhere(['tanggal' => date("Y-m-d")])->getResultArray()[0]['total_bayar'];
+      $query = $builder->getWhere(['tanggal' => $today])->getResultArray()[0]['total_bayar'];
 
       return $query;
     }
