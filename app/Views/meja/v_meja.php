@@ -43,7 +43,7 @@
                       <tr>
                         <td><?= $i + 1; ?></td>
                         <td class="text-center"><?= $mj['no_meja']; ?></td>
-                        <td class="text-center"><span class="badge bg-<?= ($mj['status'] == 'Kosong') ? 'success' : 'danger'; ?>"><?= $mj['status']; ?></span></td>
+                        <td class="text-center"><span class="badge bg-<?= ($mj['status_meja'] == 'Kosong') ? 'success' : 'danger'; ?>"><?= $mj['status_meja']; ?></span></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

@@ -46,8 +46,8 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?= $mejaTerisi; ?></h3>
-                <p>Pelanggan Dine-in</p>
+                <h3><?= $jumlahPemesanan; ?></h3>
+                <p>Pemesanan Berlangsung</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
@@ -106,7 +106,7 @@
               <div class="card-body text-center">
                 <h5 class="font-weight-bold"><?= $menuTerlaris['kode_menu']; ?> - <?= $menuTerlaris['nama']; ?></h5>
                 <h6>Rp<?= number_format($menuTerlaris['harga'], 2, ',', '.'); ?></h6>
-                <h6><?= $menuTerlaris['jumlah_terjual']; ?> terjual</h6>
+                <h6><?= $menuTerlaris['jumlah_terjual']; ?> terjual minggu ini</h6>
               </div>
             </div>
           </div>
