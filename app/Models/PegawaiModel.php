@@ -8,15 +8,7 @@ class PegawaiModel extends Model
 {
   protected $table      = 'pegawai';
   protected $primaryKey = 'nrp';
-  protected $allowedFields = ['nama', 'jabatan', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'no_telepon','username','password'];
-
-  public function getNrpPegawai($nrp)
-  {
-    return $this->where([
-      'nrp' => $nrp,
-    ])
-    ->first();
-  } 
+  protected $allowedFields = ['nama', 'jabatan', 'jenis_kelamin', 'username','password'];
 
   public function getPegawai($username)
   {
