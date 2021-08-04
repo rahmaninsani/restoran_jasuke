@@ -20,6 +20,19 @@ class PemesananModel extends Model
       return $this->where(['no_pemesanan' => $no_pemesanan])->first();
     }
 
+    // Insert pemesanan
+    public function savePemesanan($no_meja, $tanggal, $nama_pelanggan) 
+    {
+      $data = [
+        'no_meja' => $no_meja,
+        'tanggal_pemesanan' => $tanggal,
+        'nama_pelanggan' => $nama_pelanggan,
+        'nrp' => session()->get('nrp'),
+      ];
+
+      return $this->save($data);
+    }
+
     // Method untuk memperoleh jumlah pemesanan berdasar status_pemesanan
     public function getJumlahPemesanan($status_pemesanan) {
       $builder = $this->selectCount('status_pemesanan');

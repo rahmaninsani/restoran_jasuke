@@ -9,7 +9,8 @@ class DetailPemesananModel extends Model
   protected $table      = 'detail_pemesanan';
   protected $allowedFields = ['no_pemesanan', 'no_pembayaran', 'kode_menu', 'kuantitas', 'subtotal'];
 
-  public function getMenuTerlaris() {
+  public function getMenuTerlaris() 
+  {
     $lastWeek = date("Y-m-d", strtotime("-1 week"));
     $today = date("Y-m-d");
 
@@ -27,6 +28,31 @@ class DetailPemesananModel extends Model
 
     return $query;
   }
+
+  // Insert detail_pemesanan
+  public function saveDetailPemesanan($no_pemesanan, $no_pembayaran, $kode_menu, $kuantitas, $subtotal)
+  {
+    $data = [
+      'no_pemesanan' => $no_pemesanan,
+      'no_pembayaran' => $no_pembayaran,
+      'kode_menu' => $kode_menu,
+      'kuantitas' => $kuantitas,
+      'subtotal' => $subtotal,
+    ];
+
+    return $this->save($data);
+
+  }
+
+  // Get total_harga berdasarkan no_pemesanan
+  public function getTotalHarga($no_pemesanan)
+  {
+    $builder = $this->selectSum('subtotal');
+    $query = $builder->getWhere(['no_pemesanan' => $no_pemesanan])->getResultArray()[0]['subtotal'];
+
+    return $query;
+  }
+
 }
 
 

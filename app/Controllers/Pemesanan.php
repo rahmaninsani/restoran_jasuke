@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\PemesananModel;
+use App\Models\DetailPemesananModel;
+use App\Models\PembayaranModel;
 use App\Models\MejaModel;
 use App\Models\MenuModel;
 
@@ -10,12 +12,16 @@ class Pemesanan extends BaseController
 {
   protected
     $pemesananModel,
+    $detailPemesananModel,
+    $pembayaranModel,
     $mejaModel,
     $menuModel;
 
   public function __construct()
   {
     $this->pemesananModel = new PemesananModel();
+    $this->detailPemesananModel = new DetailPemesananModel();
+    $this->pembayaranModel = new PembayaranModel();
     $this->mejaModel = new MejaModel();
     $this->menuModel = new MenuModel();
   }
@@ -67,7 +73,7 @@ class Pemesanan extends BaseController
 					'required' => 'Nomor meja harus diisi!'
         ],
       ],
-      'menu' => [
+      'namaMenu' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Menu harus diisi!'
@@ -83,44 +89,70 @@ class Pemesanan extends BaseController
 		])) {
 			return redirect()->to(base_url('/pemesanan/tambah_pemesanan'))->withInput();
 		};
-
-    $data = $this->request->getVar();
-    dd($data);
-
-    // $tanggal_penjualan = $this->request->getVar('tanggal_penjualan');
-    // $id_barang = $this->request->getVar('id_barang');
-    // $kuantitas = $this->request->getVar('kuantitas');
   
-    // $this->penjualanModel->db->transStart();
-    // $this->barangModel->db->transStart();
-
-    // $this->penjualanModel->savePenjualan($tanggal_penjualan);
-    // $no_penjualan = $this->penjualanModel->getInsertID();
+    // Inisialisasi field
+    $tanggal = $this->request->getVar('tanggal');
+    $nama_pelanggan = $this->request->getVar('namaPelanggan');
+    $no_meja = $this->request->getVar('noMeja');
+    $nama_menu = $this->request->getVar('namaMenu');
+    $kuantitas = $this->request->getVar('kuantitas');
     
-    // for($i = 0; $i < count($id_barang); $i++) 
-    // {
-    //   $stok = $this->barangModel->getStokBarang($id_barang[$i]);
-    //   $stok -= $kuantitas[$i];
+    // Start transaction 
+    $this->pemesananModel->db->transStart();
+    $this->pembayaranModel->db->transStart();
+    $this->mejaModel->db->transStart();
+    $this->menuModel->db->transStart();
+
+    // Insert pemesanan dan Get no_pemesanan
+    $this->pemesananModel->savePemesanan($no_meja, $tanggal, $nama_pelanggan);
+    $no_pemesanan = $this->pemesananModel->getInsertID();
+
+    // Update status_meja menjadi 'Terisi' berdasarkan no_meja
+    $this->mejaModel->updateStatusMeja($no_meja, "Terisi");
+    
+    // Insert pembayaran dan Get no_pembayaran
+    $this->pembayaranModel->savePembayaran($tanggal);
+    $no_pembayaran = $this->pembayaranModel->getInsertID();
+
+    // Update menu (kurangi stok menu)
+    for($i = 0; $i < count($nama_menu); $i++) 
+    {
+      // Ambil stok menu berdasarkan nama menu, kurangi dengan stok yang dipesan
+      $stok = $this->menuModel->getStokMenu($nama_menu[$i]);
+      $stok -= $kuantitas[$i];
       
-    //   $this->barangModel->updateStokBarang($id_barang[$i], $stok);
+      // Update stok menu berdasarkan nama menu
+      $this->menuModel->updateStokMenu($nama_menu[$i], $stok);
 
-    //   $harga = $this->barangModel->getHargaBarang($id_barang[$i]);
-    //   $sub_total = $kuantitas[$i] * $harga;
+      // Get kode_menu berdasarkan nama menu
+      $kode_menu = $this->menuModel->getKodeMenu($nama_menu[$i]);
+
+      // Get harga menu berdasarkan nama_menu, hitung subtotal dari harga * kuantias
+      $harga = $this->menuModel->getHargaMenu($nama_menu[$i]);
+      $subtotal = $kuantitas[$i] * $harga;
       
-    //   $this->detailPenjualanModel->saveDetailPenjualan($no_penjualan, $id_barang[$i], $kuantitas[$i], $sub_total);
+      // Insert detail_pemesanan
+      $this->detailPemesananModel->saveDetailPemesanan($no_pemesanan, $no_pembayaran, $kode_menu, $kuantitas[$i], $subtotal);
       
-    // }
+    }
 
-    // //update penjualan
-    // $total_harga = $this->detailPenjualanModel->getTotalHarga($no_penjualan);
-    // $this->penjualanModel->updatePenjualan($no_penjualan, $total_harga);
+    // Get total_harga berdasarkan no_pemesanan. Hitung pajak dan total_bayar
+    $total_harga = $this->detailPemesananModel->getTotalHarga($no_pemesanan);
+    $pajak = 0.10 * $total_harga;
+    $total_bayar = $total_harga + $pajak;
 
-    // $this->barangModel->db->transComplete();
-    // $this->penjualanModel->db->transComplete();
+    // Update pembayaran
+    $this->pembayaranModel->updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar);
+    
+    // Stop transaction
+    $this->menuModel->db->transComplete();
+    $this->mejaModel->db->transComplete();
+    $this->pembayaranModel->db->transComplete();
+    $this->pemesananModel->db->transComplete();
+    
+    session()->setFlashdata('pesan', 'Data pemesanan berhasil ditambahkan');
 
-    // session()->setFlashdata('pesan', 'Data penjualan berhasil ditambahkan');
-
-    // return redirect()->to(base_url('/penjualan'));
+    return redirect()->to(base_url('/pemesanan'));
     
   }
 

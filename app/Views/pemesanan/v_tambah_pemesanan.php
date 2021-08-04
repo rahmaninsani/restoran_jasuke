@@ -90,14 +90,14 @@
                           <tr class="text-center">
                             <!-- <td>1</td> -->
                             <td>
-                              <input class="form-control <?= ($validation->hasError('noMeja')) ? 'is-invalid' : ''; ?>" list="menuDataList" id="menu" name="menu[]" placeholder="Menu Makanan" autocomplete="off" required />
-                              <datalist id="menuDataList">
+                              <input class="form-control <?= ($validation->hasError('namaMenu')) ? 'is-invalid' : ''; ?>" list="namaMenuDataList" id="namaMenu" name="namaMenu[]" placeholder="Menu Makanan" autocomplete="off" required />
+                              <datalist id="namaMenuDataList">
                                 <?php foreach($menuTersedia as $mt) : ?>
                                   <option value="<?= $mt['nama']; ?>"><?= $mt['kode_menu']; ?></option>
                                 <?php endforeach; ?>
                               </datalist>
-                              <div id="menu" class="invalid-feedback text-left">
-                                <?= $validation->getError('menu'); ?>
+                              <div id="namaMenu" class="invalid-feedback text-left">
+                                <?= $validation->getError('namaMenu'); ?>
                               </div>
                             </td>
                             <td>
