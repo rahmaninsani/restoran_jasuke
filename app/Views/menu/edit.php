@@ -53,7 +53,7 @@
                     <div class="row mb-3">
                         <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
                         <div class="col-sm-3 mb-2">
-                            <img src="/img/<?= $menu['gambar']; ?>" class="img-thumbnail img-preview">
+                            <img src="/assets/img/<?= $menu['gambar']; ?>" class="img-thumbnail img-preview">
                         </div>
                         <div class="col-sm-15">
                         <div class="input-group mb-3">
