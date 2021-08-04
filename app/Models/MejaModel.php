@@ -27,4 +27,12 @@ class MejaModel extends Model
 
       return $query;
     }
+
+    public function getMejaKosong()
+    {
+      $builder = $this->select('no_meja');
+      $query = $builder->getWhere(['status_meja' => "Kosong"])->getResultArray();
+
+      return $query;
+    }
 }
