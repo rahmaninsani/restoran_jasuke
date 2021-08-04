@@ -24,7 +24,7 @@ class MenuModel extends Model
       return $this->where(['slug' => $slug])->first();
     }
 
-    // Method untuk memperoleh jumlah menu yang tersedia (stok)
+    // Method untuk memperoleh jumlah menu yang tersedia (stok > 0)
     public function getJumlahMenu() 
     { 
       $builder = $this->selectCount('kode_menu');
@@ -46,6 +46,15 @@ class MenuModel extends Model
   
       $query = $builder->getResultArray()[0];
   
+      return $query;
+    }
+
+    // Method untuk memperoleh daftar menu yang stok > 0
+    public function getMenuTersedia()
+    {
+      $builder = $this->select(['kode_menu', 'nama']);
+      $query = $builder->getWhere(['stok >' => 0])->getResultArray();
+
       return $query;
     }
 }
