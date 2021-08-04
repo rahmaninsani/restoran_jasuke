@@ -44,6 +44,12 @@ $routes->delete('/menu/(:any)', 'Menu::delete/$1', ['filter' => 'auth']);
 $routes->get('/menu/(:any)','Menu::detail/$1', ['filter' => 'auth']);
 
 $routes->get('/pemesanan', 'Pemesanan::index', ['filter' => 'auth']);
+$routes->get('/pemesanan/tambah_pemesanan', 'Pemesanan::tambah_pemesanan', ['filter' => 'auth']);
+
+// $routes->get('/penjualan/detail_penjualan/(:num)', 'Penjualan::detail_penjualan/$1', ['filter' => 'auth']);
+// $routes->delete('/penjualan/(:num)', 'Penjualan::delete_penjualan/$1', ['filter' => 'auth']);
+// $routes->delete('/penjualan/(:num)/(:num)', 'Penjualan::delete_detail_penjualan/$1/$2', ['filter' => 'auth']);
+
 $routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
 $routes->get('/pembayaran', 'Pembayaran::index', ['filter' => 'auth']);
 $routes->get('/hitung_bayar', 'Hitung_bayar::index', ['filter' => 'auth']);
