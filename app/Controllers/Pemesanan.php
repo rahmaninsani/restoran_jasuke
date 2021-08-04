@@ -2,41 +2,36 @@
 
 namespace App\Controllers;
 
+use App\Models\PemesananModel;
+
 class Pemesanan extends BaseController
 {
+  protected
+    $pemesananModel;
+
+  public function __construct()
+  {
+    $this->pemesananModel = new PemesananModel();
+  }
+
   public function index()
   {
+    $pemesanan = $this->pemesananModel->getPemesanan();
     $data = [
       'title' => 'Pemesanan',
+      'pemesanan' => $pemesanan,
     ];
 
-    return view('pemesanan/index', $data);
+    return view('pemesanan/v_pemesanan', $data);
   }
 
-  public function pencarian_meja()
+  public function tambah_pemesanan()
   {
     $data = [
-      'title' => 'Pencarian Meja',
+      'title' => 'Tambah Pemesanan',
     ];
 
-    return view('pemesanan/pencarian_meja', $data);
+    return view('pemesanan/v_tambah_pemesanan', $data);
   }
 
-  public function tambah_pesanan()
-  {
-    $data = [
-      'title' => 'Tambah Pesanan',
-    ];
-
-    return view('pemesanan/tambah_pesanan', $data);
-  }
-
-  public function ubah_pesanan()
-  {
-    $data = [
-      'title' => 'Ubah Pesanan',
-    ];
-
-    return view('pemesanan/ubah_pesanan', $data);
-  }
 }
