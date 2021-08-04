@@ -20,6 +20,19 @@ class MejaModel extends Model
       return $this->where(['no_meja' => $no_meja])->first();
     }
 
+    // Update status_meja
+    public function updateStatusMeja($no_meja, $status) 
+    {
+      // Note : Tidak bisa pake method save() atau update() bawaan CI, jadi pake query manual
+      $query = "UPDATE meja 
+                SET status_meja = '$status' 
+                WHERE no_meja = $no_meja;
+      ";
+
+      return $this->db->query($query);
+
+    }
+
     public function getStatusMeja($status_meja) 
     { 
       $builder = $this->selectCount('status_meja');
