@@ -39,6 +39,12 @@ class PembayaranModel extends Model
       
     }
 
+    // Delete Pembayaran
+    public function deletePembayaran($no_pembayaran) 
+    {
+      return $this->delete($no_pembayaran);
+    }
+
     public function getPemasukanHarian() 
     { 
       $today = date("Y-m-d");

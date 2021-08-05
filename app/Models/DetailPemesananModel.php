@@ -80,6 +80,16 @@ class DetailPemesananModel extends Model
 
   }
 
+  // Delete detail_pemesanan
+  public function deleteDetailPemesanan($no_pemesanan, $kode_menu)
+  {
+    return $this->where([
+      'no_pemesanan' => $no_pemesanan, 
+      'kode_menu' => $kode_menu,
+      ])
+    ->delete();
+  }
+
   // Get total_harga berdasarkan no_pemesanan
   public function getTotalHarga($no_pemesanan)
   {
@@ -103,6 +113,17 @@ class DetailPemesananModel extends Model
   public function getNoPembayaran($no_pemesanan)
   {
     return $this->select('no_pembayaran')->where(['no_pemesanan' => $no_pemesanan])->first()['no_pembayaran'];
+  }
+
+  // Get kuantias berdasarkan no_pemesanan dan $kode_menu
+  public function getKuantitas($no_pemesanan, $kode_menu)
+  {
+    return $this->select('kuantitas')
+    ->where([
+      'no_pemesanan' => $no_pemesanan, 
+      'kode_menu' => $kode_menu,
+      ])
+    ->first()['kuantitas'];  
   }
 
 }
