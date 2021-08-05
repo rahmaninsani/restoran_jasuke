@@ -33,7 +33,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-          <div class="col-10">
+          <div class="col-12">
             <div class="card">
               <div class="card-header">
                 <div class="row">
@@ -43,7 +43,7 @@
                         <p class="card-text"><b>No. Pemesanan</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> 1</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['no_pemesanan']; ?></p>
                       </div>
                     </div>
                     <div class="row">
@@ -51,7 +51,7 @@
                         <p class="card-text"><b>Tanggal</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> 2021-08-05</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pemesanan']; ?></p>
                       </div>
                     </div>
                     <div class="row">
@@ -59,7 +59,7 @@
                         <p class="card-text"><b>Nama Pelanggan</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> Rahman Insani</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['nama_pelanggan']; ?></p>
                       </div>
                     </div>
                     <div class="row">
@@ -67,7 +67,7 @@
                         <p class="card-text"><b>No. Meja</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> 4</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['no_meja']; ?></p>
                       </div>
                     </div> 
                   </div>
@@ -77,7 +77,7 @@
                         <p class="card-text"><b>No. Pembayaran</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> 1</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['no_pembayaran']; ?></p>
                       </div>
                     </div>
                     <div class="row d-flex justify-content-end">
@@ -85,7 +85,7 @@
                         <p class="card-text"><b>Total Bayar</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> Rp10.000,00</p>
+                        <p><b>:</b> Rp<?= number_format($detailPemesanan[0]['total_bayar'], 2, ',', '.'); ?></p>
                       </div>
                     </div>
                     <div class="row d-flex justify-content-end">
@@ -93,7 +93,7 @@
                         <p class="card-text"><b>Status</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> Belum Selesai</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['status_pemesanan']; ?></p>
                       </div>
                     </div>
                     <div class="row d-flex justify-content-end">
@@ -101,7 +101,7 @@
                         <p class="card-text"><b>NRP</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> PYN01</p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['nrp']; ?></p>
                       </div>
                     </div>  
                   </div>
@@ -122,17 +122,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php //foreach($pemesanan as $i => $p) : ?>
+                    <?php foreach($detailPemesanan as $i => $dp) : ?>
                       <tr>
-                        <td>1<?php //$i + 1; ?></td>
-                        <td>MN001</td>
-                        <td class="text-center">Rendang</td>
-                        <td>12000</td>
-                        <td class="text-center">2</td>
-                        <td class="text-center">24000</td>
+                        <td><?= $i + 1; ?></td>
+                        <td><?= $dp['kode_menu']; ?></td>
+                        <td class="text-center"><?= $dp['nama']; ?></td>
+                        <td><?= $dp['harga']; ?></td>
+                        <td class="text-center"><?= $dp['kuantitas']; ?></td>
+                        <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
                         <td><a href="#"><button class="btn-sm btn-danger">Hapus</button></a></td>
                       </tr>
-                    <?php //endforeach; ?>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

@@ -12,11 +12,12 @@ class DetailPemesananModel extends Model
   // Get detail_pemesanan
   public function getDetailPemesanan($no_pemesanan) 
   {
-    $builder = $this->select('a.*, b.id_barang, b.nama_barang, b.harga_barang, detail_penjualan.kuantitas, detail_penjualan.sub_total');
-    $builder->join('penjualan a', 'a.no_penjualan = detail_penjualan.no_penjualan');
-    $builder->join('barang b', 'b.id_barang = detail_penjualan.id_barang');
+    $builder = $this->select('a.*, b.no_pembayaran, b.total_bayar, c.kode_menu, c.nama, c.harga, detail_pemesanan.kuantitas, detail_pemesanan.subtotal');
+    $builder->join('pemesanan a', 'a.no_pemesanan = detail_pemesanan.no_pemesanan');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $builder->join('menu c', 'c.kode_menu = detail_pemesanan.kode_menu');
 
-    $query = $builder->getWhere(['detail_penjualan.no_pemesanan' => $no_pemesanan])->getResultArray();
+    $query = $builder->getWhere(['detail_pemesanan.no_pemesanan' => $no_pemesanan])->getResultArray();
 
     return $query; 
   }
