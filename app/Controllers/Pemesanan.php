@@ -86,7 +86,8 @@ class Pemesanan extends BaseController
 					'greater_than' => 'Jumlah kuantitas tidak boleh kurang dari 1!'
         ],
       ],	
-		])) {
+		])) 
+    {
 			return redirect()->to(base_url('/pemesanan/tambah_pemesanan'))->withInput();
 		};
   
@@ -124,12 +125,12 @@ class Pemesanan extends BaseController
       // Update stok menu berdasarkan nama menu
       $this->menuModel->updateStokMenu($nama_menu[$i], $stok);
 
-      // Get kode_menu berdasarkan nama menu
-      $kode_menu = $this->menuModel->getKodeMenu($nama_menu[$i]);
-
       // Get harga menu berdasarkan nama_menu, hitung subtotal dari harga * kuantias
       $harga = $this->menuModel->getHargaMenu($nama_menu[$i]);
       $subtotal = $kuantitas[$i] * $harga;
+
+      // Get kode_menu berdasarkan nama menu
+      $kode_menu = $this->menuModel->getKodeMenu($nama_menu[$i]);
       
       // Insert detail_pemesanan
       $this->detailPemesananModel->saveDetailPemesanan($no_pemesanan, $no_pembayaran, $kode_menu, $kuantitas[$i], $subtotal);
@@ -176,9 +177,7 @@ class Pemesanan extends BaseController
 	{
     $mejaKosong = $this->mejaModel->getMejaKosong();
     $menuTersedia = $this->menuModel->getMenuTersedia();
-
     $pemesanan = $this->pemesananModel->getPemesanan($no_pemesanan);
-
     $detailPemesananMenu = $this->detailPemesananModel->getDaftarMenu($no_pemesanan);
 
     for($i = 0; $i < count($detailPemesananMenu); $i++)
@@ -205,103 +204,164 @@ class Pemesanan extends BaseController
 
 	}
 
-  public function update($no_penjualan)
+  public function update($no_pemesanan)
 	{
 		if(!$this->validate([
-			'tanggal_penjualan' => [
+			'tanggal' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Tanggal penjualan harus diisi!'
         ],
       ],	 		
-			'id_barang' => [
+			'namaPelanggan' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => 'ID/Nama barang harus diisi!'
+					'required' => 'Nama pelanggan harus diisi!'
+        ],
+      ],
+      'noMeja' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nomor meja harus diisi!'
+        ],
+      ],
+      'namaMenu' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Menu harus diisi!'
         ],
       ],	 		
 			'kuantitas' => [
 				'rules' => 'required|greater_than[0]',
 				'errors' => [
-					'required' => 'Kuantitas barang harus diisi!',
+					'required' => 'Kuantitas menu harus diisi!',
 					'greater_than' => 'Jumlah kuantitas tidak boleh kurang dari 1!'
         ],
       ],	
-		])) {
-			return redirect()->to(base_url("/penjualan/edit_penjualan/$no_penjualan"))->withInput();
+		]))
+    {
+			return redirect()->to(base_url("/pemesanan/ubah_pemesanan/$no_pemesanan"))->withInput();
 		};
 
-    $tanggal_penjualan = $this->request->getVar('tanggal_penjualan');
-    $idBarangLama = $this->request->getVar('idBarangLama');
-    $idBarangBaru = $this->request->getVar('id_barang');
+    // Inisialisasi field
+    $no_pembayaran = $this->detailPemesananModel->getNoPembayaran($no_pemesanan);
+
+    $tanggal = $this->request->getVar('tanggal');
+    $nama_pelanggan = $this->request->getVar('namaPelanggan');
+
+    $noMejaLama = $this->request->getVar('noMejaLama');
+    $noMejaBaru = $this->request->getVar('noMeja');
+
+    $namaMenuLama = $this->request->getVar('namaMenuLama');
+    $namaMenuBaru = $this->request->getVar('namaMenu');
+
     $kuantitasLama = $this->request->getVar('kuantitasLama');
     $kuantitasBaru = $this->request->getVar('kuantitas');
 
-    $this->penjualanModel->db->transStart();
-    $this->barangModel->db->transStart();
-    
-    for($i = 0; $i < count($idBarangBaru); $i++) 
+    // Start transaction 
+    $this->pemesananModel->db->transStart();
+    $this->pembayaranModel->db->transStart();
+    $this->mejaModel->db->transStart();
+    $this->menuModel->db->transStart();
+
+    // Jika terjadi perubahan no_meja yang dipilih
+    if($noMejaBaru != $noMejaLama)
     {
-      //Jika terdapat update pada row yang sudah tersedia (memiliki input hidden idBarangLama/kuantitasLama)
-      if(array_key_exists($i, $idBarangLama)) {
-        // Jika id barang lama dan id barang baru valuenya tidak sama (ada perubahan)
-        if($idBarangBaru[$i] != $idBarangLama[$i]) {
-          // Update barang lama
-          $stokBarangLama = $this->barangModel->getStokBarang($idBarangLama[$i]);
-          $stokBarangLama += $kuantitasLama[$i];
-          $this->barangModel->updateStokBarang($idBarangLama[$i], $stokBarangLama);
+      // Update meja lama menjadi 'Kosong'
+      $this->mejaModel->updateStatusMeja($noMejaLama, "Kosong");
 
-          // Update barang baru
-          $stokBarangBaru = $this->barangModel->getStokBarang($idBarangBaru[$i]);
-          $stokBarangBaru -= $kuantitasBaru[$i];
-          $this->barangModel->updateStokBarang($idBarangBaru[$i], $stokBarangBaru);
+      // Update meja baru menjadi 'Terisi'
+      $this->mejaModel->updateStatusMeja($noMejaBaru, "Terisi");
+    }
+    
+    // Update menu (tambah/kurangi stok menu)
+    for($i = 0; $i < count($namaMenuBaru); $i++) 
+    {
+      //Jika terdapat update pada row yang sudah ada (memiliki input hidden namaMenuLama/kuantitasLama)
+      if(array_key_exists($i, $namaMenuLama)) {
+        // Jika nama menu lama dan nama menu baru valuenya tidak sama (ada perubahan)
+        if($namaMenuBaru[$i] != $namaMenuLama[$i]) {
+          // Ambil stok menu lama berdasarkan nama menu lama, tambahkan dengan stok yang diubah
+          $stokMenuLama = $this->menuModel->getStokMenu($namaMenuLama[$i]);
+          $stokMenuLama += $kuantitasLama[$i];
+          $this->menuModel->updateStokMenu($namaMenuLama[$i], $stokMenuLama);
 
-        } else { // Jika id barang lama dan id barang baru valuenya sama (tidak ada perubahan)
-          $stok = $this->barangModel->getStokBarang($idBarangBaru[$i]);
+          // Ambil stok menu baru berdasarkan nama menu baru, kurangi dengan stok yang dipesan
+          $stokMenuBaru = $this->menuModel->getStokMenu($namaMenuBaru[$i]);
+          $stokMenuBaru -= $kuantitasBaru[$i];
+          $this->MenuModel->updateStokMenu($namaMenuBaru[$i], $stokMenuBaru);
 
-          // Jika kuantitas barang baru > kuantitas barang lama
+        } else { 
+          // Jika nama menu lama dan nama menu baru valuenya sama (tidak ada perubahan)
+
+          // Ambil stok menu lama/baru berdasarkan nama menu lama/baru, tambahkan/kurangi dengan stok yang diubah
+          $stok = $this->menuModel->getStokMenu($namaMenuBaru[$i]);
+
+          // Jika kuantitas menu baru > kuantitas menu lama
           if($kuantitasBaru[$i] > $kuantitasLama[$i]) {
             $kuantitas = $kuantitasBaru[$i] - $kuantitasLama[$i];
             $stok -= $kuantitas;
-          } else { // Jika kuantitas barang baru < kuantitas barang lama
+          } else { 
+            // Jika kuantitas menu baru < kuantitas menu lama
             $kuantitas = $kuantitasLama[$i] - $kuantitasBaru[$i];
             $stok += $kuantitas;
           }
 
-          $this->barangModel->updateStokBarang($idBarangBaru[$i], $stok);
+          $this->menuModel->updateStokMenu($namaMenuBaru[$i], $stok);
 
         }
 
-        // update row berdasar id penjualan dan id barang di tabel detail_penjualan
-        $harga = $this->barangModel->getHargaBarang($idBarangBaru[$i]);
-        $sub_total = $kuantitasBaru[$i] * $harga;
+        // Get harga menu berdasarkan namaMenuBaru, hitung subtotal dari harga * kuantiasBaru
+        $harga = $this->menuModel->getHargaMenu($namaMenuBaru[$i]);
+        $subtotal = $kuantitasBaru[$i] * $harga;
 
-        $this->detailPenjualanModel->updateDetailPenjualan($no_penjualan, $idBarangLama[$i], $idBarangBaru[$i], $kuantitasBaru[$i], $sub_total);
+        // Get kode_menu lama berdasarkan namaMenuLama
+        $kodeMenuLama = $this->menuModel->getKodeMenu($namaMenuLama[$i]);
 
-      } else { // Jika terdapat penambahan row baru (insert bukan update)
-        $stok = $this->barangModel->getStokBarang($idBarangBaru[$i]);
+        // Get kode_menu baru berdasarkan namaMenuBaru
+        $kodeMenuBaru = $this->menuModel->getKodeMenu($namaMenuBaru[$i]);
+
+        // Update detail_pemesanan
+        $this->detailPemesananModel->updateDetailPemesanan($no_pemesanan, $kodeMenuLama, $kodeMenuBaru, $kuantitasBaru[$i], $subtotal);
+
+      } else { 
+        // Jika terdapat penambahan row baru (insert bukan update)
+        $stok = $this->menuModel->getStokMenu($namaMenuBaru[$i]);
         $stok -= $kuantitasBaru[$i];
       
-        $this->barangModel->updateStokBarang($idBarangBaru[$i], $stok);
+        $this->menuModel->updateStokMenu($namaMenuBaru[$i], $stok);
 
-        $harga = $this->barangModel->getHargaBarang($idBarangBaru[$i]);
-        $sub_total = $kuantitasBaru[$i] * $harga;
+        $harga = $this->menuModel->getHargaMenu($namaMenuBaru[$i]);
+        $subtotal = $kuantitasBaru[$i] * $harga;
+
+        // Get kode_menu baru berdasarkan namaMenuBaru
+        $kodeMenuBaru = $this->menuModel->getKodeMenu($namaMenuBaru[$i]);
         
-        $this->detailPenjualanModel->saveDetailPenjualan($no_penjualan, $idBarangBaru[$i], $kuantitasBaru[$i], $sub_total);
+        $this->detailPemesananModel->saveDetailPemesanan($no_pemesanan, $no_pembayaran, $kodeMenuBaru, $kuantitasBaru[$i], $subtotal);
 
       }
-      
     }
 
-    $total_harga = $this->detailPenjualanModel->getTotalHarga($no_penjualan);
-    $this->penjualanModel->updatePenjualan($no_penjualan, $total_harga, $tanggal_penjualan);
+    // Update pemesanan
+    $this->pemesananModel->updatePemesanan($no_pemesanan, $noMejaBaru, $tanggal, $nama_pelanggan);
 
-    $this->barangModel->db->transComplete();
-    $this->penjualanModel->db->transComplete();
+    // Get total_harga berdasarkan no_pemesanan. Hitung pajak dan total_bayar
+    $total_harga = $this->detailPemesananModel->getTotalHarga($no_pemesanan);
+    $pajak = 0.10 * $total_harga;
+    $total_bayar = $total_harga + $pajak;
+    
+    // Update pembayaran
+    $this->pembayaranModel->updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar, $tanggal);
 
-    session()->setFlashdata('pesan', 'Data penjualan berhasil diubah');
+    // Stop transaction
+    $this->menuModel->db->transComplete();
+    $this->mejaModel->db->transComplete();
+    $this->pembayaranModel->db->transComplete();
+    $this->pemesananModel->db->transComplete();
 
-    return redirect()->to(base_url("/penjualan/detail_penjualan/$no_penjualan"));
+    session()->setFlashdata('pesan', 'Data pemesanan berhasil diubah');
+
+    return redirect()->to(base_url("/pemesanan/$no_pemesanan"));
     
   }
 

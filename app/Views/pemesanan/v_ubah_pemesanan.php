@@ -34,7 +34,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/pemesanan/create" method="POST">
+              <form action="/pemesanan/update/<?= $pemesanan['no_pemesanan']; ?>" method="POST">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-4">
@@ -63,6 +63,7 @@
                     <div class="col-3">
                       <div class="form-group">
                         <label for="noMeja">Meja</label>
+                        <input type="hidden" name="noMejaLama" value="<?= $pemesanan['no_meja'];  ?>" /> 
                         <select class="form-control <?= ($validation->hasError('noMeja')) ? 'is-invalid' : ''; ?>" id="noMeja" name="noMeja" required>
                           <option value="<?= $pemesanan['no_meja']; ?>" selected><?= $pemesanan['no_meja']; ?></option>
                           <?php foreach($mejaKosong as $mk) : ?>

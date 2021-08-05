@@ -62,6 +62,24 @@ class DetailPemesananModel extends Model
 
   }
 
+  // Update detail_pemesanan
+  public function updateDetailPemesanan($no_pemesanan, $kodeMenuLama, $kodeMenuBaru, $kuantitasBaru, $subtotal)
+  {
+    $data = [
+      'kode_menu' => $kodeMenuBaru,
+      'kuantitas' => $kuantitasBaru,
+      'subtotal' => $subtotal,
+    ];
+
+    return $this->set($data)
+    ->where([
+      'no_pemesanan' => $no_pemesanan, 
+      'kode_menu' => $kodeMenuLama,
+      ])
+    ->update();
+
+  }
+
   // Get total_harga berdasarkan no_pemesanan
   public function getTotalHarga($no_pemesanan)
   {
@@ -79,6 +97,12 @@ class DetailPemesananModel extends Model
 
     return $query;
 
+  }
+
+  // Get no_pembayaran berdasarkan no_pemesanan
+  public function getNoPembayaran($no_pemesanan)
+  {
+    return $this->select('no_pembayaran')->where(['no_pemesanan' => $no_pemesanan])->first()['no_pembayaran'];
   }
 
 }

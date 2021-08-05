@@ -33,6 +33,25 @@ class PemesananModel extends Model
       return $this->save($data);
     }
 
+    // Update pemesanan
+    public function updatePemesanan($no_pemesanan, $noMejaBaru, $tanggal, $nama_pelanggan)
+    {
+      $data = [  // update makanya pake no_pemesanan
+        'no_pemesanan' => $no_pemesanan,
+        'no_meja' => $noMejaBaru,
+        'tanggal' => $tanggal,
+        'nama_pelanggan' => $nama_pelanggan,
+        'nrp' => session()->get('nrp'),
+      ];
+
+      // if($tanggal != false) {
+      //   $data['tanggal_pemesanan'] = $tanggal;
+      // }
+
+      return $this->save($data);
+      
+    }
+
     // Method untuk memperoleh jumlah pemesanan berdasar status_pemesanan
     public function getJumlahPemesanan($status_pemesanan) {
       $builder = $this->selectCount('status_pemesanan');

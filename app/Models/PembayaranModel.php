@@ -21,19 +21,19 @@ class PembayaranModel extends Model
     }
 
     // Update pembayaran
-    public function updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar) 
+    public function updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar, $tanggal = false) 
     {
       $data = [  //update makanya pake no_pembayaran
         'no_pembayaran' => $no_pembayaran,
         'total_harga' => $total_harga,
         'pajak' => $pajak,
         'total_bayar' => $total_bayar,
-        //'nrp' => session()->get('nrp'),
+        'nrp' => session()->get('nrp'),
       ];
 
-      // if($tanggal != false) {
-      //   $data['tanggal_pembayaran'] = $tanggal;
-      // }
+      if($tanggal != false) {
+        $data['tanggal_pembayaran'] = $tanggal;
+      }
 
       return $this->save($data);
       
