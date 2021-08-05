@@ -156,4 +156,19 @@ class Pemesanan extends BaseController
     
   }
 
+  public function detail_pemesanan($no_pemesanan)
+  {
+    //$detailPemesanan = $this->detailPemesananModel->getDetailPemesanan($no_pemesanan);
+    $data = [
+      'title'=> 'Detail Pemesanan',
+      //'detailPemesanan'=> $detailPemesanan,
+    ];
+
+    // if(empty($data['detailPemesanan'])) {
+    //   throw new \CodeIgniter\Exceptions\PageNotFoundException("No Pemesanan $no_pemesanan tidak ditemukan.");
+    // }
+    return view('pemesanan/v_detail_pemesanan', $data);
+
+  }
+
 }

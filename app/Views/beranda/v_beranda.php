@@ -94,38 +94,40 @@
         </div> -->
         <!-- /.row -->
 
-        <div class="row d-flex justify-content-around mt-4">
-          <div class="col-4 d-flex justify-content-center">
-            <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/<?= $menuTerlaris['gambar']; ?>" class="card-img-top" alt="...">
-              <div class="ribbon-wrapper ribbon-lg">
-                <div class="ribbon bg-danger text-md">
-                  Terlaris
+        <?php if($menuTerlaris) : ?>
+          <div class="row d-flex justify-content-around mt-4">
+            <div class="col-4 d-flex justify-content-center">
+              <div class="card position-relative" style="width: 18rem;">
+                <img src="/assets/img/<?= $menuTerlaris['gambar']; ?>" class="card-img-top" alt="...">
+                <div class="ribbon-wrapper ribbon-lg">
+                  <div class="ribbon bg-danger text-md">
+                    Terlaris
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="font-weight-bold"><?= $menuTerlaris['kode_menu']; ?> - <?= $menuTerlaris['nama']; ?></h5>
+                  <h6>Rp<?= number_format($menuTerlaris['harga'], 2, ',', '.'); ?></h6>
+                  <h6><?= $menuTerlaris['jumlah_terjual']; ?> terjual minggu ini</h6>
                 </div>
               </div>
-              <div class="card-body text-center">
-                <h5 class="font-weight-bold"><?= $menuTerlaris['kode_menu']; ?> - <?= $menuTerlaris['nama']; ?></h5>
-                <h6>Rp<?= number_format($menuTerlaris['harga'], 2, ',', '.'); ?></h6>
-                <h6><?= $menuTerlaris['jumlah_terjual']; ?> terjual minggu ini</h6>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+              <div class="card position-relative" style="width: 18rem;">
+                <img src="/assets/img/<?= $menuTerbaru['gambar']; ?>" class="card-img-top" alt="...">
+                <div class="ribbon-wrapper ribbon-lg">
+                  <div class="ribbon bg-success text-md">
+                    Baru
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="font-weight-bold"><?= $menuTerbaru['kode_menu']; ?> - <?= $menuTerbaru['nama']; ?></h5>
+                  <h6>Rp<?= number_format($menuTerbaru['harga'], 2, ',', '.'); ?></h6>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-4 d-flex justify-content-center">
-            <div class="card position-relative" style="width: 18rem;">
-              <img src="/assets/img/<?= $menuTerbaru['gambar']; ?>" class="card-img-top" alt="...">
-              <div class="ribbon-wrapper ribbon-lg">
-                <div class="ribbon bg-success text-md">
-                  Baru
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <h5 class="font-weight-bold"><?= $menuTerbaru['kode_menu']; ?> - <?= $menuTerbaru['nama']; ?></h5>
-                <h6>Rp<?= number_format($menuTerbaru['harga'], 2, ',', '.'); ?></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /.row -->
+          <!-- /.row -->
+        <?php endif; ?>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
