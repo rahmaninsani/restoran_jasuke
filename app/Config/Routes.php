@@ -45,10 +45,10 @@ $routes->get('/menu/(:any)','Menu::detail/$1', ['filter' => 'auth']);
 
 $routes->get('/pemesanan', 'Pemesanan::index', ['filter' => 'auth']);
 $routes->get('/pemesanan/tambah_pemesanan', 'Pemesanan::tambah_pemesanan', ['filter' => 'auth']);
+$routes->get('/pemesanan/ubah_pemesanan/(:num)', 'Pemesanan::ubah_pemesanan/$1', ['filter' => 'auth']);
+$routes->delete('/pemesanan/(:num)', 'Pemesanan::delete_pemesanan/$1', ['filter' => 'auth']);
+$routes->delete('/pemesanan/(:num)/(:num)', 'Pemesanan::delete_detail_pemesanan/$1/$2', ['filter' => 'auth']);
 $routes->get('/pemesanan/(:num)', 'Pemesanan::detail_pemesanan/$1', ['filter' => 'auth']);
-
-// $routes->delete('/penjualan/(:num)', 'Penjualan::delete_penjualan/$1', ['filter' => 'auth']);
-// $routes->delete('/penjualan/(:num)/(:num)', 'Penjualan::delete_detail_penjualan/$1/$2', ['filter' => 'auth']);
 
 $routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
 $routes->get('/pembayaran', 'Pembayaran::index', ['filter' => 'auth']);

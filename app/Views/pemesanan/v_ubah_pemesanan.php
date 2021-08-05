@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Pemesanan</h1>
+            <h1>Ubah Pemesanan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item p-1"><a href="#">Pemesanan</a></li>
-              <li class="breadcrumb-item active p-1">Tambah Pemesanan</li>
+              <li class="breadcrumb-item active p-1">Ubah Pemesanan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -30,7 +30,7 @@
           <div class="col-md-8">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Tambah Pemesanan</h3>
+                <h3 class="card-title">Ubah Pemesanan</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -41,7 +41,7 @@
                       <div class="form-group">
                         <label for="tanggal">Tanggal</label>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                          <input type="text" id="tanggal" name="tanggal" class="form-control datetimepicker-input <?= ($validation->hasError('tanggal')) ? 'is-invalid' : ''; ?>" data-target="#reservationdate" placeholder="Tanggal" autocomplete="off" autofocus required />
+                          <input type="text" id="tanggal" name="tanggal" class="form-control datetimepicker-input <?= ($validation->hasError('tanggal')) ? 'is-invalid' : ''; ?>" data-target="#reservationdate" value="<?= $pemesanan['tanggal_pemesanan']; ?>" placeholder="Tanggal" autocomplete="off" autofocus required />
                           <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
@@ -54,7 +54,7 @@
                     <div class="col-5">
                       <div class="form-group">
                         <label for="namaPelanggan">Nama Pelanggan</label>
-                        <input type="text" class="form-control <?= ($validation->hasError('namaPelanggan')) ? 'is-invalid' : ''; ?>" id="namaPelanggan"name="namaPelanggan" placeholder="Nama Pelanggan" autocomplete="off" required />
+                        <input type="text" class="form-control <?= ($validation->hasError('namaPelanggan')) ? 'is-invalid' : ''; ?>" id="namaPelanggan"name="namaPelanggan" value="<?= $pemesanan['nama_pelanggan']; ?>" placeholder="Nama Pelanggan" autocomplete="off" required />
                         <div id="namaPelanggan" class="invalid-feedback">
                           <?= $validation->getError('namaPelanggan'); ?>
                         </div>
@@ -64,7 +64,7 @@
                       <div class="form-group">
                         <label for="noMeja">Meja</label>
                         <select class="form-control <?= ($validation->hasError('noMeja')) ? 'is-invalid' : ''; ?>" id="noMeja" name="noMeja" required>
-                          <option value="" selected>-- Pilih Meja --</option>
+                          <option value="<?= $pemesanan['no_meja']; ?>" selected><?= $pemesanan['no_meja']; ?></option>
                           <?php foreach($mejaKosong as $mk) : ?>
                             <option value="<?= $mk['no_meja']; ?>"><?= $mk['no_meja']; ?></option>
                           <?php endforeach; ?>
@@ -87,31 +87,35 @@
                           </tr>
                         </thead>
                         <tbody id="tbody">
-                          <tr class="text-center">
-                            <!-- <td>1</td> -->
-                            <td>
-                              <input class="form-control <?= ($validation->hasError('namaMenu')) ? 'is-invalid' : ''; ?>" list="namaMenuDataList" id="namaMenu" name="namaMenu[]" placeholder="Menu Makanan" autocomplete="off" required />
-                              <datalist id="namaMenuDataList">
-                                <?php foreach($menuTersedia as $mt) : ?>
-                                  <option value="<?= $mt['nama']; ?>"><?= $mt['kode_menu']; ?></option>
-                                <?php endforeach; ?>
-                              </datalist>
-                              <div id="namaMenu" class="invalid-feedback text-left">
-                                <?= $validation->getError('namaMenu'); ?>
-                              </div>
-                            </td>
-                            <td>
-                              <input type="number" min=1 class="form-control <?= ($validation->hasError('kuantitas')) ? 'is-invalid' : ''; ?>" id="kuantitas"name="kuantitas[]" placeholder="Kuantitas" autocomplete="off" required />
-                              <div id="kuantitas" class="invalid-feedback text-left">
-                                <?= $validation->getError('kuantitas'); ?>
-                              </div>
-                            </td>
-                            <td>
-                              <button class="btn-sm btn-success tambah-item" type="button">
-                                <i class="fas fa-plus"></i>
-                              </button>
-                            </td>
-                          </tr>
+                          <?php foreach($detailPemesananMenu as $i => $dpm) : ?>
+                            <tr class="text-center">
+                              <!-- <td>1</td> -->
+                              <td>
+                                <input type="hidden" name="namaMenuLama[]" value="<?= $dpm['nama']; ?>" /> 
+                                <input class="form-control <?= ($validation->hasError('namaMenu')) ? 'is-invalid' : ''; ?>" list="namaMenuDataList" id="namaMenu" name="namaMenu[]" placeholder="Menu Makanan" value="<?= $dpm['nama']; ?>" autocomplete="off" required />
+                                <datalist id="namaMenuDataList">
+                                  <?php foreach($menuTersedia as $mt) : ?>
+                                    <option value="<?= $mt['nama']; ?>"><?= $mt['kode_menu']; ?></option>
+                                  <?php endforeach; ?>
+                                </datalist>
+                                <div id="namaMenu" class="invalid-feedback text-left">
+                                  <?= $validation->getError('namaMenu'); ?>
+                                </div>
+                              </td>
+                              <td>
+                                <input type="hidden" name="kuantitasLama[]" value="<?= $dpm['kuantitas']; ?>" />
+                                <input type="number" min=1 class="form-control <?= ($validation->hasError('kuantitas')) ? 'is-invalid' : ''; ?>" id="kuantitas"name="kuantitas[]" value="<?= $dpm['kuantitas']; ?>" placeholder="Kuantitas" autocomplete="off" required />
+                                <div id="kuantitas" class="invalid-feedback text-left">
+                                  <?= $validation->getError('kuantitas'); ?>
+                                </div>
+                              </td>
+                              <td>
+                                <button class="btn-sm btn-success tambah-item" type="button">
+                                  <i class="fas fa-plus"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>

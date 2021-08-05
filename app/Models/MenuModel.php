@@ -45,6 +45,12 @@ class MenuModel extends Model
       return $this->select('kode_menu')->where(['nama' => $nama_menu])->first()['kode_menu'];
     }
 
+    // Method untuk memperoleh nama menu berdasarkan kode_menu
+    public function getNamaMenu($kode_menu)
+    {
+      return $this->select('nama')->where(['kode_menu' => $kode_menu])->first()['nama'];
+    }
+
     // Method untuk memperoleh harga berdasarkan nama menu
     public function getHargaMenu($nama_menu)
     {
