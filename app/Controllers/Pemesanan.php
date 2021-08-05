@@ -172,4 +172,139 @@ class Pemesanan extends BaseController
 
   }
 
+  public function ubah_pemesanan($no_pemesanan)
+	{
+    $mejaKosong = $this->mejaModel->getMejaKosong();
+    $menuTersedia = $this->menuModel->getMenuTersedia();
+
+    $pemesanan = $this->pemesananModel->getPemesanan($no_pemesanan);
+
+    $detailPemesananMenu = $this->detailPemesananModel->getDaftarMenu($no_pemesanan);
+
+    for($i = 0; $i < count($detailPemesananMenu); $i++)
+    {
+      $detailPemesananMenu[$i]['kode_menu'] = $this->menuModel->getNamaMenu($detailPemesananMenu[$i]['kode_menu']);
+      $detailPemesananMenu[$i]['nama'] = $detailPemesananMenu[$i]['kode_menu']; 
+      unset($detailPemesananMenu[$i]['kode_menu']);
+    }
+
+		$data = [
+			'title' => 'Edit Pemesanan',
+      'mejaKosong' => $mejaKosong,
+      'menuTersedia' => $menuTersedia,			
+			'pemesanan' => $pemesanan,
+			'detailPemesananMenu' => $detailPemesananMenu,
+      'validation' => \Config\Services::validation(),
+		];
+
+		if(empty($data['pemesanan'])) {
+      throw new \CodeIgniter\Exceptions\PageNotFoundException("No pemesanan $no_pemesanan tidak ditemukan.");
+    }
+
+		return view('pemesanan/v_ubah_pemesanan', $data);
+
+	}
+
+  public function update($no_penjualan)
+	{
+		if(!$this->validate([
+			'tanggal_penjualan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal penjualan harus diisi!'
+        ],
+      ],	 		
+			'id_barang' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'ID/Nama barang harus diisi!'
+        ],
+      ],	 		
+			'kuantitas' => [
+				'rules' => 'required|greater_than[0]',
+				'errors' => [
+					'required' => 'Kuantitas barang harus diisi!',
+					'greater_than' => 'Jumlah kuantitas tidak boleh kurang dari 1!'
+        ],
+      ],	
+		])) {
+			return redirect()->to(base_url("/penjualan/edit_penjualan/$no_penjualan"))->withInput();
+		};
+
+    $tanggal_penjualan = $this->request->getVar('tanggal_penjualan');
+    $idBarangLama = $this->request->getVar('idBarangLama');
+    $idBarangBaru = $this->request->getVar('id_barang');
+    $kuantitasLama = $this->request->getVar('kuantitasLama');
+    $kuantitasBaru = $this->request->getVar('kuantitas');
+
+    $this->penjualanModel->db->transStart();
+    $this->barangModel->db->transStart();
+    
+    for($i = 0; $i < count($idBarangBaru); $i++) 
+    {
+      //Jika terdapat update pada row yang sudah tersedia (memiliki input hidden idBarangLama/kuantitasLama)
+      if(array_key_exists($i, $idBarangLama)) {
+        // Jika id barang lama dan id barang baru valuenya tidak sama (ada perubahan)
+        if($idBarangBaru[$i] != $idBarangLama[$i]) {
+          // Update barang lama
+          $stokBarangLama = $this->barangModel->getStokBarang($idBarangLama[$i]);
+          $stokBarangLama += $kuantitasLama[$i];
+          $this->barangModel->updateStokBarang($idBarangLama[$i], $stokBarangLama);
+
+          // Update barang baru
+          $stokBarangBaru = $this->barangModel->getStokBarang($idBarangBaru[$i]);
+          $stokBarangBaru -= $kuantitasBaru[$i];
+          $this->barangModel->updateStokBarang($idBarangBaru[$i], $stokBarangBaru);
+
+        } else { // Jika id barang lama dan id barang baru valuenya sama (tidak ada perubahan)
+          $stok = $this->barangModel->getStokBarang($idBarangBaru[$i]);
+
+          // Jika kuantitas barang baru > kuantitas barang lama
+          if($kuantitasBaru[$i] > $kuantitasLama[$i]) {
+            $kuantitas = $kuantitasBaru[$i] - $kuantitasLama[$i];
+            $stok -= $kuantitas;
+          } else { // Jika kuantitas barang baru < kuantitas barang lama
+            $kuantitas = $kuantitasLama[$i] - $kuantitasBaru[$i];
+            $stok += $kuantitas;
+          }
+
+          $this->barangModel->updateStokBarang($idBarangBaru[$i], $stok);
+
+        }
+
+        // update row berdasar id penjualan dan id barang di tabel detail_penjualan
+        $harga = $this->barangModel->getHargaBarang($idBarangBaru[$i]);
+        $sub_total = $kuantitasBaru[$i] * $harga;
+
+        $this->detailPenjualanModel->updateDetailPenjualan($no_penjualan, $idBarangLama[$i], $idBarangBaru[$i], $kuantitasBaru[$i], $sub_total);
+
+      } else { // Jika terdapat penambahan row baru (insert bukan update)
+        $stok = $this->barangModel->getStokBarang($idBarangBaru[$i]);
+        $stok -= $kuantitasBaru[$i];
+      
+        $this->barangModel->updateStokBarang($idBarangBaru[$i], $stok);
+
+        $harga = $this->barangModel->getHargaBarang($idBarangBaru[$i]);
+        $sub_total = $kuantitasBaru[$i] * $harga;
+        
+        $this->detailPenjualanModel->saveDetailPenjualan($no_penjualan, $idBarangBaru[$i], $kuantitasBaru[$i], $sub_total);
+
+      }
+      
+    }
+
+    $total_harga = $this->detailPenjualanModel->getTotalHarga($no_penjualan);
+    $this->penjualanModel->updatePenjualan($no_penjualan, $total_harga, $tanggal_penjualan);
+
+    $this->barangModel->db->transComplete();
+    $this->penjualanModel->db->transComplete();
+
+    session()->setFlashdata('pesan', 'Data penjualan berhasil diubah');
+
+    return redirect()->to(base_url("/penjualan/detail_penjualan/$no_penjualan"));
+    
+  }
+
+
+
 }

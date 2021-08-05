@@ -11,8 +11,8 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Detail Pemesanan</h1>
-            <a href="<?= base_url('/pemesanan/ubah_pemesanan') ?>" class="btn btn-warning mt-3">Ubah</a>
-            <form action="/penjualan/6" method="POST" class="d-inline ml-2">
+            <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
+            <form action="/pemesanan/6" method="POST" class="d-inline ml-2">
               <?= csrf_field(); ?>
               <input type="hidden" name="_method" value="DELETE" />
               <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
@@ -127,7 +127,7 @@
                         <td><?= $i + 1; ?></td>
                         <td><?= $dp['kode_menu']; ?></td>
                         <td class="text-center"><?= $dp['nama']; ?></td>
-                        <td><?= $dp['harga']; ?></td>
+                        <td><?= number_format($dp['harga'], 2, ',', '.'); ?></td>
                         <td class="text-center"><?= $dp['kuantitas']; ?></td>
                         <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
                         <td><a href="#"><button class="btn-sm btn-danger">Hapus</button></a></td>

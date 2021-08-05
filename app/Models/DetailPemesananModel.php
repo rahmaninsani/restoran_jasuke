@@ -71,6 +71,16 @@ class DetailPemesananModel extends Model
     return $query;
   }
 
+  // Get daftar menu berdasarkan no_pemesanan
+  public function getDaftarMenu($no_pemesanan)
+  {
+    $builder = $this->select(['kode_menu', 'kuantitas']);
+    $query = $builder->getWhere(['no_pemesanan' => $no_pemesanan])->getResultArray();
+
+    return $query;
+
+  }
+
 }
 
 
