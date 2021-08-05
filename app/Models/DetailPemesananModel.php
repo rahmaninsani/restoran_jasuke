@@ -9,6 +9,18 @@ class DetailPemesananModel extends Model
   protected $table      = 'detail_pemesanan';
   protected $allowedFields = ['no_pemesanan', 'no_pembayaran', 'kode_menu', 'kuantitas', 'subtotal'];
 
+  // Get detail_pemesanan
+  public function getDetailPemesanan($no_pemesanan) 
+  {
+    $builder = $this->select('a.*, b.id_barang, b.nama_barang, b.harga_barang, detail_penjualan.kuantitas, detail_penjualan.sub_total');
+    $builder->join('penjualan a', 'a.no_penjualan = detail_penjualan.no_penjualan');
+    $builder->join('barang b', 'b.id_barang = detail_penjualan.id_barang');
+
+    $query = $builder->getWhere(['detail_penjualan.no_pemesanan' => $no_pemesanan])->getResultArray();
+
+    return $query; 
+  }
+  
   public function getMenuTerlaris() 
   {
     $lastWeek = date("Y-m-d", strtotime("-1 week"));
@@ -23,10 +35,15 @@ class DetailPemesananModel extends Model
       ORDER BY SUM(ab.kuantitas) DESC
       LIMIT 1;
     ";
+    
     $builder = $this->db->query($query);
-    $query = $builder->getResultArray()[0];
+    if(array_key_exists(0, $builder->getResultArray())) 
+    {
+      $query = $builder->getResultArray()[0];
+      return $query;
+    }
 
-    return $query;
+    return;
   }
 
   // Insert detail_pemesanan

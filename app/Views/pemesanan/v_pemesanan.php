@@ -20,7 +20,8 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
@@ -30,48 +31,46 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
-                    <thead>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th style="width: 10px;">No Pemesanan</th>
+                      <th>No Meja</th>
+                      <th>Tanggal</th>
+                      <th>Nama Pelanggan</th>
+                      <th>Status</th>
+                      <th>NRP</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($pemesanan as $i => $p) : ?>
                       <tr>
-                        <th>No</th>
-                        <th style="width: 10px;">No Pemesanan</th>
-                        <th>No Meja</th>
-                        <th>Tanggal</th>
-                        <th>Nama Pelanggan</th>
-                        <th>Status</th>
-                        <th>NRP</th>
-                        <th>Aksi</th>
+                        <td><?= $i + 1; ?></td>
+                        <td><?= $p['no_pemesanan']; ?></td>
+                        <td><?= $p['no_meja']; ?></td>
+                        <td><?= $p['tanggal_pemesanan']; ?></td>
+                        <td><?= $p['nama_pelanggan']; ?></td>
+                        <td>
+                        <span class="badge bg-<?= ($p['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $p['status_pemesanan']; ?></span>
+                        </td>
+                        <td><?= $p['nrp']; ?></td>
+                        <td><a href="<?= base_url('/pemesanan') . '/' . $p['no_pemesanan'] ?>"><button class="btn btn-info">Detail</button></a></td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach($pemesanan as $i => $p) : ?>
-                        <tr>
-                          <td><?= $i + 1; ?></td>
-                          <td><?= $p['no_pemesanan']; ?></td>
-                          <td><?= $p['no_meja']; ?></td>
-                          <td><?= $p['tanggal_pemesanan']; ?></td>
-                          <td><?= $p['nama_pelanggan']; ?></td>
-                          <td>
-                          <span class="badge bg-<?= ($p['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $p['status_pemesanan']; ?></span>
-                          </td>
-                          <td><?= $p['nrp']; ?></td>
-                          <td><a href="<?= base_url('/detail_pemesanan') . '/' . $p['no_pemesanan'] ?>"><button class="btn btn-info">Detail</button></a></td>
-                        </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
               </div>
-              <!-- /.card -->
+              <!-- /.card-body -->
             </div>
+            <!-- /.card -->
           </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
