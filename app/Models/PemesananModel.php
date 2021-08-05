@@ -39,7 +39,7 @@ class PemesananModel extends Model
       $data = [  // update makanya pake no_pemesanan
         'no_pemesanan' => $no_pemesanan,
         'no_meja' => $noMejaBaru,
-        'tanggal' => $tanggal,
+        'tanggal_pemesanan' => $tanggal,
         'nama_pelanggan' => $nama_pelanggan,
         'nrp' => session()->get('nrp'),
       ];
@@ -50,6 +50,31 @@ class PemesananModel extends Model
 
       return $this->save($data);
       
+    }
+
+    // Update pemesanan via detail_pemesanan
+    public function updateDetailPemesanan($no_pemesanan, $status_pemesanan = "Belum Selesai")
+    {
+      $data = [  // update makanya pake no_pemesanan
+        'no_pemesanan' => $no_pemesanan,
+        'status_pemesanan' => $status_pemesanan,
+        'nrp' => session()->get('nrp'),
+      ];
+
+      return $this->save($data);
+      
+    }
+
+    // Delete pemesanan
+    public function deletePemesanan($no_pemesanan) 
+    {
+      return $this->delete($no_pemesanan);
+    }
+
+    // Get no_meja
+    public function getNoMeja($no_pemesanan)
+    {
+      return $this->select('no_meja')->where(['no_pemesanan' => $no_pemesanan])->first()['no_meja'];
     }
 
     // Method untuk memperoleh jumlah pemesanan berdasar status_pemesanan

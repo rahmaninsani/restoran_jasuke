@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <h1>Detail Pemesanan</h1>
             <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
-            <form action="/pemesanan/6" method="POST" class="d-inline ml-2">
+            <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
               <?= csrf_field(); ?>
               <input type="hidden" name="_method" value="DELETE" />
               <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
@@ -130,7 +130,13 @@
                         <td><?= number_format($dp['harga'], 2, ',', '.'); ?></td>
                         <td class="text-center"><?= $dp['kuantitas']; ?></td>
                         <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
-                        <td><a href="#"><button class="btn-sm btn-danger">Hapus</button></a></td>
+                        <td>
+                          <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
+                            <?= csrf_field(); ?>
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
+                          </form>
+                        </td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

@@ -365,6 +365,95 @@ class Pemesanan extends BaseController
     
   }
 
+  public function delete_pemesanan($no_pemesanan)
+  {
+    // Get daftar menu
+    $menu = $this->detailPemesananModel->getDaftarMenu($no_pemesanan);
+
+    // Get no_meja
+    $no_meja = $this->pemesananModel->getNoMeja($no_pemesanan);
+
+    // Get no_pembayaran
+    $no_pembayaran = $this->detailPemesananModel->getNoPembayaran($no_pemesanan);
+
+    // Start transaction 
+    $this->pemesananModel->db->transStart();
+    $this->pembayaranModel->db->transStart();
+    $this->mejaModel->db->transStart();
+    $this->menuModel->db->transStart();
+
+    for($i = 0; $i < count($menu); $i++) {
+      $kode_menu = $menu[$i]['kode_menu'];
+      $nama_menu = $this->menuModel->getNamaMenu($kode_menu);
+      $stok = $this->menuModel->getStokMenu($nama_menu);
+      
+      $stok += $menu[$i]['kuantitas'];
+      
+      $this->menuModel->updateStokMenu($nama_menu, $stok);   
+    }
+
+    // Hapus pemesanan dan pembayaran
+    $this->pemesananModel->deletePemesanan($no_pemesanan);
+    $this->pembayaranModel->deletePembayaran($no_pembayaran);
+
+    // Update status_meja
+    $this->mejaModel->updateStatusMeja($no_meja, "Kosong");
+    
+    // Stop transaction
+    $this->menuModel->db->transComplete();
+    $this->mejaModel->db->transComplete();
+    $this->pembayaranModel->db->transComplete();
+    $this->pemesananModel->db->transComplete();
+
+		session()->setFlashdata('pesan', 'Data pemesanan berhasil dihapus');
+
+		return redirect()->to(base_url('/pemesanan'));
+  }
+
+  public function delete_detail_pemesanan($no_pemesanan, $nama_menu)
+  {
+    $kode_menu = $this->menuModel->getKodeMenu($nama_menu);
+
+    $kuantitas = $this->detailPemesananModel->getKuantitas($no_pemesanan, $kode_menu);
+
+    $stok = $this->menuModel->getStokMenu($nama_menu);
+    $stok += $kuantitas;
+
+   // Start transaction 
+    $this->pemesananModel->db->transStart();
+    $this->pembayaranModel->db->transStart();
+    $this->menuModel->db->transStart();
+    
+    $this->menuModel->updateStokMenu($nama_menu, $stok);  
+    
+    $this->detailPemesananModel->deleteDetailPemesanan($no_pemesanan, $kode_menu);
+
+    // Update pemesanan
+    $this->pemesananModel->updateDetailPemesanan($no_pemesanan);
+
+    // Get no_pembayaran
+    $no_pembayaran = $this->detailPemesananModel->getNoPembayaran($no_pemesanan);
+
+    // Get total_harga berdasarkan no_pemesanan. Hitung pajak dan total_bayar
+    $total_harga = $this->detailPemesananModel->getTotalHarga($no_pemesanan);
+    $pajak = 0.10 * $total_harga;
+    $total_bayar = $total_harga + $pajak;
+    
+    // Update pembayaran
+    $this->pembayaranModel->updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar);
+
+    // Stop transaction
+    $this->menuModel->db->transComplete();
+    $this->pembayaranModel->db->transComplete();
+    $this->pemesananModel->db->transComplete();
+
+		session()->setFlashdata('pesan', 'Data pemesanan berhasil dihapus');
+
+		return redirect()->to(base_url("/pemesanan/$no_pemesanan"));
+  }
+
+
+
 
 
 }
