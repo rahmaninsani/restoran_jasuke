@@ -54,7 +54,7 @@
                         <td><?= $p['tanggal_pemesanan']; ?></td>
                         <td><?= $p['nama_pelanggan']; ?></td>
                         <td>
-                        <span class="badge bg-<?= ($p['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $p['status_pemesanan']; ?></span>
+                          <span class="badge bg-<?= ($p['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $p['status_pemesanan']; ?></span>
                         </td>
                         <td><?= $p['nrp']; ?></td>
                         <td><a href="<?= base_url('/pemesanan') . '/' . $p['no_pemesanan'] ?>"><button class="btn btn-info">Detail</button></a></td>

@@ -17,6 +17,11 @@
               <input type="hidden" name="_method" value="DELETE" />
               <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
             </form>
+            <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
+              <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] . '/selesai'?>" class="btn btn-success mt-3 ml-2">Tandai Selesai</a>
+            <?php else : ?>
+              <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3 ml-2">Tandai Belum Selesai</a>
+            <?php endif;  ?>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -93,7 +98,7 @@
                         <p class="card-text"><b>Status</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['status_pemesanan']; ?></p>
+                        <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>
                       </div>
                     </div>
                     <div class="row d-flex justify-content-end">

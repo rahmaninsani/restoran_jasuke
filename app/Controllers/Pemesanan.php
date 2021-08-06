@@ -365,6 +365,16 @@ class Pemesanan extends BaseController
     
   }
 
+  public function ubah_status($no_pemesanan, $status_pemesanan = "Belum Selesai")
+  {
+    $this->pemesananModel->updateDetailPemesanan($no_pemesanan, $status_pemesanan);
+
+    session()->setFlashdata('pesan', 'Data pemesanan berhasil diubah');
+
+		return redirect()->to(base_url("/pemesanan/$no_pemesanan"));
+    
+  }
+
   public function delete_pemesanan($no_pemesanan)
   {
     // Get daftar menu
