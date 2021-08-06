@@ -110,13 +110,13 @@
                                   <?= $validation->getError('kuantitas'); ?>
                                 </div>
                               </td>
+                          <?php endforeach; ?>
                               <td>
                                 <button class="btn-sm btn-success tambah-item" type="button">
                                   <i class="fas fa-plus"></i>
                                 </button>
                               </td>
                             </tr>
-                            <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
