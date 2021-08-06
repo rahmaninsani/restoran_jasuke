@@ -123,7 +123,9 @@
                       <th style="width: 10%;">Harga</th>
                       <th style="width: 10%;">Kuantitas</th>
                       <th style="width: 20%;" class="text-center">Subtotal</th>
-                      <th style="width: 10%;">Aksi</th>
+                      <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
+                        <th style="width: 10%;">Aksi</th>
+                        <?php endif; ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -135,13 +137,15 @@
                         <td><?= number_format($dp['harga'], 2, ',', '.'); ?></td>
                         <td class="text-center"><?= $dp['kuantitas']; ?></td>
                         <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
-                        <td>
-                          <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
-                          </form>
-                        </td>
+                        <?php  if($dp['status_pemesanan'] == "Belum Selesai") : ?>
+                          <td>
+                            <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
+                              <?= csrf_field(); ?>
+                              <input type="hidden" name="_method" value="DELETE" />
+                              <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
+                            </form>
+                          </td>
+                        <?php endif; ?>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
