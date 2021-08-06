@@ -278,7 +278,8 @@ class Pemesanan extends BaseController
     for($i = 0; $i < count($namaMenuBaru); $i++) 
     {
       //Jika terdapat update pada row yang sudah ada (memiliki input hidden namaMenuLama/kuantitasLama)
-      if(array_key_exists($i, $namaMenuLama)) {
+      if(array_key_exists($i, $namaMenuLama))
+      {  
         // Jika nama menu lama dan nama menu baru valuenya tidak sama (ada perubahan)
         if($namaMenuBaru[$i] != $namaMenuLama[$i]) {
           // Ambil stok menu lama berdasarkan nama menu lama, tambahkan dengan stok yang diubah
@@ -289,7 +290,7 @@ class Pemesanan extends BaseController
           // Ambil stok menu baru berdasarkan nama menu baru, kurangi dengan stok yang dipesan
           $stokMenuBaru = $this->menuModel->getStokMenu($namaMenuBaru[$i]);
           $stokMenuBaru -= $kuantitasBaru[$i];
-          $this->MenuModel->updateStokMenu($namaMenuBaru[$i], $stokMenuBaru);
+          $this->menuModel->updateStokMenu($namaMenuBaru[$i], $stokMenuBaru);
 
         } else { 
           // Jika nama menu lama dan nama menu baru valuenya sama (tidak ada perubahan)
@@ -344,6 +345,7 @@ class Pemesanan extends BaseController
 
     // Update pemesanan
     $this->pemesananModel->updatePemesanan($no_pemesanan, $noMejaBaru, $tanggal, $nama_pelanggan);
+    $this->pemesananModel->updateDetailPemesanan($no_pemesanan);
 
     // Get total_harga berdasarkan no_pemesanan. Hitung pajak dan total_bayar
     $total_harga = $this->detailPemesananModel->getTotalHarga($no_pemesanan);
