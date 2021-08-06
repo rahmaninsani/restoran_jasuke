@@ -8,7 +8,7 @@ class MejaModel extends Model
 {
     protected $table      = 'meja';
     protected $primaryKey = 'no_meja';
-    protected $allowedFields = ['status'];
+    protected $allowedFields = ['status_meja'];
 
     public function getMeja($no_meja = false)
     {
@@ -20,27 +20,32 @@ class MejaModel extends Model
       return $this->where(['no_meja' => $no_meja])->first();
     }
 
-    public function getStatusMeja($status) 
+    // Update status_meja
+    public function updateStatusMeja($no_meja, $status) 
+    {
+      // Note : Tidak bisa pake method save() atau update() bawaan CI, jadi pake query manual
+      $query = "UPDATE meja 
+                SET status_meja = '$status' 
+                WHERE no_meja = $no_meja;
+      ";
+
+      return $this->db->query($query);
+
+    }
+
+    public function getStatusMeja($status_meja) 
     { 
-      $builder = $this->selectCount('status');
-      $query = $builder->getWhere(['status' => $status])->getResultArray()[0]['status'];
+      $builder = $this->selectCount('status_meja');
+      $query = $builder->getWhere(['status_meja' => $status_meja])->getResultArray()[0]['status_meja'];
 
       return $query;
     }
 
-    // public function updatePenjualan($no_penjualan, $total_harga, $tanggal_penjualan = false) 
-    // {
-    //   $data = [  //update makanya pake no_penjualan
-    //     'no_penjualan' => $no_penjualan,
-    //     'total_harga' => $total_harga,
-    //     'nip' => session()->get('nip'),
-    //   ];
+    public function getMejaKosong()
+    {
+      $builder = $this->select('no_meja');
+      $query = $builder->getWhere(['status_meja' => "Kosong"])->getResultArray();
 
-    //   if($tanggal_penjualan != false) {
-    //     $data['tanggal_penjualan'] = $tanggal_penjualan;
-    //   }
-
-    //   return $this->save($data);
-    // }
-
+      return $query;
+    }
 }

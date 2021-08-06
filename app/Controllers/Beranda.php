@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\MejaModel;
+use App\Models\PemesananModel;
 use App\Models\MenuModel;
 use App\Models\PembayaranModel;
 use App\Models\DetailPemesananModel;
@@ -10,6 +11,7 @@ use App\Models\DetailPemesananModel;
 class Beranda extends BaseController {
   protected 
     $mejaModel,
+    $pemesananModel,
     $menuModel,
     $pembayaranModel,
     $detailPemesananModel;
@@ -17,6 +19,7 @@ class Beranda extends BaseController {
   public function __construct()
   {
     $this->mejaModel = new MejaModel();
+    $this->pemesananModel = new PemesananModel();
     $this->menuModel = new MenuModel();
     $this->pembayaranModel = new PembayaranModel();
     $this->detailPemesananModel = new DetailPemesananModel();
@@ -25,7 +28,7 @@ class Beranda extends BaseController {
   public function index()
   {
     $mejaKosong = $this->mejaModel->getStatusMeja('Kosong');
-    $mejaTerisi = $this->mejaModel->getStatusMeja('Terisi');
+    $jumlahPemesanan = $this->pemesananModel->getJumlahPemesanan('Belum Selesai');
     $menuTersedia = $this->menuModel->getJumlahMenu();
     $pemasukanHarian = $this->pembayaranModel->getPemasukanHarian();
     $pemasukanHarian = number_format($pemasukanHarian, 2, ',', '.');
@@ -36,7 +39,7 @@ class Beranda extends BaseController {
     $data = [
       'title' => 'Beranda',
       'mejaKosong' => $mejaKosong,
-      'mejaTerisi' => $mejaTerisi,
+      'jumlahPemesanan' => $jumlahPemesanan,
       'menuTersedia' => $menuTersedia,
       'pemasukanHarian' => $pemasukanHarian, 
       'menuTerlaris' => $menuTerlaris,

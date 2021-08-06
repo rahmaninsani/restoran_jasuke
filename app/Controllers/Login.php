@@ -21,7 +21,7 @@ class Login extends BaseController {
       'title' => 'Masuk | Resto Unikom',
     ];
 
-    return view('login/index', $data);
+    return view('login/v_login', $data);
   }
 
   public function auth()
@@ -31,8 +31,8 @@ class Login extends BaseController {
 
     $pegawai = $this->pegawaiModel->getPegawai($username);
     
-    if($pegawai){
-      if (($pegawai['username'] == $username) && ($pegawai['password'] == $password)) {
+    if($pegawai) {
+      if(($pegawai['username'] == $username) && ($pegawai['password'] == $password)) {
         $data = [
           'nrp' => $pegawai['nrp'],
           'nama' => $pegawai['nama'],

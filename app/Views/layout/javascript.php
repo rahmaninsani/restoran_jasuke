@@ -11,10 +11,10 @@
 <!-- ChartJS -->
 <script src="/assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="/assets/plugins/sparklines/sparkline.js"></script>
+<!-- <script src="/assets/plugins/sparklines/sparkline.js"></script> -->
 <!-- JQVMap -->
-<script src="/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- <script src="/assets/plugins/jqvmap/jquery.vmap.min.js"></script> -->
+<!-- <script src="/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
 <!-- jQuery Knob Chart -->
 <script src="/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -31,4 +31,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/assets/dist/js/pages/dashboard.js"></script>
+<!--  <script src="/assets/dist/js/pages/dashboard.js"></script> -->
+<!-- My Script -->
+<script src="/assets/js/script.js"></script>

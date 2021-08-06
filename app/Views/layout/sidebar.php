@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/" class="nav-link <?= ($title == 'Beranda') ? "active" : ""; ?>">
+            <a href="/" class="nav-link <?= (strpos($title, 'Beranda') !== false) ? "active" : ""; ?>">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Beranda
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/menu" class="nav-link <?= ($title == 'Menu') ? "active" : ""; ?>">
+            <a href="/menu" class="nav-link <?= (strpos($title, 'Menu') !== false) ? "active" : ""; ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Menu
@@ -40,15 +40,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/meja" class="nav-link <?= ($title == 'Pencarian Meja') ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-search"></i>
+            <a href="/meja" class="nav-link <?= (strpos($title, 'Meja') !== false) ? "active" : ""; ?>">
+              <i class="nav-icon fas fa-chair"></i>
               <p>
-                Pencarian Meja
+                Meja
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/pemesanan" class="nav-link <?= ($title == 'Pemesanan') ? "active" : ""; ?>">
+            <a href="/pemesanan" class="nav-link <?= (strpos($title, 'Pemesanan') !== false) ? "active" : ""; ?>">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Pemesanan
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/pembayaran" class="nav-link <?= ($title == 'Pembayaran') ? "active" : ""; ?>">
+            <a href="/pembayaran" class="nav-link <?= (strpos($title, 'Pembayaran') !== false) ? "active" : ""; ?>">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Pembayaran
@@ -64,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/laporan" class="nav-link <?= ($title == 'Pelaporan') ? "active" : ""; ?>">
+            <a href="/laporan" class="nav-link <?= (strpos($title, 'Pelaporan') !== false) ? "active" : ""; ?>">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Pelaporan
