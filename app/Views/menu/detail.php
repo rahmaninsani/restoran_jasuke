@@ -35,7 +35,7 @@
                         <p class="card-text"><b>Harga : </b><?= $menu['harga']; ?>.</p>
                         <p class="card-text"><b>Stok : </b><?= $menu['stok']; ?>.</p>
                         <p class="card-text"><medium><b>Deskripsi : </b><?= $menu['deskripsi']; ?>.</medium></p>
-
+                        <a href="<?= base_url('/menu'); ?>" class="btn btn-secondary mr-2">Kembali</a>
                         <?php if(is_koki()) : ?>
                           <a href="/menu/edit/<?= $menu['slug']; ?>" class="btn btn-warning">Ubah</a>
                           <!-- <form action="/menu/<?php // echo $menu['kode_menu']; ?>" method="post" class="d-inline" >
@@ -45,7 +45,7 @@
                           </form> -->
                           <br><br>
                         <?php endif; ?>
-                        <a href="/menu">Kembali ke daftar menu</a>
+                        <!-- <a href="/menu">Kembali ke daftar menu</a> -->
                     </div>
                     </div>
                 </div>

@@ -72,7 +72,8 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                    <button type="submit" class="btn btn-primary">Ubah Data</button>
+                    <a href="<?= base_url('/menu') . '/' . $menu['slug']; ?>" class="btn btn-secondary mr-2">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

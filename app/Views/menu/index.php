@@ -1,6 +1,11 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+
+<?php if(session()->getFlashdata('pesan')) : ?>  
+  <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
+<?php endif; ?>
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -39,11 +44,6 @@
       </div>
       <div class="row">
         <div class="col">
-        <?php if(session()->getFlashdata('pesan')) : ?>
-                  <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan'); ?>
-                  </div>
-                <?php endif;  ?>
                   <table class="table">
                     <thead>
                       <tr>

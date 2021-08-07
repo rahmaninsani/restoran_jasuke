@@ -52,7 +52,7 @@ public function __construct()
       ];
 
       if(empty($data['menu'])){
-          throw new \CodeIgniter\Exceptions\PageNotFoundException('Nama menu'.$slug.'tidak ditemukan.');
+          throw new \CodeIgniter\Exceptions\PageNotFoundException('Nama menu'.$slug.'tidak ditemukan');
       }
       return view('menu/detail', $data);
   }
@@ -134,7 +134,7 @@ public function __construct()
       ]);
 
 
-      session()->setFlashdata('pesan', 'Data Menu Berhasil ditambahakan.');
+      session()->setFlashdata('pesan', 'Data menu berhasil ditambahkan');
 
       return redirect()->to('/menu');
   }
@@ -175,7 +175,7 @@ public function __construct()
   }
 
   public function update($kode_menu)
-  {
+  { 
     if(! is_koki()) 
     {
       return redirect()->to(base_url(previous_url()));
@@ -187,8 +187,6 @@ public function __construct()
       } else {
           $rule_nama = 'required|is_unique[menu.nama]';
       }
-
-
 
       if(!$this->validate([
           'nama' => [
@@ -238,7 +236,7 @@ public function __construct()
       ]);
 
 
-      session()->setFlashdata('pesan', 'Data Menu Berhasil diubah.');
+      session()->setFlashdata('pesan', 'Data menu berhasil diubah');
 
       return redirect()->to('/menu');
   }
