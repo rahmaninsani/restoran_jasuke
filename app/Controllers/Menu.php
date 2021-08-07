@@ -13,6 +13,11 @@ public function __construct()
 }
   public function index()
   {
+    if(is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $currentPage = $this->request->getVar('page_menu') ? $this->request->getVar('page_menu') : 
     1;
 
@@ -29,13 +34,17 @@ public function __construct()
       'menu' => $menu->paginate(3, 'menu'),
       'pager'=> $this->menuModel->pager, 
       'currentPage' => $currentPage
-  ];
+    ];
 
-  return view('menu/index', $data);
+    return view('menu/index', $data);
   }
 
   public function detail($slug)
   {
+    if(is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
 
       $data = [
           'title' =>'Menu',
@@ -50,7 +59,11 @@ public function __construct()
 
   public function create()
   {
-      // session();
+      if(! is_koki()) 
+      {
+        return redirect()->to(base_url(previous_url()));
+      }
+
       $data = [
           'title' => 'Menu',
           'validation' => \Config\Services::validation()
@@ -61,6 +74,10 @@ public function __construct()
 
   public function save()
   {
+    if(! is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
       //validasi input
       if(!$this->validate([
           'nama' => [
@@ -124,6 +141,10 @@ public function __construct()
 
   public function delete($kode_menu)
   {
+    if(! is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
       //cari gambar berdasarkan kode menu
       $menu = $this->menuModel->find($kode_menu);
 
@@ -140,6 +161,10 @@ public function __construct()
 
   public function edit($slug)
   {
+    if(! is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
       $data = [
           'title' => 'Menu',
           'validation' => \Config\Services::validation(),
@@ -151,11 +176,15 @@ public function __construct()
 
   public function update($kode_menu)
   {
+    if(! is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
       // cek judul
       $menuLama = $this->menuModel->getMenu($this->request->getVar('slug'));
       if($menuLama['nama'] == $this->request->getVar('nama')){
           $rule_nama = 'required';
-      }else{
+      } else {
           $rule_nama = 'required|is_unique[menu.nama]';
       }
 

@@ -32,5 +32,10 @@
 <script src="/assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!--  <script src="/assets/dist/js/pages/dashboard.js"></script> -->
+
+<!-- SweetAlert 2 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- My Script -->
 <script src="/assets/js/script.js"></script>
+<script src="sweetalert2.all.min.js"></script>
