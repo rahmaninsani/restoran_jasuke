@@ -99,7 +99,7 @@
                     </div>
                     <div class="row d-flex justify-content-end">
                       <div class="col-4">
-                        <p class="card-text"><b>Status</b></p>
+                        <p class="card-text"><b>Status Pemesanan</b></p>
                       </div>
                       <div class="col-4">
                         <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>

@@ -27,63 +27,82 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?= $mejaKosong; ?></h3>
-                <p>Meja Kosong</p>
+        <div class="row d-flex justify-content-center">
+          <?php if(! is_koki()) : ?>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3><?= $mejaKosong; ?></h3>
+                  <p>Meja Kosong</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-android-checkbox-outline"></i>
+                </div>
+                <a href="<?= base_url('/meja') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-              <div class="icon">
-                <i class="ion ion-android-checkbox-outline"></i>
-              </div>
-              <a href="<?= base_url('/meja') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
-          <!-- ./col -->
+            <!-- ./col -->
+          <?php endif; ?> 
+
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <h3><?= $jumlahPemesanan; ?></h3>
-                <p>Pemesanan Berlangsung</p>
+                <?php if(is_pelayan()) : ?>
+                  <p>Pemesanan Sedang Disajikan</p>
+                <?php elseif(is_koki()) : ?>
+                  <p>Pemesanan Perlu Disajikan</p>
+                <?php else : ?>
+                  <p>Pemesanan Belum Bayar</p>
+                <?php endif; ?>
               </div>
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
               </div>
-              <a href="<?= base_url('/pemesanan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <?php if(! is_kasir()) : ?>
+                <a href="<?= base_url('/pemesanan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <?php else : ?>
+                <a href="<?= base_url('/pembayaran') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+              <?php endif; ?>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><?= $menuTersedia; ?></h3>
-                <p>Menu Tersedia</p>
+
+          <?php if(! is_kasir()) : ?>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3><?= $menuTersedia; ?></h3>
+                  <p>Menu Tersedia</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-spoon"></i>
+                </div>
+                <a href="<?= base_url('/menu') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-              <div class="icon">
-                <i class="ion ion-spoon"></i>
-              </div>
-              <a href="<?= base_url('/menu') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?= $pemasukanHarian; ?></h3>
-                <p>Pemasukan Hari Ini</p>
+            <!-- ./col -->
+          <?php endif; ?>
+
+          <?php if(is_kasir()) : ?>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3><?= $pemasukanHarian; ?></h3>
+                  <p>Pemasukan Hari Ini</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-cash"></i>
+                </div>
+                <a href="<?= base_url('/laporan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-              <div class="icon">
-                <i class="ion ion-cash"></i>
-              </div>
-              <a href="<?= base_url('/pembayaran') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
-          <!-- ./col -->
+            <!-- ./col -->
+          <?php endif; ?>
         </div>
         <!-- /.row -->
         
@@ -94,7 +113,7 @@
         </div> -->
         <!-- /.row -->
 
-        <?php if($menuTerlaris) : ?>
+        <?php if($menuTerlaris && ! is_kasir()): ?>
           <div class="row d-flex justify-content-around mt-4">
             <div class="col-4 d-flex justify-content-center">
               <div class="card position-relative" style="width: 18rem;">
