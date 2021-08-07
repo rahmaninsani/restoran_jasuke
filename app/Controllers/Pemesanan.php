@@ -28,6 +28,11 @@ class Pemesanan extends BaseController
 
   public function index()
   {
+    if(is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $pemesanan = $this->pemesananModel->getPemesanan();
     $data = [
       'title' => 'Pemesanan',
@@ -39,6 +44,11 @@ class Pemesanan extends BaseController
 
   public function tambah_pemesanan()
   {
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $mejaKosong = $this->mejaModel->getMejaKosong();
     $menuTersedia = $this->menuModel->getMenuTersedia();
     
@@ -54,6 +64,11 @@ class Pemesanan extends BaseController
 
   public function create()
 	{ 
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
 		if(!$this->validate([
 			'tanggal' => [
 				'rules' => 'required',
@@ -159,6 +174,11 @@ class Pemesanan extends BaseController
 
   public function detail_pemesanan($no_pemesanan)
   {
+    if(is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $detailPemesanan = $this->detailPemesananModel->getDetailPemesanan($no_pemesanan);
     
     $data = [
@@ -175,6 +195,11 @@ class Pemesanan extends BaseController
 
   public function ubah_pemesanan($no_pemesanan)
 	{
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $mejaKosong = $this->mejaModel->getMejaKosong();
     $menuTersedia = $this->menuModel->getMenuTersedia();
     $pemesanan = $this->pemesananModel->getPemesanan($no_pemesanan);
@@ -206,6 +231,11 @@ class Pemesanan extends BaseController
 
   public function update($no_pemesanan)
 	{
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
 		if(!$this->validate([
 			'tanggal' => [
 				'rules' => 'required',
@@ -369,6 +399,11 @@ class Pemesanan extends BaseController
 
   public function ubah_status($no_pemesanan, $status_pemesanan = "Belum Selesai")
   {
+    if(! is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $this->pemesananModel->updateDetailPemesanan($no_pemesanan, $status_pemesanan);
 
     session()->setFlashdata('pesan', 'Data pemesanan berhasil diubah');
@@ -379,6 +414,11 @@ class Pemesanan extends BaseController
 
   public function delete_pemesanan($no_pemesanan)
   {
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     // Get daftar menu
     $menu = $this->detailPemesananModel->getDaftarMenu($no_pemesanan);
 
@@ -424,6 +464,11 @@ class Pemesanan extends BaseController
 
   public function delete_detail_pemesanan($no_pemesanan, $nama_menu)
   {
+    if(! is_pelayan()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $kode_menu = $this->menuModel->getKodeMenu($nama_menu);
 
     $kuantitas = $this->detailPemesananModel->getKuantitas($no_pemesanan, $kode_menu);
