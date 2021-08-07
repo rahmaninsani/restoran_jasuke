@@ -38,11 +38,11 @@
 
                         <?php if(is_koki()) : ?>
                           <a href="/menu/edit/<?= $menu['slug']; ?>" class="btn btn-warning">Ubah</a>
-                          <form action="/menu/<?= $menu['kode_menu']; ?>" method="post" class="d-inline" >
-                            <?= csrf_field(); ?>
+                          <!-- <form action="/menu/<?php // echo $menu['kode_menu']; ?>" method="post" class="d-inline" >
+                            <?php //echo csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin?');">Hapus</button>
-                          </form>
+                          </form> -->
                           <br><br>
                         <?php endif; ?>
                         <a href="/menu">Kembali ke daftar menu</a>
