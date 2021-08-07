@@ -14,6 +14,11 @@ class Meja extends BaseController {
 
   public function index()
   {
+    if(is_koki()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $meja = $this->mejaModel->getMeja();
     $data = [
       'title' => 'Meja',
