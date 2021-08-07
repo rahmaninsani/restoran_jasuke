@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <div class="card card-primay">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Tambah Menu</h3>
               </div>
