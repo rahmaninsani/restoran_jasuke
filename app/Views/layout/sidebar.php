@@ -67,7 +67,7 @@
 
           <?php if(is_kasir()) : ?>
             <li class="nav-item">
-              <a href="/pembayaran" class="nav-link <?= (strpos($title, 'Pembayaran') !== false) ? "active" : ""; ?>">
+              <a href="/pembayaran" class="nav-link <?= ((strpos($title, 'Pembayaran') !== false) || ($title == 'Detail Pemesanan')) ? "active" : ""; ?>">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Pembayaran

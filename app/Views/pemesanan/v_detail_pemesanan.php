@@ -50,24 +50,91 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
+
+                  <?php if(! is_kasir()) : ?>
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>No. Pemesanan</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['no_pemesanan']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>Tanggal</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pemesanan']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>NRP</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['nrp']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>Status Pemesanan</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>
+                        </div>
+                      </div>  
+                    </div>
+                  <?php endif; ?>
+
+                  <?php if(is_kasir()) : ?>
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>No. Pembayaran</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['no_pembayaran']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>Tanggal</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pembayaran']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>NRP</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <?= $detailPemesanan[0]['nrp_kasir']; ?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text"><b>Status Pembayaran</b></p>
+                        </div>
+                        <div class="col-4">
+                          <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pembayaran'] == 'Bayar') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pembayaran']; ?></p>
+                        </div>
+                      </div>  
+                    </div>
+                  <?php endif; ?>
+
                   <div class="col-6">
-                    <div class="row">
+                    <div class="row d-flex justify-content-end">
                       <div class="col-4">
-                        <p class="card-text"><b>No. Pemesanan</b></p>
+                        <p class="card-text"><b>No. Meja</b></p>
                       </div>
                       <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['no_pemesanan']; ?></p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-4">
-                        <p class="card-text"><b>Tanggal</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pemesanan']; ?></p>
+                        <p><b>:</b> <?= $detailPemesanan[0]['no_meja']; ?></p>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row d-flex justify-content-end">
                       <div class="col-4">
                         <p class="card-text"><b>Nama Pelanggan</b></p>
                       </div>
@@ -75,49 +142,8 @@
                         <p><b>:</b> <?= $detailPemesanan[0]['nama_pelanggan']; ?></p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-4">
-                        <p class="card-text"><b>No. Meja</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['no_meja']; ?></p>
-                      </div>
-                    </div> 
                   </div>
-                  <div class="col-6">
-                    <div class="row d-flex justify-content-end">
-                      <div class="col-4">
-                        <p class="card-text"><b>No. Pembayaran</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['no_pembayaran']; ?></p>
-                      </div>
-                    </div>
-                    <div class="row d-flex justify-content-end">
-                      <div class="col-4">
-                        <p class="card-text"><b>Total Bayar</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> Rp<?= number_format($detailPemesanan[0]['total_bayar'], 2, ',', '.'); ?></p>
-                      </div>
-                    </div>
-                    <div class="row d-flex justify-content-end">
-                      <div class="col-4">
-                        <p class="card-text"><b>Status Pemesanan</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>
-                      </div>
-                    </div>
-                    <div class="row d-flex justify-content-end">
-                      <div class="col-4">
-                        <p class="card-text"><b>NRP</b></p>
-                      </div>
-                      <div class="col-4">
-                        <p><b>:</b> <?= $detailPemesanan[0]['nrp']; ?></p>
-                      </div>
-                    </div>  
-                  </div>
+                  
                 </div>
               </div>
               <!-- /.card-header -->
@@ -128,9 +154,9 @@
                       <th style="width: 10%;">No</th>
                       <th style="width: 10%;">Kode Menu</th>
                       <th style="width: 30%;" class="text-center">Nama Menu</th>
-                      <th style="width: 10%;">Harga</th>
+                      <th style="width: 15%;">Harga</th>
                       <th style="width: 10%;">Kuantitas</th>
-                      <th style="width: 20%;" class="text-center">Subtotal</th>
+                      <th style="width: 15%;" class="text-right">Subtotal</th>
                       <?php if(is_pelayan()) : ?>
                         <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
                           <th style="width: 10%;">Aksi</th>
@@ -141,12 +167,12 @@
                   <tbody>
                     <?php foreach($detailPemesanan as $i => $dp) : ?>
                       <tr>
-                        <td><?= $i + 1; ?></td>
+                        <th><?= $i + 1; ?></th>
                         <td><?= $dp['kode_menu']; ?></td>
                         <td class="text-center"><?= $dp['nama']; ?></td>
                         <td><?= number_format($dp['harga'], 2, ',', '.'); ?></td>
                         <td class="text-center"><?= $dp['kuantitas']; ?></td>
-                        <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
+                        <td class="text-right"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
                         <?php if(is_pelayan()) : ?>
                           <?php  if($dp['status_pemesanan'] == "Belum Selesai") : ?>
                             <td>
@@ -160,6 +186,18 @@
                         <?php endif; ?>
                       </tr>
                     <?php endforeach; ?>
+                    <tr>
+                      <th colspan="5" class="text-right">Total Harga</th>
+                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['total_harga'], 2, ',', '.'); ?></td>
+                    </tr>
+                    <tr class="table-borderless">
+                      <th colspan="5" class="text-right">Pajak</th>
+                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['pajak'], 2, ',', '.'); ?></td>
+                    </tr>
+                    <tr class="table-borderless">
+                      <th colspan="5" class="text-right">Total Bayar</th>
+                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['total_bayar'], 2, ',', '.'); ?></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

@@ -174,11 +174,6 @@ class Pemesanan extends BaseController
 
   public function detail_pemesanan($no_pemesanan)
   {
-    if(is_kasir()) 
-    {
-      return redirect()->to(base_url(previous_url()));
-    }
-
     $detailPemesanan = $this->detailPemesananModel->getDetailPemesanan($no_pemesanan);
     
     $data = [
