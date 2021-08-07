@@ -112,6 +112,13 @@ class PembayaranModel extends Model
     return $this->select('total_bayar')->where(['no_pembayaran' => $no_pembayaran])->first()['total_bayar'];
   }
 
+  public function getJumlahPembayaran($status_pembayaran) {
+    $builder = $this->selectCount('status_pembayaran');
+    $query = $builder->getWhere(['status_pembayaran' => $status_pembayaran])->getResultArray()[0]['status_pembayaran'];
+
+    return $query;
+  }
+
   
 
 }

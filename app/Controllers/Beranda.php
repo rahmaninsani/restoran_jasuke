@@ -29,6 +29,7 @@ class Beranda extends BaseController {
   {
     $mejaKosong = $this->mejaModel->getStatusMeja('Kosong');
     $jumlahPemesanan = $this->pemesananModel->getJumlahPemesanan('Belum Selesai');
+    $jumlahBelumBayar = $this->pembayaranModel->getJumlahPembayaran('Belum Bayar');
     $menuTersedia = $this->menuModel->getJumlahMenu();
     $pemasukanHarian = $this->pembayaranModel->getPemasukanHarian();
     $pemasukanHarian = number_format($pemasukanHarian, 2, ',', '.');
@@ -40,6 +41,7 @@ class Beranda extends BaseController {
       'title' => 'Beranda',
       'mejaKosong' => $mejaKosong,
       'jumlahPemesanan' => $jumlahPemesanan,
+      'jumlahBelumBayar' => $jumlahBelumBayar,
       'menuTersedia' => $menuTersedia,
       'pemasukanHarian' => $pemasukanHarian, 
       'menuTerlaris' => $menuTerlaris,

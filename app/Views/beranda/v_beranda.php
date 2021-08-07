@@ -49,12 +49,16 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?= $jumlahPemesanan; ?></h3>
-                <?php if(is_pelayan()) : ?>
-                  <p>Pemesanan Sedang Disajikan</p>
-                <?php elseif(is_koki()) : ?>
-                  <p>Pemesanan Perlu Disajikan</p>
-                <?php else : ?>
+                <?php if(! is_kasir()) : ?>
+                  <h3><?= $jumlahPemesanan; ?></h3>
+                  <?php if(is_pelayan()) : ?>
+                    <p>Pemesanan Sedang Disajikan</p>
+                  <?php else : ?>
+                    <p>Pemesanan Perlu Disajikan</p>
+                  <?php endif; ?>
+                <?php endif; ?>
+                <?php if(is_kasir()) : ?>
+                  <h3><?= $jumlahBelumBayar; ?></h3>
                   <p>Pemesanan Belum Bayar</p>
                 <?php endif; ?>
               </div>
