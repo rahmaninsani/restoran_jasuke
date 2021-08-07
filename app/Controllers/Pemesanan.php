@@ -406,7 +406,7 @@ class Pemesanan extends BaseController
 
     $this->pemesananModel->updateDetailPemesanan($no_pemesanan, $status_pemesanan);
 
-    session()->setFlashdata('pesan', 'Data pemesanan berhasil diubah');
+    session()->setFlashdata('pesan', 'Status pemesanan berhasil diubah');
 
 		return redirect()->to(base_url("/pemesanan/$no_pemesanan"));
     
