@@ -36,9 +36,9 @@
 					<div class="col-5">
 						<form action="" method="POST">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" placeholder="Masukan keyword pencarian" aria-label="Recipient's username" aria-describedby="button-addon2" 
+								<input type="text" class="form-control" placeholder="Masukan kata kunci pencarian" aria-label="Recipient's username" aria-describedby="button-addon2" 
 								name="keyword">
-								<button class="btn btn-outline-secondary ml-2" type="submit" name="submit">Cari</button>
+								<button class="btn btn-outline-secondary" type="submit" name="submit">Cari</button>
 							</div>
 						</form>
 					</div>
