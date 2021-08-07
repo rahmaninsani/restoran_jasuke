@@ -54,9 +54,10 @@
 										<tr class="text-center">
 											<th style="width: 10%;">No</th>
 											<th style="width: 10%;">Kode Menu</th>
-											<th style="width: 25%;">Nama Menu</th>
+											<th style="width: 20%;">Nama Menu</th>
+											<th style="width: 15%;">Harga</th>
 											<th style="width: 10%;">Stok</th>
-											<th style="width: 30%;">Gambar</th>
+											<th style="width: 20%;">Gambar</th>
 											<th style="width: 15%;">Aksi</th>
 										</tr>
 									</thead>
@@ -67,6 +68,7 @@
 												<th scope="row"><?= $i++; ?></th>
 												<td><?= $m['kode_menu']; ?></td>
 												<td><?= $m['nama']; ?></td>
+												<td><?= number_format($m['harga'], 2, ',', '.'); ?></td>
 												<td><?= $m['stok']; ?></td>
 												<td class="text-center"><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
 												<td>
@@ -84,16 +86,19 @@
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
-				<div class="row">
-					<div class="col-4">
+
+				<div class="row justify-content-center">
+					<div class="col-2">
 						<?= $pager->links('menu','menu_pagination') ?>
 					</div>
 				</div>
+				<!-- /.row -->
+
 			</div>
 			<!-- /.container-fluid -->
 		</section>
     <!-- /.content -->
-    </div>
+  </div>
   <!-- /.content-wrapper -->
 </div>
 
