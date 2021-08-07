@@ -50,80 +50,32 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-
-                  <?php if(! is_kasir()) : ?>
-                    <div class="col-6">
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>No. Pemesanan</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['no_pemesanan']; ?></p>
-                        </div>
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-4">
+                        <p class="card-text"><b>No. Pemesanan</b></p>
                       </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>Tanggal</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pemesanan']; ?></p>
-                        </div>
+                      <div class="col-4">
+                        <p><b>:</b> <?= $detailPemesanan[0]['no_pemesanan']; ?></p>
                       </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>NRP</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['nrp']; ?></p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>Status Pemesanan</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>
-                        </div>
-                      </div>  
                     </div>
-                  <?php endif; ?>
-
-                  <?php if(is_kasir()) : ?>
-                    <div class="col-6">
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>No. Pembayaran</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['no_pembayaran']; ?></p>
-                        </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <p class="card-text"><b>Tanggal</b></p>
                       </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>Tanggal</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pembayaran']; ?></p>
-                        </div>
+                      <div class="col-4">
+                        <p><b>:</b> <?= $detailPemesanan[0]['tanggal_pemesanan']; ?></p>
                       </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>NRP</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <?= $detailPemesanan[0]['nrp_kasir']; ?></p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <p class="card-text"><b>Status Pembayaran</b></p>
-                        </div>
-                        <div class="col-4">
-                          <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pembayaran'] == 'Bayar') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pembayaran']; ?></p>
-                        </div>
-                      </div>  
                     </div>
-                  <?php endif; ?>
+                    <div class="row">
+                      <div class="col-4">
+                        <p class="card-text"><b>NRP</b></p>
+                      </div>
+                      <div class="col-4">
+                        <p><b>:</b> <?= $detailPemesanan[0]['nrp']; ?></p>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="col-6">
                     <div class="row d-flex justify-content-end">
@@ -142,6 +94,14 @@
                         <p><b>:</b> <?= $detailPemesanan[0]['nama_pelanggan']; ?></p>
                       </div>
                     </div>
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-4">
+                        <p class="card-text"><b>Status Pemesanan</b></p>
+                      </div>
+                      <div class="col-4">
+                        <p><b>:</b> <span class="badge bg-<?= ($detailPemesanan[0]['status_pemesanan'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $detailPemesanan[0]['status_pemesanan']; ?></p>
+                      </div>
+                    </div>  
                   </div>
                   
                 </div>

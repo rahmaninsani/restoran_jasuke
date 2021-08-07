@@ -181,8 +181,16 @@
                 <form action="/pembayaran/bayar/<?= $detailPemesanan[0]['no_pembayaran']; ?>/<?= $detailPemesanan[0]['no_meja']; ?>" method="POST">
                   <div class="card-body">
                     <div class="row justify-content-center">
-                      <div class="col-4">
+                      <div class="col-5">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Rp</span>
+                        </div>
                         <input type="number" min="1" class="form-control" id="uangBayar" name="uangBayar" placeholder="Masukkan nominal pembayaran" autofocus required />
+                        <div div class="input-group-append">
+                          <span class="input-group-text">,00</span>
+                        </div>
+                      </div>
                       </div>
                     </div>          
                   </div>

@@ -118,7 +118,7 @@
         <!-- /.row -->
 
         <?php if($menuTerlaris && ! is_kasir()): ?>
-          <div class="row d-flex justify-content-around mt-4">
+          <div class="row d-flex justify-content-center mt-4">
             <div class="col-4 d-flex justify-content-center">
               <div class="card position-relative" style="width: 18rem;">
                 <img src="/assets/img/<?= $menuTerlaris['gambar']; ?>" class="card-img-top" alt="...">

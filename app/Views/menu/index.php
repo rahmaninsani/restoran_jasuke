@@ -55,7 +55,7 @@
 											<th style="width: 10%;">No</th>
 											<th style="width: 10%;">Kode Menu</th>
 											<th style="width: 20%;">Nama Menu</th>
-											<th style="width: 15%;">Harga</th>
+											<th style="width: 15%;" class="text-right">Harga</th>
 											<th style="width: 10%;">Stok</th>
 											<th style="width: 20%;">Gambar</th>
 											<th style="width: 15%;">Aksi</th>
@@ -68,11 +68,11 @@
 												<th scope="row"><?= $i++; ?></th>
 												<td><?= $m['kode_menu']; ?></td>
 												<td><?= $m['nama']; ?></td>
-												<td><?= number_format($m['harga'], 2, ',', '.'); ?></td>
+												<td class="text-right"><?= number_format($m['harga'], 2, ',', '.'); ?></td>
 												<td><?= $m['stok']; ?></td>
-												<td class="text-center"><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
+												<td><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
 												<td>
-														<a href="/menu/<?= $m['slug']; ?>" class="btn btn-info">Detail</a>
+													<a href="/menu/<?= $m['slug']; ?>" class="btn btn-info">Detail</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>
