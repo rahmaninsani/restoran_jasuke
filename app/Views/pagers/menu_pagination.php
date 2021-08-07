@@ -6,12 +6,12 @@
     <?php if ($pager->hasPrevious()) : ?>
         <li  class="page-item">
             <a class="page-link"  href="<?= $pager->getFirst() ?>" aria-label="<?= lang('Pager.first') ?>">
-                <span aria-hidden="true"><?= lang('Pager.first') ?></span>
+                <span aria-hidden="true">Awal</span>
             </a>
         </li>
         <li  class="page-item">
             <a class="page-link"  href="<?= $pager->getPrevious() ?>" aria-label="<?= lang('Pager.previous') ?>">
-                <span aria-hidden="true"><?= lang('Pager.previous') ?></span>
+                <span aria-hidden="true">Sebelumnya</span>
             </a>
         </li>
     <?php endif ?>
@@ -27,12 +27,12 @@
     <?php if ($pager->hasNext()) : ?>
         <li  class="page-item">
             <a class="page-link"  href="<?= $pager->getNext() ?>" aria-label="<?= lang('Pager.next') ?>">
-                <span aria-hidden="true"><?= lang('Pager.next') ?></span>
+                <span aria-hidden="true">Selanjutnya</span>
             </a>
         </li>
         <li  class="page-item">
             <a class="page-link"  href="<?= $pager->getLast() ?>" aria-label="<?= lang('Pager.last') ?>">
-                <span aria-hidden="true"><?= lang('Pager.last') ?></span>
+                <span aria-hidden="true">Akhir</span>
             </a>
         </li>
     <?php endif ?>
