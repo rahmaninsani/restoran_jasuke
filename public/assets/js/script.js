@@ -61,3 +61,60 @@ $(document).ready(function () {
     // }
   });
 });
+
+// Flash data
+const flashData = $(".flash-data").data("flashdata");
+
+if (flashData) {
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Berhasil",
+    text: flashData,
+    confirmButtonColor: "#007BFF",
+  });
+}
+
+// tombol-hapus
+$(".tombol-hapus").on("click", function (e) {
+  e.preventDefault();
+
+  const form = $(this).parents("form");
+
+  Swal.fire({
+    title: "Hapus item pemesanan?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#007BFF",
+    iconColor: "#E0A800",
+    cancelButtonColor: "#DC3545",
+    confirmButtonText: "Hapus",
+    cancelButtonText: "Batal",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    }
+  });
+});
+
+// tombol-hapus-semua
+$(".tombol-hapus-semua").on("click", function (e) {
+  e.preventDefault();
+
+  const form = $(this).parents("form");
+
+  Swal.fire({
+    title: "Hapus semua item pemesanan?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#007BFF",
+    iconColor: "#E0A800",
+    cancelButtonColor: "#DC3545",
+    confirmButtonText: "Hapus Semua",
+    cancelButtonText: "Batal ",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    }
+  });
+});
