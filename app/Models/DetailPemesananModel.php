@@ -21,6 +21,19 @@ class DetailPemesananModel extends Model
 
     return $query; 
   }
+
+  // Get detail_pembayaran
+  public function getDetailPembayaran($no_pembayaran) 
+  {
+    $builder = $this->select('a.*, b.*, c.kode_menu, c.nama, c.harga, detail_pemesanan.kuantitas, detail_pemesanan.subtotal');
+    $builder->join('pemesanan a', 'a.no_pemesanan = detail_pemesanan.no_pemesanan');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $builder->join('menu c', 'c.kode_menu = detail_pemesanan.kode_menu');
+
+    $query = $builder->getWhere(['detail_pemesanan.no_pembayaran' => $no_pembayaran])->getResultArray();
+
+    return $query; 
+  }
   
   public function getMenuTerlaris() 
   {

@@ -41,6 +41,7 @@
                       <th>No</th>
                       <th style="width: 10px;">No Pembayaran</th>
                       <th>Tanggal</th>
+                      <th>Nama</th>
                       <th class="text-right">Total Harga</th>
                       <th class="text-right">Pajak</th>
                       <th class="text-right">Total Bayar</th>
@@ -54,12 +55,13 @@
                       <tr class="text-center">
                         <th><?= $i + 1; ?></th>
                         <td><?= $p['no_pembayaran']; ?></td>
-                        <td><?= $p['tanggal_pembayaran']; ?></td>
+                        <td><?= ($p['tanggal_pembayaran']) ? $p['tanggal_pembayaran'] : '-'; ?></td>
+                        <td class="text-left"><?= $p['nama_pelanggan']; ?></td>
                         <td class="text-right"><?= number_format($p['total_harga'], 2, ',', '.'); ?></td>
                         <td class="text-right"><?= number_format($p['pajak'], 2, ',', '.'); ?></td>
                         <td class="text-right"><?= number_format($p['total_bayar'], 2, ',', '.'); ?></td>
                         <td>
-                          <span class="badge bg-<?= ($p['status_pembayaran'] == 'Selesai') ? 'success' : 'warning'; ?>"><?= $p['status_pembayaran']; ?></span>
+                          <span class="badge bg-<?= ($p['status_pembayaran'] == 'Sudah Bayar') ? 'success' : 'warning'; ?>"><?= $p['status_pembayaran']; ?></span>
                         </td>
                         <td class="text-center"><?= $p['nrp_kasir']; ?></td>
                         <td><a href="<?= base_url('/pembayaran') . '/' . $p['no_pembayaran'] ?>"><button class="btn btn-info">Detail</button></a></td>

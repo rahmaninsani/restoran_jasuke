@@ -13,12 +13,22 @@ class PembayaranModel extends Model
   // Get pembayaran
   public function getPembayaran($no_pembayaran = false)
   {
-    if($no_pembayaran == false)
-    {
-      return $this->findAll();
-    }
 
-    return $this->where(['no_pembayaran' => $no_pembayaran])->first();
+    $builder = $this->select('pembayaran.*, b.nama_pelanggan');
+    $builder->distinct();
+    $builder->join('detail_pemesanan a', 'a.no_pembayaran = pembayaran.no_pembayaran');
+    $builder->join('pemesanan b', 'b.no_pemesanan = a.no_pemesanan');
+    
+    $query = $builder->get()->getResultArray();
+
+    return $query; 
+
+    // if($no_pembayaran == false)
+    // {
+    //   return $this->findAll();
+    // }
+
+    // return $this->where(['no_pembayaran' => $no_pembayaran])->first();
 
   }
 
@@ -26,7 +36,7 @@ class PembayaranModel extends Model
   public function savePembayaran($tanggal) 
   {
     $data = [
-      'tanggal_pembayaran' => $tanggal,
+      // 'tanggal_pembayaran' => $tanggal,
       'nrp_kasir' => session()->get('nrp'),
     ];
     return $this->save($data);
@@ -51,6 +61,37 @@ class PembayaranModel extends Model
     
   }
 
+  // Update ketika pelangan membayar
+  public function updateBayar($no_pembayaran, $uang_bayar, $uang_kembalian, $status_pembayaran = false)
+  {
+    $today = date("Y-m-d");
+    $data = [  //update makanya pake no_pembayaran
+      'no_pembayaran' => $no_pembayaran,
+      'tanggal_pembayaran' => $today,
+      'uang_bayar' => $uang_bayar,
+      'uang_kembalian' => $uang_kembalian,
+      'status_pembayaran' => $status_pembayaran,
+      'nrp_kasir' => session()->get('nrp'),
+    ];
+
+    return $this->save($data);
+  }
+
+  // ubah_status pembayaran
+  public function ubahStatusBayar($no_pembayaran)
+  {
+    $data = [  //update makanya pake no_pembayaran
+      'no_pembayaran' => $no_pembayaran,
+      'tanggal_pembayaran' => null,
+      'uang_bayar' => 0,
+      'uang_kembalian' => 0,
+      'status_pembayaran' => "Belum Bayar",
+      'nrp_kasir' => session()->get('nrp'),
+    ];
+
+    return $this->save($data);
+  }
+
   // Delete Pembayaran
   public function deletePembayaran($no_pembayaran) 
   {
@@ -65,4 +106,12 @@ class PembayaranModel extends Model
 
     return $query;
   }
+
+  public function getTotalBayar($no_pembayaran)
+  {
+    return $this->select('total_bayar')->where(['no_pembayaran' => $no_pembayaran])->first()['total_bayar'];
+  }
+
+  
+
 }

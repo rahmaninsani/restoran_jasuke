@@ -53,7 +53,7 @@
                   </thead>
                   <tbody>
                     <?php foreach($pemesanan as $i => $p) : ?>
-                      <tr  class="text-center">
+                      <tr class="text-center">
                         <th><?= $i + 1; ?></th>
                         <td><?= $p['no_pemesanan']; ?></td>
                         <td><?= $p['no_meja']; ?></td>

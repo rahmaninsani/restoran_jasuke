@@ -182,7 +182,7 @@ class Pemesanan extends BaseController
     ];
 
     if(empty($data['detailPemesanan'])) {
-      throw new \CodeIgniter\Exceptions\PageNotFoundException("No Pemesanan $no_pemesanan tidak ditemukan.");
+      throw new \CodeIgniter\Exceptions\PageNotFoundException("No pemesanan $no_pemesanan tidak ditemukan.");
     }
     return view('pemesanan/v_detail_pemesanan', $data);
 
@@ -378,7 +378,7 @@ class Pemesanan extends BaseController
     $total_bayar = $total_harga + $pajak;
     
     // Update pembayaran
-    $this->pembayaranModel->updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar, $tanggal);
+    $this->pembayaranModel->updatePembayaran($no_pembayaran, $total_harga, $pajak, $total_bayar);
 
     // Stop transaction
     $this->menuModel->db->transComplete();
