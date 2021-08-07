@@ -11,17 +11,21 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Detail Pemesanan</h1>
-            <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
-            <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
-              <?= csrf_field(); ?>
-              <input type="hidden" name="_method" value="DELETE" />
-              <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
-            </form>
-            <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
-              <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] . '/selesai'?>" class="btn btn-success mt-3 ml-2">Tandai Selesai</a>
-            <?php else : ?>
-              <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3 ml-2">Tandai Belum Selesai</a>
-            <?php endif;  ?>
+            <?php if(is_pelayan()) : ?>
+              <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
+              <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
+                <?= csrf_field(); ?>
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
+              </form>
+            <?php endif; ?>
+            <?php if(is_koki()) : ?>
+              <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
+                <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] . '/selesai'?>" class="btn btn-success mt-3 ml-2">Tandai Selesai</a>
+              <?php else : ?>
+                <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3 ml-2">Tandai Belum Selesai</a>
+              <?php endif;  ?>
+            <?php endif; ?>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -123,9 +127,11 @@
                       <th style="width: 10%;">Harga</th>
                       <th style="width: 10%;">Kuantitas</th>
                       <th style="width: 20%;" class="text-center">Subtotal</th>
-                      <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
-                        <th style="width: 10%;">Aksi</th>
+                      <?php if(is_pelayan()) : ?>
+                        <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
+                          <th style="width: 10%;">Aksi</th>
                         <?php endif; ?>
+                      <?php endif; ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,14 +143,16 @@
                         <td><?= number_format($dp['harga'], 2, ',', '.'); ?></td>
                         <td class="text-center"><?= $dp['kuantitas']; ?></td>
                         <td class="text-center"><?= number_format($dp['subtotal'], 2, ',', '.'); ?></td>
-                        <?php  if($dp['status_pemesanan'] == "Belum Selesai") : ?>
-                          <td>
-                            <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
-                              <?= csrf_field(); ?>
-                              <input type="hidden" name="_method" value="DELETE" />
-                              <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
-                            </form>
-                          </td>
+                        <?php if(is_pelayan()) : ?>
+                          <?php  if($dp['status_pemesanan'] == "Belum Selesai") : ?>
+                            <td>
+                              <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
+                              </form>
+                            </td>
+                          <?php endif; ?>
                         <?php endif; ?>
                       </tr>
                     <?php endforeach; ?>

@@ -11,7 +11,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Daftar Pemesanan</h1>
-            <a href="<?= base_url('/pemesanan/tambah_pemesanan') ?>" class="btn btn-primary mt-3">Tambah Pemesanan</a>
+            <?php if(is_pelayan()) : ?>
+              <a href="<?= base_url('/pemesanan/tambah_pemesanan') ?>" class="btn btn-primary mt-3">Tambah Pemesanan</a>
+            <?php endif; ?>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
