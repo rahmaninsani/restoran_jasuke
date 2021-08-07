@@ -2,6 +2,10 @@
 
 <?= $this->section('content'); ?>
 
+<?php if(session()->getFlashdata('pesan')) : ?>  
+  <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
+<?php endif; ?>
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

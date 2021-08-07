@@ -2,6 +2,10 @@
 
 <?= $this->section('content'); ?>
 
+<?php if(session()->getFlashdata('pesan')) : ?>  
+  <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
+<?php endif; ?>
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -16,7 +20,7 @@
               <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Yakin?')">Hapus Semua</button>
+                <button type="submit" class="btn btn-danger mt-3 tombol-hapus-semua">Hapus Semua</button>
               </form>
             <?php endif; ?>
             <?php if(is_koki()) : ?>
@@ -149,7 +153,7 @@
                               <form action="/pemesanan/<?= (count($detailPemesanan) == 1) ? $dp['no_pemesanan'] : $dp['no_pemesanan'] . '/' . $dp['nama']; ?>" method="POST" class="d-inline">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE" />
-                                <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</button>
+                                <button type="submit" class="btn-sm btn-danger tombol-hapus">Hapus</button>
                               </form>
                             </td>
                           <?php endif; ?>

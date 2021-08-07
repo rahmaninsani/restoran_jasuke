@@ -1,6 +1,11 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+
+<?php if(session()->getFlashdata('pesan')) : ?>  
+  <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
+<?php endif; ?>
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -24,61 +29,76 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+		
+    <section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-5">
+						<form action="" method="POST">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Masukan kata kunci pencarian" aria-label="Recipient's username" aria-describedby="button-addon2" 
+								name="keyword">
+								<button class="btn btn-outline-secondary" type="submit" name="submit">Cari</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- /.row -->
 
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-        <form action="" method="post">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Masukan keyword pencarian" aria-label="Recipient's username" aria-describedby="button-addon2" 
-            name="keyword">
-            <button class="btn btn-outline-secondary" type="submit" name="submit">Cari</button>
-          </div>
-        </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-        <?php if(session()->getFlashdata('pesan')) : ?>
-                  <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan'); ?>
-                  </div>
-                <?php endif;  ?>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Kode Menu</th>
-                        <th scope="col">Nama Menu</th>
-                        <th scope="col">Stok</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $i = 1 + (3 * ($currentPage - 1)); ?>
-                      <?php  foreach ($menu as $m ) : ?>
-                      <tr>
-                        <th scope="row"><?= $i++; ?></th>
-                        <td><?= $m['kode_menu']; ?></td>
-                        <td><?= $m['nama']; ?></td>
-                        <td><?= $m['stok']; ?></td>
-                        <td><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
-                        <td>
-                            <a href="/menu/<?= $m['slug']; ?>" class="btn btn-success">Detail</a>
-                        </td>
-                      </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body table-responsive p-0">
+								<table class="table table-hover text-nowrap">
+									<thead>
+										<tr class="text-center">
+											<th style="width: 10%;">No</th>
+											<th style="width: 10%;">Kode Menu</th>
+											<th style="width: 20%;">Nama Menu</th>
+											<th style="width: 15%;">Harga</th>
+											<th style="width: 10%;">Stok</th>
+											<th style="width: 20%;">Gambar</th>
+											<th style="width: 15%;">Aksi</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $i = 1 + (3 * ($currentPage - 1)); ?>
+										<?php  foreach ($menu as $m ) : ?>
+											<tr class="text-center">
+												<th scope="row"><?= $i++; ?></th>
+												<td><?= $m['kode_menu']; ?></td>
+												<td><?= $m['nama']; ?></td>
+												<td><?= number_format($m['harga'], 2, ',', '.'); ?></td>
+												<td><?= $m['stok']; ?></td>
+												<td class="text-center"><img src="/assets/img/<?= $m['gambar']; ?>" alt="" class="gambar"></td>
+												<td>
+														<a href="/menu/<?= $m['slug']; ?>" class="btn btn-info">Detail</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
 
-                  <?= $pager->links('menu','menu_pagination') ?>
-        </div>
-      </div>
-    </div>
-    
+				<div class="row justify-content-center">
+					<div class="col-2">
+						<?= $pager->links('menu','menu_pagination') ?>
+					</div>
+				</div>
+				<!-- /.row -->
+
+			</div>
+			<!-- /.container-fluid -->
+		</section>
     <!-- /.content -->
-    </div>
+  </div>
   <!-- /.content-wrapper -->
 </div>
 
