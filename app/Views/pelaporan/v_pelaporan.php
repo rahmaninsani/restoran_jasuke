@@ -28,184 +28,186 @@
     </section>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Laporan Harian : <?= date("l, d F Y"); ?></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="laporanHarian" class="table table-bordered table-striped">
-                  <thead>
-                    <tr class="text-center">
-                      <th>No</th>
-                      <th>Kode Menu</th>
-                      <th>Nama Menu</th>
-                      <th>Harga Satuan</th>
-                      <th>Jumlah Terjual</th>
-                      <th>Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($pelaporanHarian as $i => $ph) : ?>
+    <?php if($pelaporanTahunan) : ?>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Laporan Harian : <?= date("l, d F Y"); ?></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="laporanHarian" class="table table-bordered table-striped">
+                    <thead>
                       <tr class="text-center">
-                        <td><?= $i + 1; ?></td>
-                        <td><?= $ph['kode_menu']; ?></td>
-                        <td class="text-left"><?= $ph['nama']; ?></td>
-                        <td class="text-right"><?= number_format($ph['harga'], 2, ',', '.'); ?></td>
-                        <td class="text-right"><?= $ph['jumlah_terjual']; ?></td>
-                        <td class="text-right"><?= number_format($ph['subtotal'], 2, ',', '.'); ?></td>
+                        <th>No</th>
+                        <th>Kode Menu</th>
+                        <th>Nama Menu</th>
+                        <th>Harga Satuan</th>
+                        <th>Jumlah Terjual</th>
+                        <th>Subtotal</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                  <tfoot>
-                    <tr class="text-center">
-                      <th colspan="4">Total</th>
-                      <th class="text-right"><?= $kuantitasTerjualHarian; ?></th>
-                      <th class="text-right">Rp<?= number_format($pemasukanHarian, 2, ',', '.'); ?></th>
-                    </tr>
-                  </tfoot>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach($pelaporanHarian as $i => $ph) : ?>
+                        <tr class="text-center">
+                          <td><?= $i + 1; ?></td>
+                          <td><?= $ph['kode_menu']; ?></td>
+                          <td class="text-left"><?= $ph['nama']; ?></td>
+                          <td class="text-right"><?= number_format($ph['harga'], 2, ',', '.'); ?></td>
+                          <td class="text-right"><?= $ph['jumlah_terjual']; ?></td>
+                          <td class="text-right"><?= number_format($ph['subtotal'], 2, ',', '.'); ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th colspan="4">Total</th>
+                        <th class="text-right"><?= $kuantitasTerjualHarian; ?></th>
+                        <th class="text-right">Rp<?= number_format($pemasukanHarian, 2, ',', '.'); ?></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+              <!-- /.card -->
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Laporan Mingguan : <?= date("d F Y", strtotime("-1 week")); ?> - <?= date("d F Y"); ?></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="laporanMingguan" class="table table-bordered table-striped">
-                  <thead>
-                    <tr class="text-center">
-                      <th>No</th>
-                      <th>Kode Menu</th>
-                      <th>Nama Menu</th>
-                      <th>Harga Satuan</th>
-                      <th>Jumlah Terjual</th>
-                      <th>Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($pelaporanMingguan as $i => $pm) : ?>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Laporan Mingguan : <?= date("d F Y", strtotime("-1 week")); ?> - <?= date("d F Y"); ?></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="laporanMingguan" class="table table-bordered table-striped">
+                    <thead>
                       <tr class="text-center">
-                        <td><?= $i + 1; ?></td>
-                        <td><?= $pm['kode_menu']; ?></td>
-                        <td class="text-left"><?= $pm['nama']; ?></td>
-                        <td class="text-right"><?= number_format($pm['harga'], 2, ',', '.'); ?></td>
-                        <td class="text-right"><?= $pm['jumlah_terjual']; ?></td>
-                        <td class="text-right"><?= number_format($pm['subtotal'], 2, ',', '.'); ?></td>
+                        <th>No</th>
+                        <th>Kode Menu</th>
+                        <th>Nama Menu</th>
+                        <th>Harga Satuan</th>
+                        <th>Jumlah Terjual</th>
+                        <th>Subtotal</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                  <tfoot>
-                    <tr class="text-center">
-                      <th colspan="4">Total</th>
-                      <th class="text-right"><?= $kuantitasTerjualMingguan; ?></th>
-                      <th class="text-right">Rp<?= number_format($pemasukanMingguan, 2, ',', '.'); ?></th>
-                    </tr>
-                  </tfoot>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach($pelaporanMingguan as $i => $pm) : ?>
+                        <tr class="text-center">
+                          <td><?= $i + 1; ?></td>
+                          <td><?= $pm['kode_menu']; ?></td>
+                          <td class="text-left"><?= $pm['nama']; ?></td>
+                          <td class="text-right"><?= number_format($pm['harga'], 2, ',', '.'); ?></td>
+                          <td class="text-right"><?= $pm['jumlah_terjual']; ?></td>
+                          <td class="text-right"><?= number_format($pm['subtotal'], 2, ',', '.'); ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th colspan="4">Total</th>
+                        <th class="text-right"><?= $kuantitasTerjualMingguan; ?></th>
+                        <th class="text-right">Rp<?= number_format($pemasukanMingguan, 2, ',', '.'); ?></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+              <!-- /.card -->
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Laporan Bulan <?= date("F"); ?></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="laporanBulanan" class="table table-bordered table-striped">
-                  <thead>
-                    <tr class="text-center">
-                      <th>No</th>
-                      <th>Kode Menu</th>
-                      <th>Nama Menu</th>
-                      <th>Harga Satuan</th>
-                      <th>Jumlah Terjual</th>
-                      <th>Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($pelaporanBulanan as $i => $pb) : ?>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Laporan Bulan <?= date("F"); ?></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="laporanBulanan" class="table table-bordered table-striped">
+                    <thead>
                       <tr class="text-center">
-                        <td><?= $i + 1; ?></td>
-                        <td><?= $pb['kode_menu']; ?></td>
-                        <td class="text-left"><?= $pb['nama']; ?></td>
-                        <td class="text-right"><?= number_format($pb['harga'], 2, ',', '.'); ?></td>
-                        <td class="text-right"><?= $pb['jumlah_terjual']; ?></td>
-                        <td class="text-right"><?= number_format($pb['subtotal'], 2, ',', '.'); ?></td>
+                        <th>No</th>
+                        <th>Kode Menu</th>
+                        <th>Nama Menu</th>
+                        <th>Harga Satuan</th>
+                        <th>Jumlah Terjual</th>
+                        <th>Subtotal</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                  <tfoot>
-                    <tr class="text-center">
-                      <th colspan="4">Total</th>
-                      <th class="text-right"><?= $kuantitasTerjualBulanan; ?></th>
-                      <th class="text-right">Rp<?= number_format($pemasukanBulanan, 2, ',', '.'); ?></th>
-                    </tr>
-                  </tfoot>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach($pelaporanBulanan as $i => $pb) : ?>
+                        <tr class="text-center">
+                          <td><?= $i + 1; ?></td>
+                          <td><?= $pb['kode_menu']; ?></td>
+                          <td class="text-left"><?= $pb['nama']; ?></td>
+                          <td class="text-right"><?= number_format($pb['harga'], 2, ',', '.'); ?></td>
+                          <td class="text-right"><?= $pb['jumlah_terjual']; ?></td>
+                          <td class="text-right"><?= number_format($pb['subtotal'], 2, ',', '.'); ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th colspan="4">Total</th>
+                        <th class="text-right"><?= $kuantitasTerjualBulanan; ?></th>
+                        <th class="text-right">Rp<?= number_format($pemasukanBulanan, 2, ',', '.'); ?></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+              <!-- /.card -->
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Laporan Tahun <?= date("Y"); ?></h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="laporanTahunan" class="table table-bordered table-striped">
-                  <thead>
-                    <tr class="text-center">
-                      <th>No</th>
-                      <th>Kode Menu</th>
-                      <th>Nama Menu</th>
-                      <th>Harga Satuan</th>
-                      <th>Jumlah Terjual</th>
-                      <th>Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($pelaporanTahunan as $i => $pt) : ?>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Laporan Tahun <?= date("Y"); ?></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="laporanTahunan" class="table table-bordered table-striped">
+                    <thead>
                       <tr class="text-center">
-                        <td><?= $i + 1; ?></td>
-                        <td><?= $pt['kode_menu']; ?></td>
-                        <td class="text-left"><?= $pt['nama']; ?></td>
-                        <td class="text-right"><?= number_format($pt['harga'], 2, ',', '.'); ?></td>
-                        <td class="text-right"><?= $pt['jumlah_terjual']; ?></td>
-                        <td class="text-right"><?= number_format($pt['subtotal'], 2, ',', '.'); ?></td>
+                        <th>No</th>
+                        <th>Kode Menu</th>
+                        <th>Nama Menu</th>
+                        <th>Harga Satuan</th>
+                        <th>Jumlah Terjual</th>
+                        <th>Subtotal</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                  <tfoot>
-                    <tr class="text-center">
-                      <th colspan="4">Total</th>
-                      <th class="text-right"><?= $kuantitasTerjualTahunan; ?></th>
-                      <th class="text-right">Rp<?= number_format($pemasukanTahunan, 2, ',', '.'); ?></th>
-                    </tr>
-                  </tfoot>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach($pelaporanTahunan as $i => $pt) : ?>
+                        <tr class="text-center">
+                          <td><?= $i + 1; ?></td>
+                          <td><?= $pt['kode_menu']; ?></td>
+                          <td class="text-left"><?= $pt['nama']; ?></td>
+                          <td class="text-right"><?= number_format($pt['harga'], 2, ',', '.'); ?></td>
+                          <td class="text-right"><?= $pt['jumlah_terjual']; ?></td>
+                          <td class="text-right"><?= number_format($pt['subtotal'], 2, ',', '.'); ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                      <tr class="text-center">
+                        <th colspan="4">Total</th>
+                        <th class="text-right"><?= $kuantitasTerjualTahunan; ?></th>
+                        <th class="text-right">Rp<?= number_format($pemasukanTahunan, 2, ',', '.'); ?></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
+              <!-- /.card -->
             </div>
-            <!-- /.card -->
           </div>
         </div>
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    <?php endif; ?>
   </div>
   <!-- /.content-wrapper -->
 </div>
