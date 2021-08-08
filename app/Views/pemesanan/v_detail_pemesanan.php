@@ -15,21 +15,25 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Detail Pemesanan</h1>
-            <?php if(is_pelayan()) : ?>
-              <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
-              <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
-                <?= csrf_field(); ?>
-                <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn btn-danger mt-3 tombol-hapus-semua">Hapus Semua</button>
-              </form>
+            
+            <?php if($detailPemesanan[0]['status_pembayaran'] != "Sudah Bayar") : ?>
+              <?php if(is_pelayan()) : ?>
+                <a href="<?= base_url('/pemesanan/ubah_pemesanan') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3">Ubah</a>
+                <form action="/pemesanan/<?= $detailPemesanan[0]['no_pemesanan']; ?>" method="POST" class="d-inline ml-2">
+                  <?= csrf_field(); ?>
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button type="submit" class="btn btn-danger mt-3 tombol-hapus-semua">Hapus Semua</button>
+                </form>
+              <?php endif; ?>
+              <?php if(is_koki()) : ?>
+                <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
+                  <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] . '/selesai'?>" class="btn btn-success mt-3 ml-2">Tandai Selesai</a>
+                <?php else : ?>
+                  <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3 ml-2">Tandai Belum Selesai</a>
+                <?php endif;  ?>
+              <?php endif; ?>
             <?php endif; ?>
-            <?php if(is_koki()) : ?>
-              <?php  if($detailPemesanan[0]['status_pemesanan'] == "Belum Selesai") : ?>
-                <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] . '/selesai'?>" class="btn btn-success mt-3 ml-2">Tandai Selesai</a>
-              <?php else : ?>
-                <a href="<?= base_url('/pemesanan/ubah_status') . '/' . $detailPemesanan[0]['no_pemesanan'] ?>" class="btn btn-warning mt-3 ml-2">Tandai Belum Selesai</a>
-              <?php endif;  ?>
-            <?php endif; ?>
+
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -146,19 +150,21 @@
                         <?php endif; ?>
                       </tr>
                     <?php endforeach; ?>
-                    <tr>
-                      <th colspan="5" class="text-right">Total Harga</th>
-                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['total_harga'], 2, ',', '.'); ?></td>
-                    </tr>
-                    <tr class="table-borderless">
-                      <th colspan="5" class="text-right">Pajak</th>
-                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['pajak'], 2, ',', '.'); ?></td>
-                    </tr>
-                    <tr class="table-borderless">
-                      <th colspan="5" class="text-right">Total Bayar</th>
-                      <td class="text-right">Rp<?= number_format($detailPemesanan[0]['total_bayar'], 2, ',', '.'); ?></td>
-                    </tr>
                   </tbody>
+                  <tfoot>
+                    <tr class="text-right">
+                      <th colspan="5">Total Harga</th>
+                      <th>Rp<?= number_format($detailPemesanan[0]['total_harga'], 2, ',', '.'); ?></th>
+                    </tr>
+                    <tr class="table-borderless text-right">
+                      <th colspan="5">Pajak</th>
+                      <th>Rp<?= number_format($detailPemesanan[0]['pajak'], 2, ',', '.'); ?></th>
+                    </tr>
+                    <tr class="table-borderless text-right">
+                      <th colspan="5">Total Bayar</th>
+                      <th>Rp<?= number_format($detailPemesanan[0]['total_bayar'], 2, ',', '.'); ?></th>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/laporan" class="nav-link <?= (strpos($title, 'Pelaporan') !== false) ? "active" : ""; ?>">
+              <a href="/pelaporan" class="nav-link <?= (strpos($title, 'Pelaporan') !== false) ? "active" : ""; ?>">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Pelaporan

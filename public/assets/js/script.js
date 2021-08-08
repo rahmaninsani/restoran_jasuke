@@ -118,3 +118,91 @@ $(".tombol-hapus-semua").on("click", function (e) {
     }
   });
 });
+
+// Laporan Harian
+$(function () {
+  $("#laporanHarian")
+    .DataTable({
+      responsive: true,
+      lengthChange: false,
+      autoWidth: false,
+      //buttons: ["excel", "pdf", "print", "colvis"],
+      buttons: [
+        { extend: "excelHtml5", footer: true },
+        { extend: "pdfHtml5", footer: true },
+        { extend: "print", footer: true },
+      ],
+      footer: true,
+      //columnDefs: [{ width: "20%", targets: "_all" }],
+      searching: false,
+    })
+    .buttons()
+    .container()
+    .appendTo("#laporanHarian_wrapper .col-md-6:eq(0)");
+});
+
+// Laporan Mingguan
+$(function () {
+  $("#laporanMingguan")
+    .DataTable({
+      responsive: true,
+      lengthChange: false,
+      autoWidth: false,
+      //buttons: ["excel", "pdf", "print", "colvis"],
+      buttons: [
+        { extend: "excelHtml5", footer: true },
+        { extend: "pdfHtml5", footer: true },
+        { extend: "print", footer: true },
+      ],
+      footer: true,
+      //columnDefs: [{ width: "20%", targets: "_all" }],
+      searching: false,
+    })
+    .buttons()
+    .container()
+    .appendTo("#laporanMingguan_wrapper .col-md-6:eq(0)");
+});
+
+// Laporan Bulanan
+$(function () {
+  $("#laporanBulanan")
+    .DataTable({
+      responsive: true,
+      lengthChange: false,
+      autoWidth: false,
+      //buttons: ["excel", "pdf", "print", "colvis"],
+      buttons: [
+        { extend: "excelHtml5", footer: true },
+        { extend: "pdfHtml5", footer: true },
+        { extend: "print", footer: true },
+      ],
+      footer: true,
+      //columnDefs: [{ width: "20%", targets: "_all" }],
+      searching: false,
+    })
+    .buttons()
+    .container()
+    .appendTo("#laporanBulanan_wrapper .col-md-6:eq(0)");
+});
+
+// Laporan Tahunan
+$(function () {
+  $("#laporanTahunan")
+    .DataTable({
+      responsive: true,
+      lengthChange: false,
+      autoWidth: false,
+      //buttons: ["excel", "pdf", "print", "colvis"],
+      buttons: [
+        { extend: "excelHtml5", footer: true },
+        { extend: "pdfHtml5", footer: true },
+        { extend: "print", footer: true },
+      ],
+      footer: true,
+      //columnDefs: [{ width: "20%", targets: "_all" }],
+      searching: false,
+    })
+    .buttons()
+    .container()
+    .appendTo("#laporanTahunan_wrapper .col-md-6:eq(0)");
+});

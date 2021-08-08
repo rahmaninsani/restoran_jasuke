@@ -2,6 +2,10 @@
 
 <?= $this->section('content'); ?>
 
+<?php if(session()->getFlashdata('pesan')) : ?>  
+  <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
+<?php endif; ?>
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -102,7 +106,7 @@
                 <div class="icon">
                   <i class="ion ion-cash"></i>
                 </div>
-                <a href="<?= base_url('/laporan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('/pelaporan') ?>" class="small-box-footer">Lihat <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

@@ -39,6 +39,11 @@ class Pembayaran extends BaseController
 
   public function detail_pembayaran($no_pembayaran)
   {
+    if(! is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+
     $detailPemesanan = $this->detailPemesananModel->getDetailPembayaran($no_pembayaran);
     
     $data = [
@@ -82,7 +87,7 @@ class Pembayaran extends BaseController
     $uang_kembalian = $uang_bayar - $total_bayar;
 
     // Update pembayaran
-    $this->pembayaranModel->updateBayar($no_pembayaran, $uang_bayar, $uang_kembalian, "Sudah Bayar");
+    $this->pembayaranModel->updateSudahBayar($no_pembayaran, $uang_bayar, $uang_kembalian);
 
     // Update meja baru menjadi 'Kosong'
     $this->mejaModel->updateStatusMeja($no_meja, "Kosong");
@@ -93,10 +98,15 @@ class Pembayaran extends BaseController
 
   }
 
-  public function ubah_status($no_pembayaran)
+  public function belum_bayar($no_pembayaran)
   {
+    if(! is_kasir()) 
+    {
+      return redirect()->to(base_url(previous_url()));
+    }
+    
     // Update pembayaran
-    $this->pembayaranModel->ubahStatusBayar($no_pembayaran);
+    $this->pembayaranModel->updateBelumBayar($no_pembayaran);
     
     session()->setFlashdata('pesan', 'Mengubah status pembayaran');
 
