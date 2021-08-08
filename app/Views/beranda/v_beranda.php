@@ -49,12 +49,16 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?= $jumlahPemesanan; ?></h3>
-                <?php if(is_pelayan()) : ?>
-                  <p>Pemesanan Sedang Disajikan</p>
-                <?php elseif(is_koki()) : ?>
-                  <p>Pemesanan Perlu Disajikan</p>
-                <?php else : ?>
+                <?php if(! is_kasir()) : ?>
+                  <h3><?= $jumlahPemesanan; ?></h3>
+                  <?php if(is_pelayan()) : ?>
+                    <p>Pemesanan Sedang Disajikan</p>
+                  <?php else : ?>
+                    <p>Pemesanan Perlu Disajikan</p>
+                  <?php endif; ?>
+                <?php endif; ?>
+                <?php if(is_kasir()) : ?>
+                  <h3><?= $jumlahBelumBayar; ?></h3>
                   <p>Pemesanan Belum Bayar</p>
                 <?php endif; ?>
               </div>
@@ -114,7 +118,7 @@
         <!-- /.row -->
 
         <?php if($menuTerlaris && ! is_kasir()): ?>
-          <div class="row d-flex justify-content-around mt-4">
+          <div class="row d-flex justify-content-center mt-4">
             <div class="col-4 d-flex justify-content-center">
               <div class="card position-relative" style="width: 18rem;">
                 <img src="/assets/img/<?= $menuTerlaris['gambar']; ?>" class="card-img-top" alt="...">

@@ -31,12 +31,17 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+# Root
 $routes->get('/', 'Login::index');
 
+# Login
 $routes->get('/login', 'Login::index');
 
+# Beranda
 $routes->get('/beranda', 'Beranda::index', ['filter' => 'auth']);
 
+# Menu
 $routes->get('/menu', 'Menu::index', ['filter' => 'auth']);
 $routes->get('/menu/create', 'Menu::create', ['filter' => 'auth']);
 $routes->get('/menu/edit/(:segment)', 'Menu::edit/$1', ['filter' => 'auth']);
@@ -53,12 +58,13 @@ $routes->delete('/pemesanan/(:num)', 'Pemesanan::delete_pemesanan/$1', ['filter'
 $routes->delete('/pemesanan/(:num)/(:any)', 'Pemesanan::delete_detail_pemesanan/$1/$2', ['filter' => 'auth']);
 $routes->get('/pemesanan/(:num)', 'Pemesanan::detail_pemesanan/$1', ['filter' => 'auth']);
 
-$routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
+# Pembayaran
 $routes->get('/pembayaran', 'Pembayaran::index', ['filter' => 'auth']);
-$routes->get('/hitung_bayar', 'Hitung_bayar::index', ['filter' => 'auth']);
-$routes->get('/pencarian_meja', 'Pemesanan::pencarian_meja', ['filter' => 'auth']);
-$routes->get('/tambah_pesanan', 'Pemesanan::tambah_pesanan', ['filter' => 'auth']);
-$routes->get('/ubah_pesanan', 'Pemesanan::ubah_pesanan', ['filter' => 'auth']);
+// $routes->get('/hitung_bayar', 'Hitung_bayar::index', ['filter' => 'auth']);
+$routes->get('/pembayaran/(:num)', 'Pembayaran::detail_pembayaran/$1', ['filter' => 'auth']);
+
+# Laporan
+$routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

@@ -78,7 +78,8 @@ class PemesananModel extends Model
     }
 
     // Method untuk memperoleh jumlah pemesanan berdasar status_pemesanan
-    public function getJumlahPemesanan($status_pemesanan) {
+    public function getJumlahPemesanan($status_pemesanan) 
+    {
       $builder = $this->selectCount('status_pemesanan');
       $query = $builder->getWhere(['status_pemesanan' => $status_pemesanan])->getResultArray()[0]['status_pemesanan'];
 
