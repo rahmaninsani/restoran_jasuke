@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2021 at 11:44 AM
+-- Generation Time: Aug 08, 2021 at 12:16 PM
 -- Server version: 10.5.8-MariaDB-log
 -- PHP Version: 7.4.20
 
@@ -46,10 +46,11 @@ CREATE TABLE IF NOT EXISTS `detail_pemesanan` (
 --
 
 INSERT INTO `detail_pemesanan` (`no_pemesanan`, `no_pembayaran`, `kode_menu`, `kuantitas`, `subtotal`) VALUES
-(1, 1, 'MN01', 3, '1000.00'),
-(1, 1, 'MN02', 1, '2000.00'),
-(1, 4, 'MN06', 100, '1000.00'),
-(2, 2, 'MN02', 1, '3000.00');
+(1, 1, 'MN06', 2, '30000.00'),
+(1, 1, 'MN08', 1, '30000.00'),
+(2, 2, 'MN03', 2, '14000.00'),
+(2, 2, 'MN07', 4, '120000.00'),
+(2, 2, 'MN05', 6, '60000.00');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `meja` (
   `no_meja` int(11) NOT NULL AUTO_INCREMENT,
   `status_meja` enum('Kosong','Terisi') COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`no_meja`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `meja`
@@ -70,11 +71,15 @@ CREATE TABLE IF NOT EXISTS `meja` (
 
 INSERT INTO `meja` (`no_meja`, `status_meja`) VALUES
 (1, 'Kosong'),
-(2, 'Terisi'),
-(3, 'Terisi'),
+(2, 'Kosong'),
+(3, 'Kosong'),
 (4, 'Kosong'),
 (5, 'Kosong'),
-(6, 'Kosong');
+(6, 'Kosong'),
+(7, 'Terisi'),
+(8, 'Kosong'),
+(9, 'Kosong'),
+(10, 'Kosong');
 
 -- --------------------------------------------------------
 
@@ -99,15 +104,14 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`kode_menu`, `nama`, `slug`, `harga`, `stok`, `gambar`, `deskripsi`) VALUES
-('MN01', 'Rendang', 'rendang', '15000.00', 20, '1627453710_6b72aeb6d7fa05dd6a1e.jpg', 'Rendang atau randang adalah masakan daging asli Indonesia yang berasal dari daerah Minangkabau. '),
-('MN02', 'Lotek', 'lotek', '15000.00', 22, '1627453758_65bab4854c445476e0cf.jpg', 'Lotek adalah salah satu makanan dari Jawa Barat yang mudah ditemukan di seluruh wilayah Jawa Barat'),
-('MN03', 'Data Kosong', 'data-kosong', '15000.00', 20, 'default.jpg', 'Mencoba ketika tidak memasukan gambar'),
-('MN04', 'Bubur', 'bubur', '7000.00', 30, '1627657885_d81ea0b52b8e295c42c2.jpg', 'Bubur merupakan istilah umum untuk mengacu pada campuran bahan padat dan cair.'),
-('MN05', 'Sate', 'sate', '20000.00', 10, '1627657997_0b25b45d8836732f110b.jpg', 'adalah hidangan Asia Tenggara yang terdiri dari daging yang dibumbui, ditusuk dan dipanggang, '),
-('MN06', 'Bakso', 'bakso', '10000.00', 40, '1627658086_519e95249148036c0eed.jpeg', 'adalah makanan khas Indonesia yang digemari banyak orang. '),
-('MN07', 'Nasi Goreng', 'nasi-goreng', '15000.00', 10, '1627659454_881eae4d011f421e89c7.jpeg', 'adalah sebuah makanan berupa nasi yang digoreng dan diaduk dalam minyak goreng, margarin, atau mentega. '),
-('MN09', 'Ayam bakar', 'ayam-bakar', '30000.00', 5, '1627659680_deb3ce68cdd1bf2abc63.jpg', 'adalah sebuah hidangan Asia Tenggara Maritim, terutama hidangan Indonesia atau Malaysia'),
-('MN10', 'Tumpeng', 'tumpeng', '30000.00', 0, '1627743117_59bd6e71ecf8ea30e160.jpg', 'Tumpeng atau nasi tumpeng adalah makanan masyarakat Jawa yang penyajian nasinya dibentuk kerucut dan ditata bersama dengan lauk-pauknya.');
+('MN01', 'Rendang', 'rendang', '15000.00', 100, '1627453710_6b72aeb6d7fa05dd6a1e.jpg', 'Rendang atau randang adalah masakan daging asli Indonesia yang berasal dari daerah Minangkabau. '),
+('MN02', 'Lotek', 'lotek', '15000.00', 100, '1627453758_65bab4854c445476e0cf.jpg', 'Lotek adalah salah satu makanan dari Jawa Barat yang mudah ditemukan di seluruh wilayah Jawa Barat'),
+('MN03', 'Bubur', 'bubur', '7000.00', 98, '1627657885_d81ea0b52b8e295c42c2.jpg', 'Bubur merupakan istilah umum untuk mengacu pada campuran bahan padat dan cair.'),
+('MN04', 'Sate', 'sate', '20000.00', 100, '1627657997_0b25b45d8836732f110b.jpg', 'adalah hidangan Asia Tenggara yang terdiri dari daging yang dibumbui, ditusuk dan dipanggang, '),
+('MN05', 'Bakso', 'bakso', '10000.00', 94, '1627658086_519e95249148036c0eed.jpeg', 'adalah makanan khas Indonesia yang digemari banyak orang. '),
+('MN06', 'Nasi Goreng', 'nasi-goreng', '15000.00', 98, '1627659454_881eae4d011f421e89c7.jpeg', 'adalah sebuah makanan berupa nasi yang digoreng dan diaduk dalam minyak goreng, margarin, atau mentega. '),
+('MN07', 'Ayam bakar', 'ayam-bakar', '30000.00', 96, '1627659680_deb3ce68cdd1bf2abc63.jpg', 'adalah sebuah hidangan Asia Tenggara Maritim, terutama hidangan Indonesia atau Malaysia'),
+('MN08', 'Tumpeng', 'tumpeng', '30000.00', 99, '1627743117_59bd6e71ecf8ea30e160.jpg', 'Tumpeng atau nasi tumpeng adalah makanan masyarakat Jawa yang penyajian nasinya dibentuk kerucut dan ditata bersama dengan lauk-pauknya.');
 
 -- --------------------------------------------------------
 
@@ -131,9 +135,9 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
 --
 
 INSERT INTO `pegawai` (`nrp`, `nama`, `jabatan`, `jenis_kelamin`, `username`, `password`) VALUES
-('KOK001', 'Romeo', 'Koki', 'Laki-laki', 'koki1', 'koki1'),
-('KSR001', 'Mawar', 'Kasir', 'Perempuan', 'kasir1', 'kasir1'),
-('PYN001', 'Asep', 'Pelayan', 'Laki-laki', 'pelayan1', 'pelayan1');
+('KOK001', 'Elbaruna', 'Koki', 'Laki-laki', 'elbaruna', '10119170'),
+('KSR001', 'Jafar', 'Kasir', 'Laki-laki', 'jafar', '10119200'),
+('PYN001', 'Ilman', 'Pelayan', 'Laki-laki', 'ilman', '10119177');
 
 -- --------------------------------------------------------
 
@@ -145,26 +149,24 @@ DROP TABLE IF EXISTS `pembayaran`;
 CREATE TABLE IF NOT EXISTS `pembayaran` (
   `no_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
   `tanggal_pembayaran` date DEFAULT NULL,
-  `total_harga` decimal(10,2) DEFAULT NULL,
-  `pajak` decimal(10,2) DEFAULT NULL,
-  `total_bayar` decimal(10,2) DEFAULT NULL,
-  `uang_bayar` decimal(10,2) DEFAULT NULL,
-  `uang_kembalian` decimal(10,2) DEFAULT NULL,
-  `status_pembayaran` enum('Belum Bayar','Sudah Bayar') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nrp` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `total_harga` decimal(10,2) DEFAULT 0.00,
+  `pajak` decimal(10,2) DEFAULT 0.00,
+  `total_bayar` decimal(10,2) DEFAULT 0.00,
+  `uang_bayar` decimal(10,2) DEFAULT 0.00,
+  `uang_kembalian` decimal(10,2) DEFAULT 0.00,
+  `status_pembayaran` enum('Belum Bayar','Sudah Bayar') COLLATE utf8_unicode_ci DEFAULT 'Belum Bayar',
+  `nrp_kasir` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`no_pembayaran`),
-  KEY `nrp` (`nrp`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `nrp` (`nrp_kasir`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`no_pembayaran`, `tanggal_pembayaran`, `total_harga`, `pajak`, `total_bayar`, `uang_bayar`, `uang_kembalian`, `status_pembayaran`, `nrp`) VALUES
-(1, '2021-08-03', '41000.00', '4100.00', '45100.00', '50000.00', '4900.00', NULL, 'KSR001'),
-(2, '2021-08-01', '31000.00', '3100.00', '34100.00', '50000.00', '15900.00', NULL, 'KSR001'),
-(3, '2021-08-03', '1000.00', '100.00', '1100.00', '2000.00', '9000.00', NULL, 'KSR001'),
-(4, '2021-07-05', '1000.00', '100.00', '10000.00', '1000.00', '1000.00', NULL, 'KSR001');
+INSERT INTO `pembayaran` (`no_pembayaran`, `tanggal_pembayaran`, `total_harga`, `pajak`, `total_bayar`, `uang_bayar`, `uang_kembalian`, `status_pembayaran`, `nrp_kasir`) VALUES
+(1, '2021-08-08', '60000.00', '6000.00', '66000.00', '70000.00', '4000.00', 'Sudah Bayar', 'KSR001'),
+(2, NULL, '194000.00', '19400.00', '213400.00', '0.00', '0.00', 'Belum Bayar', 'PYN001');
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
   `no_meja` int(11) NOT NULL,
   `tanggal_pemesanan` date DEFAULT NULL,
   `nama_pelanggan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status_pemesanan` enum('Belum Selesai','Selesai') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status_pemesanan` enum('Belum Selesai','Selesai') COLLATE utf8_unicode_ci DEFAULT 'Belum Selesai',
   `nrp` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`no_pemesanan`),
   KEY `no_meja` (`no_meja`),
@@ -190,8 +192,8 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`no_pemesanan`, `no_meja`, `tanggal_pemesanan`, `nama_pelanggan`, `status_pemesanan`, `nrp`) VALUES
-(1, 2, '2021-07-16', 'Rahman Insani', 'Belum Selesai', NULL),
-(2, 3, '2021-07-16', 'Muhammad Jafar Shidik', 'Belum Selesai', NULL);
+(1, 3, '2021-08-08', 'Kevin', 'Selesai', 'KOK001'),
+(2, 7, '2021-08-08', 'Riska', 'Belum Selesai', 'PYN001');
 
 --
 -- Constraints for dumped tables
@@ -209,7 +211,7 @@ ALTER TABLE `detail_pemesanan`
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`nrp`) REFERENCES `pegawai` (`nrp`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`nrp_kasir`) REFERENCES `pegawai` (`nrp`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan`

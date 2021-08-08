@@ -13,7 +13,13 @@
       <div class="row">
         <div class="col user-panel user-logout">
           <div class="image">
-            <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <?php if(is_koki()) : ?>
+              <img src="/assets/img/resto/koki.png" class="img-circle elevation-2" alt="Foto Koki">
+            <?php elseif(is_pelayan()) : ?>
+              <img src="/assets/img/resto/pelayan.png" class="img-circle elevation-2" alt="Foto Pelayan">
+            <?php elseif(is_kasir()) : ?>
+              <img src="/assets/img/resto/kasir.png" class="img-circle elevation-2" alt="Foto Kasir">
+            <?php endif; ?>
           </div>
         </div>
         <div class="col">
