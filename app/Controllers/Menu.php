@@ -122,21 +122,22 @@ public function __construct()
 
 
       $slug = url_title($this->request->getVar('nama'), '-', true);
-      $this->menuModel->save([
-          'kode_menu' => $this->request->getVar('kode_menu'),
-          'nama' => $this->request->getVar('nama'),
-          'slug' =>$slug,
-          'harga' => $this->request->getVar('harga'),
-          'stok' => $this->request->getVar('stok'),
-          'deskripsi' => $this->request->getVar('deskripsi'),
-          'gambar' => $namaGambar
 
-      ]);
+    $data = [
+      'kode_menu' => $this->request->getVar('kode_menu'),
+      'nama' => $this->request->getVar('nama'),
+      'slug' =>$slug,
+      'harga' => $this->request->getVar('harga'),
+      'stok' => $this->request->getVar('stok'),
+      'deskripsi' => $this->request->getVar('deskripsi'),
+      'gambar' => $namaGambar
+    ];
 
+    $this->menuModel->insert($data);
 
-      session()->setFlashdata('pesan', 'Data menu berhasil ditambahkan');
+    session()->setFlashdata('pesan', 'Data menu berhasil ditambahkan');
 
-      return redirect()->to('/menu');
+    return redirect()->to('/menu');
   }
 
   // public function delete($kode_menu)

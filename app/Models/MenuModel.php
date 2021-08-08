@@ -8,7 +8,7 @@ class MenuModel extends Model
 {
     protected $table = 'menu';
     protected $primaryKey = 'kode_menu';
-    protected $allowedFields = ['nama', 'slug', 'harga', 'stok' , 'gambar', 'deskripsi'];
+    protected $allowedFields = ['kode_menu', 'nama', 'slug', 'harga', 'stok' , 'gambar', 'deskripsi'];
 
     public function search($keyword)
     {

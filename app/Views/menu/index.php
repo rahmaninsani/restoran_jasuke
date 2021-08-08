@@ -87,8 +87,8 @@
 				</div>
 				<!-- /.row -->
 
-				<div class="row justify-content-center">
-					<div class="col-2">
+				<div class="row">
+					<div class="col-6">
 						<?= $pager->links('menu','menu_pagination') ?>
 					</div>
 				</div>
