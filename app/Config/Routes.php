@@ -59,11 +59,10 @@ $routes->get('/pemesanan/(:num)', 'Pemesanan::detail_pemesanan/$1', ['filter' =>
 
 # Pembayaran
 $routes->get('/pembayaran', 'Pembayaran::index', ['filter' => 'auth']);
-// $routes->get('/hitung_bayar', 'Hitung_bayar::index', ['filter' => 'auth']);
 $routes->get('/pembayaran/(:num)', 'Pembayaran::detail_pembayaran/$1', ['filter' => 'auth']);
 
-# Laporan
-$routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
+# Pelaporan
+$routes->get('/pelaporan', 'Pelaporan::index', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

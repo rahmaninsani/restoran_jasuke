@@ -16,7 +16,7 @@
           <div class="col-sm-6">
             <h1>Detail Pembayaran</h1>
             <?php if($detailPemesanan[0]['status_pembayaran'] == "Sudah Bayar") : ?>
-              <a href="<?= base_url('/pembayaran/ubah_status') . '/' . $detailPemesanan[0]['no_pembayaran'] ?>" class="btn btn-warning mt-3 ml-2">Ubah Bayar</a>
+              <a href="<?= base_url('/pembayaran/belum_bayar') . '/' . $detailPemesanan[0]['no_pembayaran'] ?>" class="btn btn-warning mt-3 ml-2">Ubah Bayar</a>
             <?php endif; ?>
           </div><!-- /.col -->
           <div class="col-sm-6">
@@ -186,7 +186,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">Rp</span>
                         </div>
-                        <input type="number" min="1" class="form-control" id="uangBayar" name="uangBayar" placeholder="Masukkan nominal pembayaran" autofocus required />
+                        <input type="number" min="<?= $detailPemesanan[0]['total_bayar']; ?>" class="form-control" id="uangBayar" name="uangBayar" placeholder="Masukkan nominal pembayaran" autofocus required />
                         <div div class="input-group-append">
                           <span class="input-group-text">,00</span>
                         </div>

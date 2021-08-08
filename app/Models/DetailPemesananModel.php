@@ -37,14 +37,14 @@ class DetailPemesananModel extends Model
   
   public function getMenuTerlaris() 
   {
-    $lastWeek = date("Y-m-d", strtotime("-1 week"));
-    $today = date("Y-m-d");
+    $firstDay = date('Y-m-d', strtotime("monday -1 week"));
+    $lastDay = date('Y-m-d', strtotime("sunday this week"));
 
     $query = "SELECT a.kode_menu, a.nama, a.harga, a.gambar, SUM(ab.kuantitas) AS 'jumlah_terjual'
       FROM menu a
       INNER JOIN detail_pemesanan ab USING(kode_menu)
       INNER JOIN pembayaran b USING(no_pembayaran)
-      WHERE b.tanggal_pembayaran BETWEEN '" . $lastWeek . "' AND '" . $today . "'
+      WHERE b.tanggal_pembayaran BETWEEN '" . $firstDay . "' AND '" . $lastDay . "'
       GROUP BY ab.kode_menu
       ORDER BY SUM(ab.kuantitas) DESC
       LIMIT 1;
@@ -138,6 +138,158 @@ class DetailPemesananModel extends Model
       ])
     ->first()['kuantitas'];  
   }
+
+  // Get Laporan Harian
+  public function getLaporanHarian()
+  {
+    $today = date("Y-m-d");
+
+    $query = "SELECT a.kode_menu, a.nama, a.harga, SUM(ab.kuantitas) AS 'jumlah_terjual', ab.subtotal
+    FROM menu a
+    INNER JOIN detail_pemesanan ab USING(kode_menu)
+    INNER JOIN pembayaran b USING(no_pembayaran)
+    WHERE b.tanggal_pembayaran = '" . $today ."'
+    GROUP BY a.kode_menu	
+    ORDER BY SUM(ab.kuantitas) DESC;    
+    ";
+    
+    $builder = $this->db->query($query);
+    if(array_key_exists(0, $builder->getResultArray())) 
+    {
+      $query = $builder->getResultArray();
+      return $query;
+    }
+
+    return;
+  }
+
+  // Get Laporan Mingguan
+  public function getLaporanMingguan()
+  {
+    $firstDay = date('Y-m-d', strtotime("monday -1 week"));
+    $lastDay = date('Y-m-d', strtotime("sunday this week"));
+
+    $query = "SELECT a.kode_menu, a.nama, a.harga, SUM(ab.kuantitas) AS 'jumlah_terjual', ab.subtotal
+    FROM menu a
+    INNER JOIN detail_pemesanan ab USING(kode_menu)
+    INNER JOIN pembayaran b USING(no_pembayaran)
+    WHERE b.tanggal_pembayaran BETWEEN '" . $firstDay . "' AND '" . $lastDay . "'
+    GROUP BY a.kode_menu	
+    ORDER BY SUM(ab.kuantitas) DESC;    
+    ";
+    
+    $builder = $this->db->query($query);
+    if(array_key_exists(0, $builder->getResultArray())) 
+    {
+      $query = $builder->getResultArray();
+      return $query;
+    }
+
+    return;
+  }
+
+  // Get Laporan Bulanan
+  public function getLaporanBulanan()
+  {
+    $firstDay = date('Y-m-01');
+    $lastDay = date('Y-m-t');
+
+    $query = "SELECT a.kode_menu, a.nama, a.harga, SUM(ab.kuantitas) AS 'jumlah_terjual', ab.subtotal
+    FROM menu a
+    INNER JOIN detail_pemesanan ab USING(kode_menu)
+    INNER JOIN pembayaran b USING(no_pembayaran)
+    WHERE b.tanggal_pembayaran BETWEEN '" . $firstDay . "' AND '" . $lastDay . "'
+    GROUP BY a.kode_menu	
+    ORDER BY SUM(ab.kuantitas) DESC;    
+    ";
+    
+    $builder = $this->db->query($query);
+    if(array_key_exists(0, $builder->getResultArray())) 
+    {
+      $query = $builder->getResultArray();
+      return $query;
+    }
+
+    return;
+  }
+
+  // Get Laporan Tahunan
+  public function getLaporanTahunan()
+  {
+    $firstDay = date('Y-01-01');
+    $lastDay = date('Y-12-t');
+
+    $query = "SELECT a.kode_menu, a.nama, a.harga, SUM(ab.kuantitas) AS 'jumlah_terjual', ab.subtotal
+    FROM menu a
+    INNER JOIN detail_pemesanan ab USING(kode_menu)
+    INNER JOIN pembayaran b USING(no_pembayaran)
+    WHERE b.tanggal_pembayaran BETWEEN '" . $firstDay . "' AND '" . $lastDay . "'
+    GROUP BY a.kode_menu	
+    ORDER BY SUM(ab.kuantitas) DESC;    
+    ";
+    
+    $builder = $this->db->query($query);
+    if(array_key_exists(0, $builder->getResultArray())) 
+    {
+      $query = $builder->getResultArray();
+      return $query;
+    }
+
+    return;
+  }
+
+  // Get Kuantitas Terjual Harian
+  public function getKuantitasTerjualHarian()
+  {
+    $today = date("Y-m-d");
+
+    $builder = $this->selectSum('kuantitas');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $query = $builder->getWhere(['b.tanggal_pembayaran' => $today])->getResultArray()[0]['kuantitas'];
+
+    return $query;
+  }
+
+  // Get Kuantitas Terjual Mingguan
+  public function getKuantitasTerjualMingguan()
+  {
+    $firstDay = date('Y-m-d', strtotime("monday -1 week"));
+    $lastDay = date('Y-m-d', strtotime("sunday this week"));
+
+    $builder = $this->selectSum('kuantitas');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $query = $builder->getWhere(['b.tanggal_pembayaran >=' => $firstDay, 'b.tanggal_pembayaran <=' => $lastDay])->getResultArray()[0]['kuantitas'];
+
+    return $query;
+  }
+
+  // Get Kuantitas Terjual Bulanan
+  public function getKuantitasTerjualBulanan()
+  {
+    $firstDay = date('Y-m-01');
+    $lastDay = date('Y-m-t');
+
+    $builder = $this->selectSum('kuantitas');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $query = $builder->getWhere(['b.tanggal_pembayaran >=' => $firstDay, 'b.tanggal_pembayaran <=' => $lastDay])->getResultArray()[0]['kuantitas'];
+
+    return $query;
+  }
+
+  // Get Kuantitas Terjual Tahunan
+  public function getKuantitasTerjualTahunan()
+  {
+    $firstDay = date('Y-01-01');
+    $lastDay = date('Y-12-t');
+
+    $builder = $this->selectSum('kuantitas');
+    $builder->join('pembayaran b', 'b.no_pembayaran = detail_pemesanan.no_pembayaran');
+    $query = $builder->getWhere(['b.tanggal_pembayaran >=' => $firstDay, 'b.tanggal_pembayaran <=' => $lastDay])->getResultArray()[0]['kuantitas'];
+
+    return $query;
+  }
+
+
 
 }
 
