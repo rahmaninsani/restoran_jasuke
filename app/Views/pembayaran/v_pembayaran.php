@@ -41,9 +41,9 @@
                       <th>No</th>
                       <th style="width: 10px;">No Pembayaran</th>
                       <th>Tanggal</th>
-                      <th>Nama</th>
-                      <th class="text-right">Total Harga</th>
-                      <th class="text-right">Pajak</th>
+                      <th class="text-left">Nama Pelanggan</th>
+                      <!-- <th class="text-right">Total Harga</th>
+                      <th class="text-right">Pajak</th> -->
                       <th class="text-right">Total Bayar</th>
                       <th>Status</th>
                       <th>NRP</th>
@@ -57,8 +57,8 @@
                         <td><?= $p['no_pembayaran']; ?></td>
                         <td><?= ($p['tanggal_pembayaran']) ? $p['tanggal_pembayaran'] : '-'; ?></td>
                         <td class="text-left"><?= $p['nama_pelanggan']; ?></td>
-                        <td class="text-right"><?= number_format($p['total_harga'], 2, ',', '.'); ?></td>
-                        <td class="text-right"><?= number_format($p['pajak'], 2, ',', '.'); ?></td>
+                        <!-- <td class="text-right"><?php //number_format($p['total_harga'], 2, ',', '.'); ?></td> -->
+                        <!-- <td class="text-right"><?php //number_format($p['pajak'], 2, ',', '.'); ?></td> -->
                         <td class="text-right"><?= number_format($p['total_bayar'], 2, ',', '.'); ?></td>
                         <td>
                           <span class="badge bg-<?= ($p['status_pembayaran'] == 'Sudah Bayar') ? 'success' : 'warning'; ?>"><?= $p['status_pembayaran']; ?></span>

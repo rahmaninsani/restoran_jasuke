@@ -13,7 +13,8 @@ class Login extends BaseController {
 
   public function index()
   {
-    if(session()->get('nrp')) {
+    if(session()->get('nrp')) 
+    {
 			return redirect()->to(base_url('/beranda'));
 		}
 
@@ -44,7 +45,8 @@ class Login extends BaseController {
         ];
 
         session()->set($data);
-
+        session()->setFlashdata('pesan', 'Anda berhasil masuk');
+        
         return redirect()->to(base_url('/beranda'));
 
       } else {
